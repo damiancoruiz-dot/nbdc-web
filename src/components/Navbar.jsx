@@ -1,3 +1,4 @@
+// src/components/Navbar.jsx
 import { useState } from "react";
 
 export default function Navbar() {
@@ -8,13 +9,7 @@ export default function Navbar() {
       <div className="nav-wrap">
         {/* Marca */}
         <a href="#inicio" className="brand" aria-label="Ir al inicio">
-          {/* Usa el SVG si existe; si falla, cae al PNG */}
-          <img
-            src="/brand/nbdc-logo.svg"
-            onError={(e) => { e.currentTarget.src = "/brand/nbdc-logo.png"; }}
-            alt="NBDC"
-            className="brand-logo"
-          />
+          <img src="/brand/nbdc-logo.svg" alt="NBDC" className="brand-logo" />
         </a>
 
         {/* Links desktop */}
@@ -30,31 +25,25 @@ export default function Navbar() {
           <a href="#productos" className="btn-cta">Ver catálogo</a>
         </div>
 
-        {/* Botón hamburguesa (móvil) */}
+        {/* Burger móvil (se muestra con el media query) */}
         <button
-          className="nav-toggle"
+          type="button"
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
-          aria-expanded={open}
+          className="nav-toggle"
           onClick={() => setOpen(!open)}
         >
-          <span className={`bar ${open ? "open" : ""}`} />
-          <span className={`bar ${open ? "open" : ""}`} />
-          <span className={`bar ${open ? "open" : ""}`} />
+          <span className={`bar ${open ? "open" : ""}`}></span>
+          <span className={`bar ${open ? "open" : ""}`}></span>
+          <span className={`bar ${open ? "open" : ""}`}></span>
         </button>
       </div>
 
-      {/* Overlay y Drawer móvil (clases según tu CSS) */}
-      <div
-        className={`nav-overlay ${open ? "show" : ""}`}
-        onClick={() => setOpen(false)}
-        aria-hidden={!open}
-      />
-      <aside className={`nav-drawer ${open ? "open" : ""}`} role="dialog" aria-modal="true">
+      {/* Overlay + Drawer móvil */}
+      <div className={`nav-overlay ${open ? "show" : ""}`} onClick={() => setOpen(false)} />
+      <aside className={`nav-drawer ${open ? "open" : ""}`} aria-hidden={!open}>
         <div className="drawer-header">
-          <strong>Menú</strong>
-          <button className="drawer-close" aria-label="Cerrar" onClick={() => setOpen(false)}>
-            ×
-          </button>
+          <strong style={{ fontWeight: 700 }}>Menú</strong>
+          <button className="drawer-close" aria-label="Cerrar" onClick={() => setOpen(false)}>×</button>
         </div>
 
         <nav className="drawer-links" onClick={() => setOpen(false)}>
