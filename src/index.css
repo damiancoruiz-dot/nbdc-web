@@ -1,71 +1,70 @@
-/* ====== Reset mínimo + tipografía ====== */
-* { box-sizing: border-box; }
-html, body { margin:0; padding:0; }
-img { max-width: 100%; display: block; }
+/* ========= RESET / BASE ========= */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
 body {
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
   color: #0b213a;
   background: #fff;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ====== Variables de color ====== */
-:root{
-  --blue-900:#063a52;
-  --blue-600:#0b6aa1;
-  --blue-500:#0d7ec0;
-  --text-on:#ffffff;
-  --text-muted:#556070;
-  --border:#e8eef6;
-  --shadow: 0 10px 25px rgba(13, 126, 192, .18);
-  --radius: 14px;
-}
+img, svg { display: block; max-width: 100%; height: auto; }
 
-/* ====== HEADER ====== */
+a { color: inherit; }
+
+/* ========= HEADER estilo “sitio médico” ========= */
 .site-header{
   position: sticky;
   top: 0;
   z-index: 50;
-  background: var(--blue-900);
-  color: var(--text-on);
-  border-bottom: 1px solid rgba(255,255,255,.08);
-  box-shadow: 0 8px 18px rgba(0,0,0,.08);
+  background: #063a52;                /* azul oscuro tipo cabecera */
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  box-shadow: 0 8px 18px rgba(0,0,0,.08);  /* sombra suave */
+  backdrop-filter: saturate(180%) blur(4px);
 }
 
 .nav-wrap{
   max-width: 1200px;
   margin: 0 auto;
-  padding: 18px 24px;
+  padding: 18px 24px;                  /* barra más alta */
   display: grid;
-  grid-template-columns: auto 1fr auto auto; /* brand | spacer | links | ctas */
+  grid-template-columns: auto 1fr auto;/* marca | links | ctas */
   align-items: center;
-  gap: 16px;
+  gap: 20px;
 }
 
 /* Marca */
 .brand{
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  color: var(--text-on);
+  gap: 14px;
+  color: #fff;
   text-decoration: none;
 }
+
+/* LOGO FLUIDO (ajustado) */
 .brand-logo{
-  height: clamp(44px, 6.2vw, 64px); /* GRANDE y fluido */
+  height: clamp(44px, 6.2vw, 64px);    /* ← tamaño cómodo en desktop */
   width: auto;
   object-fit: contain;
 }
-.brand-name{
-  font-weight: 800;
-  letter-spacing: .2px;
-}
 
-/* Links desktop */
+/* Links centrados visualmente */
 .nav-links{
-  justify-self: end;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: clamp(16px, 3vw, 28px);
 }
+
 .nav-links a{
   color: #e9f1f6;
   text-decoration: none;
@@ -74,31 +73,38 @@ body {
   letter-spacing: .2px;
   padding: 8px 6px;
   border-radius: 8px;
-  transition: opacity .2s ease, color .2s ease, background .2s ease;
-}
-.nav-links a:hover{
-  color: #ffffff;
-  background: rgba(255,255,255,.08);
+  transition: opacity .2s ease, color .2s ease;
 }
 
-/* CTAs desktop */
+.nav-links a:hover{
+  color: #ffffff;
+  opacity: .95;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Botones tipo pastilla a la derecha */
 .nav-cta{
   display: inline-flex;
   align-items: center;
   gap: 12px;
 }
+
+/* Botón sólido */
 .btn-cta{
-  background: var(--blue-500);
+  background: #11a0ff;                /* azul brillante CTA principal */
   color: #fff;
   padding: 10px 16px;
   border-radius: 999px;
   text-decoration: none;
   font-weight: 800;
-  box-shadow: 0 6px 16px rgba(13,126,192,.25);
+  box-shadow: 0 6px 16px rgba(17,160,255,.25);
   transition: filter .2s ease, transform .02s ease;
 }
-.btn-cta:hover{ filter: brightness(1.06); }
+.btn-cta:hover{ filter: brightness(1.05); }
 .btn-cta:active{ transform: translateY(1px); }
+
+/* Botón contorno */
 .btn-ghost{
   background: transparent;
   color: #cfe7f4;
@@ -114,65 +120,136 @@ body {
   color: #ffffff;
   background: rgba(255,255,255,.05);
 }
-.block{ display: block; text-align: center; }
 
-/* Toggle móvil (oculto en desktop) */
-.nav-toggle{
+/* ========= HAMBURGUESA / OVERLAY / DRAWER (móvil) ========= */
+
+/* Botón hamburguesa (oculto en desktop) */
+.nav-toggle {
   display: none;
-  height: 40px; width: 44px;
-  border: 0; border-radius: 8px;
-  background: rgba(255,255,255,.12);
+  background: transparent;
+  border: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
   cursor: pointer;
 }
-.nav-toggle .bar{
+.nav-toggle .bar {
   display: block;
-  height: 2px; width: 22px;
+  width: 22px;
+  height: 2px;
   background: #fff;
-  margin: 5px auto;
-  border-radius: 2px;
+  transition: transform .25s ease, opacity .2s ease;
 }
+.nav-toggle .bar:nth-child(1).open { transform: translateY(6px) rotate(45deg); }
+.nav-toggle .bar:nth-child(2).open { opacity: 0; }
+.nav-toggle .bar:nth-child(3).open { transform: translateY(-6px) rotate(-45deg); }
 
-/* Drawer móvil */
-.drawer{
-  display: none;
-}
-.drawer.open{
-  display: block;
+/* Overlay cuando el menú está abierto */
+.nav-overlay {
   position: fixed;
-  inset: 64px 0 0 0; /* debajo del header */
-  background: #0b2237;
-  color: #fff;
-  z-index: 60;
-  padding: 16px 20px 24px;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
 }
-.drawer-head{
-  display: flex; align-items: center; justify-content: space-between;
-  padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,.08);
+.nav-overlay.show {
+  opacity: 1;
+  pointer-events: all;
 }
-.drawer-close{
-  background: transparent; color: #fff; border: 0; font-size: 24px; cursor: pointer;
-}
-.drawer-links{
-  display: grid; gap: 10px;
-  padding: 12px 0 14px;
-}
-.drawer-links a{
-  color: #e9f1f6; text-decoration: none; font-weight: 600;
-  padding: 10px 6px; border-radius: 8px;
-}
-.drawer-links a:hover{ background: rgba(255,255,255,.08); }
 
-/* ====== Responsive ====== */
-@media (max-width: 1024px){
+/* Drawer lateral */
+.nav-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100dvh;
+  width: min(86vw, 360px);
+  background: #fff;
+  color: #0b213a;
+  transform: translateX(100%);
+  transition: transform .25s ease;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -12px 0 24px rgba(0,0,0,.18);
+  z-index: 110;
+}
+.nav-drawer.open { transform: translateX(0%); }
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  border-bottom: 1px solid #eef2f7;
+}
+.drawer-close {
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  color: #374151;
+}
+
+.drawer-links {
+  display: grid;
+  gap: 2px;
+  padding: 12px;
+}
+.drawer-links a {
+  display: block;
+  padding: 14px 12px;
+  border-radius: 10px;
+  color: #0b213a;
+  text-decoration: none;
+  font-weight: 600;
+}
+.drawer-links a:hover { background: #f3f6fb; }
+
+.drawer-cta {
+  margin-top: auto;
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+  border-top: 1px solid #eef2f7;
+}
+.block { display: block; text-align: center; }
+
+/* ========= RESPONSIVE ========= */
+@media (max-width: 960px){
   .nav-wrap{
-    grid-template-columns: auto 1fr auto;
-    grid-template-areas: "brand gap toggle";
+    grid-template-columns: auto auto;   /* marca | acciones */
+    grid-template-areas:
+      "brand cta"
+      "links links";
+    row-gap: 12px;
   }
-  .nav-links{ display:none; }
-  .nav-cta{ display: none; }
-  .nav-toggle{ display: inline-block; justify-self: end; grid-area: toggle; }
+  .brand{ grid-area: brand; }
+  .nav-cta{ grid-area: cta; justify-content: end; }
+  .nav-links{
+    grid-area: links;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  /* En tablet/móvil el logo puede bajar un poco para respirar */
+  .brand-logo{
+    height: clamp(40px, 7vw, 56px);
+  }
+  .btn-ghost{ display: none; }          /* opcional: ocultar uno en móvil */
 }
 
+/* Mostrar hamburguesa en móvil y ocultar links/cta de desktop */
+@media (max-width: 900px) {
+  .nav-links, .nav-cta { display: none; }
+  .nav-toggle { display: inline-flex; }
+}
+
+/* Móviles pequeños */
 @media (max-width: 520px){
-  .brand-logo{ height: clamp(40px, 7vw, 56px); }
+  .brand-logo{ height: clamp(36px, 8vw, 50px); }
 }

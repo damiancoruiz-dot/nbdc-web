@@ -1,4 +1,3 @@
-// src/components/Navbar.jsx
 import { useState } from "react";
 
 export default function Navbar() {
@@ -9,47 +8,53 @@ export default function Navbar() {
       <div className="nav-wrap">
         {/* Marca */}
         <a href="#inicio" className="brand" aria-label="Ir al inicio">
-          {/* Usa el SVG si lo tienes en /public/brand/nbdc-logo.svg */}
+          {/* Usa el SVG si existe; si falla, cae al PNG */}
           <img
             src="/brand/nbdc-logo.svg"
             onError={(e) => { e.currentTarget.src = "/brand/nbdc-logo.png"; }}
             alt="NBDC"
             className="brand-logo"
           />
-          {/* Si algún día quieres texto al lado del ícono:
-          <span className="brand-name">NBDC</span> */}
         </a>
 
-        {/* Links (desktop) */}
-        <nav className="nav-links">
+        {/* Links desktop */}
+        <nav className="nav-links" aria-label="Principal">
           <a href="#nosotros">Nosotros</a>
           <a href="#productos">Productos</a>
           <a href="#contacto">Contacto</a>
         </nav>
 
-        {/* CTAs (desktop) */}
+        {/* CTAs desktop */}
         <div className="nav-cta">
           <a href="#contacto" className="btn-ghost">Contacto</a>
           <a href="#productos" className="btn-cta">Ver catálogo</a>
         </div>
 
-        {/* Botón móvil */}
+        {/* Botón hamburguesa (móvil) */}
         <button
           className="nav-toggle"
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={open}
           onClick={() => setOpen(!open)}
         >
-          <span className="bar" />
-          <span className="bar" />
-          <span className="bar" />
+          <span className={`bar ${open ? "open" : ""}`} />
+          <span className={`bar ${open ? "open" : ""}`} />
+          <span className={`bar ${open ? "open" : ""}`} />
         </button>
       </div>
 
-      {/* Drawer móvil */}
-      <aside className={`drawer ${open ? "open" : ""}`}>
-        <div className="drawer-head">
+      {/* Overlay y Drawer móvil (clases según tu CSS) */}
+      <div
+        className={`nav-overlay ${open ? "show" : ""}`}
+        onClick={() => setOpen(false)}
+        aria-hidden={!open}
+      />
+      <aside className={`nav-drawer ${open ? "open" : ""}`} role="dialog" aria-modal="true">
+        <div className="drawer-header">
           <strong>Menú</strong>
-          <button className="drawer-close" aria-label="Cerrar" onClick={() => setOpen(false)}>×</button>
+          <button className="drawer-close" aria-label="Cerrar" onClick={() => setOpen(false)}>
+            ×
+          </button>
         </div>
 
         <nav className="drawer-links" onClick={() => setOpen(false)}>
