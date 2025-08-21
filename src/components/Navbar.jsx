@@ -9,12 +9,19 @@ export default function Navbar() {
       <div className="nav-wrap">
         {/* Marca */}
         <a href="#inicio" className="brand" aria-label="Ir al inicio">
-          {/* Usa el SVG si lo tienes en /public/brand/ */}
-          <img src="/brand/nbdc-logo.svg" alt="NBDC" className="brand-logo" />
+          {/* Usa el SVG si lo tienes en /public/brand/nbdc-logo.svg */}
+          <img
+            src="/brand/nbdc-logo.svg"
+            onError={(e) => { e.currentTarget.src = "/brand/nbdc-logo.png"; }}
+            alt="NBDC"
+            className="brand-logo"
+          />
+          {/* Si algún día quieres texto al lado del ícono:
+          <span className="brand-name">NBDC</span> */}
         </a>
 
-        {/* Enlaces (desktop) */}
-        <nav className="nav-links" aria-label="Principal">
+        {/* Links (desktop) */}
+        <nav className="nav-links">
           <a href="#nosotros">Nosotros</a>
           <a href="#productos">Productos</a>
           <a href="#contacto">Contacto</a>
@@ -26,28 +33,23 @@ export default function Navbar() {
           <a href="#productos" className="btn-cta">Ver catálogo</a>
         </div>
 
-        {/* Botón hamburguesa (móvil) */}
+        {/* Botón móvil */}
         <button
           className="nav-toggle"
-          aria-label="Abrir menú"
-          aria-expanded={open}
+          aria-label={open ? "Cerrar menú" : "Abrir menú"}
           onClick={() => setOpen(!open)}
         >
-          ☰
+          <span className="bar" />
+          <span className="bar" />
+          <span className="bar" />
         </button>
       </div>
 
       {/* Drawer móvil */}
-      <aside className={`drawer ${open ? "open" : ""}`} aria-hidden={!open}>
+      <aside className={`drawer ${open ? "open" : ""}`}>
         <div className="drawer-head">
           <strong>Menú</strong>
-          <button
-            className="drawer-close"
-            aria-label="Cerrar"
-            onClick={() => setOpen(false)}
-          >
-            ✕
-          </button>
+          <button className="drawer-close" aria-label="Cerrar" onClick={() => setOpen(false)}>×</button>
         </div>
 
         <nav className="drawer-links" onClick={() => setOpen(false)}>
