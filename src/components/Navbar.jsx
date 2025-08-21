@@ -1,4 +1,3 @@
-// src/components/Navbar.jsx
 import { useState } from "react";
 
 export default function Navbar() {
@@ -19,31 +18,41 @@ export default function Navbar() {
           <a href="#contacto">Contacto</a>
         </nav>
 
-        {/* CTAs desktop */}
-        <div className="nav-cta">
-          <a href="#contacto" className="btn-ghost">Contacto</a>
-          <a href="#productos" className="btn-cta">Ver catálogo</a>
-        </div>
-
-        {/* Burger móvil (se muestra con el media query) */}
+        {/* Botón hamburguesa (móvil) */}
         <button
-          type="button"
-          aria-label={open ? "Cerrar menú" : "Abrir menú"}
           className="nav-toggle"
-          onClick={() => setOpen(!open)}
+          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={open}
+          aria-controls="drawer"
+          onClick={() => setOpen((v) => !v)}
         >
-          <span className={`bar ${open ? "open" : ""}`}></span>
-          <span className={`bar ${open ? "open" : ""}`}></span>
-          <span className={`bar ${open ? "open" : ""}`}></span>
+          <span className={`bar ${open ? "open" : ""}`} />
+          <span className={`bar ${open ? "open" : ""}`} />
+          <span className={`bar ${open ? "open" : ""}`} />
         </button>
       </div>
 
-      {/* Overlay + Drawer móvil */}
-      <div className={`nav-overlay ${open ? "show" : ""}`} onClick={() => setOpen(false)} />
-      <aside className={`nav-drawer ${open ? "open" : ""}`} aria-hidden={!open}>
+      {/* Overlay */}
+      <div
+        className={`nav-overlay ${open ? "show" : ""}`}
+        onClick={() => setOpen(false)}
+      />
+
+      {/* Drawer móvil */}
+      <aside
+        id="drawer"
+        className={`nav-drawer ${open ? "open" : ""}`}
+        aria-hidden={!open}
+      >
         <div className="drawer-header">
-          <strong style={{ fontWeight: 700 }}>Menú</strong>
-          <button className="drawer-close" aria-label="Cerrar" onClick={() => setOpen(false)}>×</button>
+          <strong>Menú</strong>
+          <button
+            className="drawer-close"
+            aria-label="Cerrar"
+            onClick={() => setOpen(false)}
+          >
+            ×
+          </button>
         </div>
 
         <nav className="drawer-links" onClick={() => setOpen(false)}>
@@ -52,11 +61,6 @@ export default function Navbar() {
           <a href="#productos">Productos</a>
           <a href="#contacto">Contacto</a>
         </nav>
-
-        <div className="drawer-cta">
-          <a href="#productos" className="btn-cta block">Ver catálogo</a>
-          <a href="#contacto" className="btn-ghost block">Contacto</a>
-        </div>
       </aside>
     </header>
   );
