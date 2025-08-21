@@ -1,127 +1,73 @@
+// src/components/Navbar.jsx
 import { useState } from "react";
-import { theme } from "../theme";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
-  const navStyle = {
-    position: "sticky",
-    top: 0,
-    zIndex: 50,
-    background: theme.colors.primary,
-    color: "white",
-    borderBottom: "1px solid rgba(255,255,255,.08)",
-  };
-
-  const linkStyle = {
-    color: "white",
-    textDecoration: "none",
-    fontSize: 14,
-    opacity: 0.95,
-    transition: "opacity 0.2s, border-bottom 0.2s",
-    paddingBottom: 2,
-  };
-
   return (
-    <header style={navStyle}>
-      <div
-        style={{
-          maxWidth: 1100,
-          margin: "0 auto",
-          padding: "12px 20px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        {/* Logo */}
-        <a
-          href="#inicio"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 10,
-            color: "white",
-            textDecoration: "none",
-          }}
-        >
+    <header className="site-header">
+      <div className="nav-wrap">
+        {/* Marca */}
+        <a href="#inicio" className="brand" aria-label="Ir al inicio">
           <img
-            src="/brand/nbdc-logo.png"
+            src="/brand/nbdc-logo.svg"
             alt="NBDC"
-            style={{ height: 32 }}
+            className="brand-logo"
           />
- 
         </a>
 
-        {/* Botón hamburguesa (solo móviles) */}
-        <button
-          onClick={() => setOpen(!open)}
-          style={{
-            display: "none",
-            background: "none",
-            border: "none",
-            color: "white",
-            fontSize: 22,
-            cursor: "pointer",
-          }}
-          className="nav-toggle"
-        >
-          ☰
-        </button>
-
-        {/* Links */}
-        <nav
-          className={`nav-links ${open ? "open" : ""}`}
-          style={{
-            display: "flex",
-            gap: 18,
-          }}
-        >
-          <a href="#inicio" style={linkStyle}>
-            Inicio
-          </a>
-          <a href="#nosotros" style={linkStyle}>
-            Nosotros
-          </a>
-          <a href="#productos" style={linkStyle}>
-            Productos
-          </a>
-          <a href="#contacto" style={linkStyle}>
-            Contacto
-          </a>
+        {/* Links (desktop) */}
+        <nav className="nav-links" aria-label="Principal">
+          <a href="#nosotros">Nosotros</a>
+          <a href="#productos">Productos</a>
+          <a href="#contacto">Contacto</a>
         </nav>
+
+        {/* CTAs (desktop) */}
+        <div className="nav-cta">
+          <a href="#contacto" className="btn-ghost">Contacto</a>
+          <a href="#productos" className="btn-cta">Ver catálogo</a>
+        </div>
+
+        {/* Botón hamburguesa (móvil) */}
+        <button
+          className="nav-toggle"
+          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={open}
+          onClick={() => setOpen(true)}
+        >
+          {/* 3 barras */}
+          <span className={`bar${open ? " open" : ""}`}></span>
+          <span className={`bar${open ? " open" : ""}`}></span>
+          <span className={`bar${open ? " open" : ""}`}></span>
+        </button>
       </div>
 
-      {/* Estilos responsivos */}
-      <style>
-        {`
-          .nav-toggle {
-            display: none;
-          }
+      {/* Overlay (oscurece fondo) */}
+      <div
+        className={`nav-overlay ${open ? "show" : ""}`}
+        onClick={() => setOpen(false)}
+      />
 
-          .nav-links a:hover {
-            opacity: 1;
-            border-bottom: 1px solid white;
-          }
+      {/* Drawer lateral (móvil) */}
+      <aside className={`nav-drawer ${open ? "open" : ""}`} role="dialog" aria-modal="true">
+        <div className="drawer-header">
+          <strong>Menú</strong>
+          <button className="drawer-close" aria-label="Cerrar" onClick={() => setOpen(false)}>×</button>
+        </div>
 
-          @media (max-width: 768px) {
-            .nav-toggle {
-              display: block;
-            }
+        <nav className="drawer-links" onClick={() => setOpen(false)}>
+          <a href="#inicio">Inicio</a>
+          <a href="#nosotros">Nosotros</a>
+          <a href="#productos">Productos</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
 
-            .nav-links {
-              display: none;
-              flex-direction: column;
-              background: ${theme.colors.primary};
-              padding: 10px 20px;
-            }
-
-            .nav-links.open {
-              display: flex;
-            }
-          }
-        `}
-      </style>
+        <div className="drawer-cta">
+          <a href="#productos" className="btn-cta block">Ver catálogo</a>
+          <a href="#contacto" className="btn-ghost block">Contacto</a>
+        </div>
+      </aside>
     </header>
   );
 }
