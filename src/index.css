@@ -1,234 +1,185 @@
-/* ===== Header estilo “sitio médico” ===== */
+/* ===== Reset mínimo seguro ===== */
+*, *::before, *::after { box-sizing: border-box; }
+img { max-width: 100%; display: block; }
 
+/* ===== Paleta base (ajústala si quieres) ===== */
+:root{
+  --blue-900: #063a52;
+  --blue-600: #0b6aa1;
+  --blue-500: #0b82d1;
+  --text-on-dark: #ffffff;
+  --text-muted: #cfe7f4;
+  --border-dark: rgba(255,255,255,.10);
+  --shadow: 0 10px 25px rgba(0,0,0,.10);
+}
+
+/* ===== Header estilo ‘clínica’ ===== */
 .site-header{
   position: sticky;
   top: 0;
   z-index: 50;
-  background: #063a52;           /* azul oscuro tipo cabecera */
-  color: #fff;
-  border-bottom: 1px solid rgba(255,255,255,.06);
-  box-shadow: 0 8px 18px rgba(0,0,0,.08);  /* sombra suave */
+  background: var(--blue-900);
+  color: var(--text-on-dark);
+  border-bottom: 1px solid var(--border-dark);
+  box-shadow: var(--shadow);
 }
 
+/* Barra principal */
 .nav-wrap{
   max-width: 1200px;
   margin: 0 auto;
-  padding: 22px 24px;             /* barra más alta */
+  padding: 16px 24px;
   display: grid;
-  grid-template-columns: auto 1fr auto; /* marca | links | ctas */
+  grid-template-columns: auto 1fr auto auto; /* brand | links | ctas | burger */
   align-items: center;
-  gap: 20px;
+  gap: 16px;
 }
 
+/* Marca */
 .brand{
   display: inline-flex;
   align-items: center;
-  gap: 14px;
-  color: #fff;
+  gap: 12px;
+  color: var(--text-on-dark);
   text-decoration: none;
 }
 
-.brand-logo { height: clamp(36px, 5.2vw, 56px); }
-@media (max-width: 960px){ .brand-logo{ height: clamp(60px, 8vw, 90px); } } /* esto hace el logo más grande en tablet */
-@media (max-width: 520px){ .brand-logo{ height: clamp(40px, 6vw, 68px); } }
+.brand-logo{
+  /* LOGO grande y fluido como pediste */
+  height: clamp(40px, 6.5vw, 64px);
+  width: auto;
+  object-fit: contain;
+}
 
-
-/* Links centrados visualmente */
+/* Links centro (desktop) */
 .nav-links{
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(16px, 3vw, 28px);
+  gap: clamp(16px, 3vw, 32px);
 }
 
 .nav-links a{
-  color: #e9f1f6;
+  color: var(--text-on-dark);
   text-decoration: none;
   font-weight: 600;
-  font-size: 15px;
-  letter-spacing: .2px;
+  font-size: clamp(14px, 1.4vw, 16px);
   padding: 8px 6px;
   border-radius: 8px;
-  transition: opacity .2s ease, color .2s ease;
+  transition: background .15s ease, opacity .15s ease;
 }
 
 .nav-links a:hover{
-  color: #ffffff;
-  opacity: .95;
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  background: rgba(255,255,255,.08);
+  opacity: .98;
 }
 
-/* Botones tipo pastilla a la derecha */
+/* CTAs derecha */
 .nav-cta{
   display: inline-flex;
   align-items: center;
   gap: 12px;
 }
 
-/* Botón sólido */
 .btn-cta{
-  background: #11a0ff;    /* azul brillante para CTA principal */
+  background: var(--blue-500);
   color: #fff;
   padding: 10px 16px;
   border-radius: 999px;
   text-decoration: none;
   font-weight: 800;
-  box-shadow: 0 6px 16px rgba(17,160,255,.25);
-  transition: filter .2s ease, transform .02s ease;
+  box-shadow: 0 8px 18px rgba(11,130,209,.28);
+  transition: filter .15s ease, transform .02s ease;
 }
-.btn-cta:hover{ filter: brightness(1.05); }
+.btn-cta:hover{ filter: brightness(1.06); }
 .btn-cta:active{ transform: translateY(1px); }
 
-/* Botón contorno */
 .btn-ghost{
   background: transparent;
-  color: #cfe7f4;
+  color: var(--text-muted);
   padding: 10px 16px;
   border-radius: 999px;
   text-decoration: none;
   font-weight: 800;
-  border: 2px solid rgba(255,255,255,.25);
-  transition: border-color .2s ease, color .2s ease, background .2s ease;
+  border: 2px solid rgba(255,255,255,.30);
+  transition: border-color .15s ease, color .15s ease, background .15s ease;
 }
 .btn-ghost:hover{
-  border-color: rgba(255,255,255,.45);
-  color: #ffffff;
-  background: rgba(255,255,255,.05);
+  border-color: rgba(255,255,255,.50);
+  color: #fff;
+  background: rgba(255,255,255,.06);
 }
 
-/* Responsive */
-@media (max-width: 960px){
-  .nav-wrap{
-    grid-template-columns: auto auto; /* marca | acciones */
-    grid-template-areas:
-      "brand cta"
-      "links links";
-    row-gap: 12px;
-  }
-  .brand{ grid-area: brand; }
-  .nav-cta{ grid-area: cta; justify-content: end; }
-  .nav-links{
-    grid-area: links;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 14px;
-  }
-  .brand-logo{
-    height: clamp(60px, 8vw, 90px);
-  }
-  .btn-ghost{ display: none; } /* opcional: ocultar uno en móvil */
-}
-
-@media (max-width: 520px){
-  .nav-cta{ display: none; }      /* si necesitas aún más limpio en móvil */
-  .brand-logo{ height: clamp(40px, 6vw, 68px); }
-}
-/* ====== HAMBURGUESA / OVERLAY / DRAWER (móvil) ====== */
-
-/* Botón hamburguesa (oculto en desktop) */
-.nav-toggle {
+/* Hamburguesa (oculta en desktop) */
+.nav-toggle{
   display: none;
-  background: transparent;
   border: 0;
-  width: 42px;
-  height: 42px;
+  outline: 0;
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  width: 42px; height: 42px;
   border-radius: 10px;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
+  font-size: 20px;
+  line-height: 1;
   cursor: pointer;
 }
-.nav-toggle .bar {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: #fff;
-  transition: transform .25s ease, opacity .2s ease;
-}
-.nav-toggle .bar:nth-child(1).open { transform: translateY(6px) rotate(45deg); }
-.nav-toggle .bar:nth-child(2).open { opacity: 0; }
-.nav-toggle .bar:nth-child(3).open { transform: translateY(-6px) rotate(-45deg); }
 
-/* Overlay cuando el menú está abierto */
-.nav-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.45);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .25s ease;
+/* ===== Drawer móvil ===== */
+.drawer{
+  display: none;
+  background: var(--blue-900);
+  color: #fff;
+  border-top: 1px solid var(--border-dark);
 }
-.nav-overlay.show {
-  opacity: 1;
-  pointer-events: all;
-}
+.drawer.open{ display: block; }
 
-/* Drawer lateral */
-.nav-drawer {
-  position: fixed;
-  top: 0;
-  right: 0;
-  height: 100dvh;
-  width: min(86vw, 360px);
-  background: #fff;
-  color: #0b213a;
-  transform: translateX(100%);
-  transition: transform .25s ease;
-  display: flex;
-  flex-direction: column;
-  box-shadow: -12px 0 24px rgba(0,0,0,.18);
-  z-index: 110;
-}
-.nav-drawer.open { transform: translateX(0%); }
-
-.drawer-header {
+.drawer-head{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 18px;
-  border-bottom: 1px solid #eef2f7;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border-dark);
 }
-.drawer-close {
+.drawer-close{
   background: transparent;
-  border: none;
-  font-size: 28px;
-  line-height: 1;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.3);
+  width: 36px; height: 36px;
+  border-radius: 8px;
   cursor: pointer;
-  color: #374151;
 }
 
-.drawer-links {
+.drawer-links{
   display: grid;
-  gap: 2px;
-  padding: 12px;
+  gap: 8px;
+  padding: 14px 20px 4px;
 }
-.drawer-links a {
-  display: block;
-  padding: 14px 12px;
-  border-radius: 10px;
-  color: #0b213a;
+.drawer-links a{
+  color: #fff;
   text-decoration: none;
-  font-weight: 600;
+  padding: 10px 8px;
+  border-radius: 8px;
 }
-.drawer-links a:hover {
-  background: #f3f6fb;
-}
+.drawer-links a:hover{ background: rgba(255,255,255,.06); }
 
-.drawer-cta {
-  margin-top: auto;
-  padding: 12px;
+.drawer-cta{
   display: grid;
   gap: 10px;
-  border-top: 1px solid #eef2f7;
+  padding: 8px 20px 20px;
 }
-.block { display: block; text-align: center; }
+.block{ display: block; text-align: center; }
 
-/* Mostrar hamburguesa en móvil y ocultar links/cta de desktop */
-@media (max-width: 900px) {
-  .nav-links, .nav-cta { display: none; }
-  .nav-toggle { display: inline-flex; }
+/* ===== Responsive ===== */
+@media (max-width: 980px){
+  .nav-wrap{
+    grid-template-columns: auto 1fr auto; /* brand | ctas | burger */
+  }
+  .nav-links{ display: none; }   /* ocultamos links en móvil */
+  .nav-toggle{ display: inline-flex; align-items: center; justify-content: center; }
+  .btn-ghost{ display: none; }   /* deja solo un CTA en móvil */
 }
 
-/* Ajustes finos opcionales */
-.site-header { backdrop-filter: saturate(180%) blur(4px); }
+@media (max-width: 520px){
+  .btn-cta{ padding: 9px 14px; }
+  .brand-logo{ height: clamp(36px, 8vw, 52px); }
+}
