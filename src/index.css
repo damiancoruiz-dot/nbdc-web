@@ -8,7 +8,7 @@ html, body { height: 100%; }
 body{
   margin: 0;
   font-family: system-ui, -apple-system, "Segoe UI", Inter, Roboto, Arial, "Helvetica Neue", sans-serif;
-  color: #0b213a;
+  color: var(--ink-900);
   background: #fff;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -18,121 +18,29 @@ body{
 img, svg { display:block; max-width:100%; height:auto; }
 a { color: inherit; text-decoration: none; }
 
-/* ========= THEME ========= */
+/* ========= THEME (variables) ========= */
 :root{
-  /* Azul claro (marca) */
+  /* Marca */
   --brand-700: #0b6aa1;
   --brand-600: #0c7fbf;
   --brand-500: #1196e6;
 
+  /* Tinta */
   --ink-900: #0b213a;
   --ink-700: #2f3e52;
   --ink-500: #556070;
   --ink-300: #7a8699;
 
+  /* UI */
   --bg-50:   #f7f9fc;
   --card:    #ffffff;
   --line:    #e8eef6;
 
+  /* Sombra genérica */
   --shadow:  0 8px 18px rgba(0,0,0,.08);
 }
 
-/* ========= HEADER ÚNICO ========= */
-.site-header{
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: var(--brand-700);
-  color: #fff;
-  border-bottom: 1px solid rgba(255,255,255,.06);
-  box-shadow: var(--shadow);
-  backdrop-filter: saturate(180%) blur(4px);
-}
-
-.nav-wrap{
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 18px 24px;
-  display: grid;
-  grid-template-columns: auto 1fr auto; /* brand | links | burger */
-  align-items: center;
-  gap: 20px;
-}
-
-/* Marca */
-.brand{
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  color: #fff;
-}
-.brand-logo{
-  height: clamp(44px, 6.2vw, 64px);
-  width: auto;
-  object-fit: contain;
-}
-
-/* Links desktop */
-.nav-links{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(16px, 3vw, 28px);
-}
-.nav-links a{
-  color: #e9f1f6;
-  font-weight: 600;
-  font-size: 15px;
-  letter-spacing: .2px;
-  padding: 8px 6px;
-  border-radius: 8px;
-  transition: opacity .2s ease, color .2s ease, background .2s ease;
-}
-.nav-links a:hover{
-  color: #fff;
-  background: rgba(255,255,255,.07);
-}
-
-/* ========= HAMBURGUESA + OVERLAY + DRAWER ========= */
-.nav-toggle{
-  display: none;               /* se muestra solo en móvil via @media */
-  background: transparent;
-  border: 0;
-  width: 42px; height: 42px;
-  border-radius: 10px;
-  align-items: center; justify-content: center;
-  cursor: pointer;
-
-  /* si quedara '---' en el DOM, no se ve */
-  font-size: 0;
-  line-height: 0;
-}
-
-.nav-toggle .bar{
-  display: block;
-  width: 22px; height: 2px;
-  background: #fff;
-  transition: transform .25s ease, opacity .2s ease;
-}
-.nav-toggle .bar + .bar{ margin-top: 5px; }
-.nav-toggle .bar.open:nth-child(1){ transform: translateY(7px) rotate(45deg); }
-.nav-toggle .bar.open:nth-child(2){ opacity: 0; }
-.nav-toggle .bar.open:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
-
-/* Utilidad accesible */
-.sr-only{
-  position: absolute !important;
-  width:1px; height:1px; padding:0; margin:-1px;
-  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
-}
-
-/* ========= RESPONSIVE ========= */
-@media (max-width: 900px){
-  .nav-links{ display: none; }
-  .nav-toggle{ display: inline-flex; }  /* ← solo móvil */
-}
-
-/* ========= UTILIDADES (secciones y cards existentes) ========= */
+/* ========= UTILIDADES / TIPOGRAFÍA ========= */
 .section{ padding: 56px 20px; }
 .container{ max-width: 1200px; margin: 0 auto; }
 
@@ -147,12 +55,13 @@ a { color: inherit; text-decoration: none; }
   margin: 0;
 }
 
-/* Grid + card de productos (restaurado) */
+/* ========= GRID / CARDS DE PRODUCTOS ========= */
 .features{
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 18px;
 }
+
 .card{
   grid-column: span 4;
   background: var(--card);
@@ -161,6 +70,7 @@ a { color: inherit; text-decoration: none; }
   box-shadow: var(--shadow);
   padding: 16px;
 }
+
 @media (max-width: 960px){ .card{ grid-column: span 6; } }
 @media (max-width: 600px){ .card{ grid-column: span 12; } }
 
@@ -179,112 +89,22 @@ a { color: inherit; text-decoration: none; }
   color: var(--ink-900);
 }
 
-/* CTA dentro de card */
-.btn{ display: inline-block; border-radius: 10px; padding: 10px 14px; font-weight: 700; }
-.btn-primary{ background: var(--brand-600); color:#fff; }
+/* Botones generales */
+.btn{
+  display: inline-block;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.btn-primary{
+  background: var(--brand-600);
+  color:#fff;
+}
 .btn-primary:hover{ filter: brightness(1.05); }
 
 /* Nota legal */
 .footnote{ margin-top: 18px; font-size: 12px; color: var(--ink-300); }
-/* ===== PARCHE FORZADO: NAV DRAWER / LINKS / BURGER ===== */
 
-/* Ocultar burger en desktop pase lo que pase */
-@media (min-width: 901px){
-  .nav-toggle{ display: none !important; }
-}
-
-/* Asegurar que el overlay se muestre sobre el contenido */
-.nav-overlay{
-  position: fixed !important;
-  inset: 0 !important;
-  background: rgba(0,0,0,.45) !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-  transition: opacity .25s ease !important;
-  z-index: 109 !important;
-}
-.nav-overlay.show{
-  opacity: 1 !important;
-  pointer-events: all !important;
-}
-
-/* Drawer fijo a la derecha, ancho controlado, nunca a pantalla completa */
-.nav-drawer{
-  position: fixed !important;
-  top: 0 !important;
-  right: 0 !important;
-  height: 100dvh !important;
-  width: 86vw !important;          /* mejor compatibilidad que min() */
-  max-width: 360px !important;
-  background: #fff !important;
-  color: #0b213a !important;
-  transform: translateX(100%) !important;
-  transition: transform .25s ease !important;
-  display: flex !important;
-  flex-direction: column !important;
-  box-shadow: -12px 0 24px rgba(0,0,0,.18) !important;
-  z-index: 110 !important;
-}
-.nav-drawer.open{
-  transform: translateX(0) !important;
-}
-
-/* Cabecera del drawer */
-.drawer-header{
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  padding: 16px 18px !important;
-  border-bottom: 1px solid #eef2f7 !important;
-}
-
-/* Enlaces del drawer en columna, cada uno en su línea */
-.drawer-links{
-  display: grid !important;
-  gap: 2px !important;
-  padding: 12px !important;
-}
-.drawer-links a{
-  display: block !important;
-  padding: 14px 12px !important;
-  border-radius: 10px !important;
-  color: #0b213a !important;
-  font-weight: 600 !important;
-}
-.drawer-links a:hover{
-  background: #f3f6fb !important;
-}
-
-/* Botón cerrar */
-.drawer-close{
-  background: transparent !important;
-  border: none !important;
-  font-size: 28px !important;
-  line-height: 1 !important;
-  cursor: pointer !important;
-  color: #374151 !important;
-}
-
-/* Burger: aseguramos que las barras se vean y no texto */
-.nav-toggle{
-  font-size: 0 !important;
-  line-height: 0 !important;
-  width: 42px !important;
-  height: 42px !important;
-  align-items: center !important;
-  justify-content: center !important;
-  border: 0 !important;
-  background: transparent !important;
-  border-radius: 10px !important;
-}
-.nav-toggle .bar{
-  display: block !important;
-  width: 22px !important;
-  height: 2px !important;
-  background: #fff !important;
-  content: "" !important;
-}
-.nav-toggle .bar + .bar{ margin-top: 5px !important; }
-.nav-toggle .bar.open:nth-child(1){ transform: translateY(7px) rotate(45deg) !important; }
-.nav-toggle .bar.open:nth-child(2){ opacity: 0 !important; }
-.nav-toggle .bar.open:nth-child(3){ transform: translateY(-7px) rotate(-45deg) !important; }
+/* ===== Header eliminado de este archivo.
+   Los estilos del header/nav viven en src/components/Navbar.jsx (clases nbdc-*) ===== */
