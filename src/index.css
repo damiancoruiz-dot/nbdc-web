@@ -95,14 +95,19 @@ a { color: inherit; text-decoration: none; }
 
 /* ========= HAMBURGUESA + OVERLAY + DRAWER ========= */
 .nav-toggle{
-  display: none;               /* se muestra solo en móvil */
+  display: none;               /* se muestra solo en móvil via @media */
   background: transparent;
   border: 0;
   width: 42px; height: 42px;
   border-radius: 10px;
   align-items: center; justify-content: center;
   cursor: pointer;
+
+  /* si quedara '---' en el DOM, no se ve */
+  font-size: 0;
+  line-height: 0;
 }
+
 .nav-toggle .bar{
   display: block;
   width: 22px; height: 2px;
@@ -114,49 +119,17 @@ a { color: inherit; text-decoration: none; }
 .nav-toggle .bar.open:nth-child(2){ opacity: 0; }
 .nav-toggle .bar.open:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
 
-.nav-overlay{
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,.45);
-  opacity: 0; pointer-events: none;
-  transition: opacity .25s ease;
+/* Utilidad accesible */
+.sr-only{
+  position: absolute !important;
+  width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
 }
-.nav-overlay.show{ opacity: 1; pointer-events: all; }
-
-.nav-drawer{
-  position: fixed; top: 0; right: 0;
-  height: 100dvh; width: min(86vw, 360px);
-  background: #fff; color: #0b213a;
-  transform: translateX(100%);
-  transition: transform .25s ease;
-  display: flex; flex-direction: column;
-  box-shadow: -12px 0 24px rgba(0,0,0,.18);
-  z-index: 110;
-}
-.nav-drawer.open{ transform: translateX(0); }
-
-.drawer-header{
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 16px 18px; border-bottom: 1px solid #eef2f7;
-}
-.drawer-close{
-  background: transparent; border: none;
-  font-size: 28px; line-height: 1; cursor: pointer; color: #374151;
-}
-.drawer-links{ display: grid; gap: 2px; padding: 12px; }
-.drawer-links a{
-  display: block; padding: 14px 12px; border-radius: 10px;
-  color: #0b213a; font-weight: 600;
-}
-.drawer-links a:hover{ background: #f3f6fb; }
 
 /* ========= RESPONSIVE ========= */
 @media (max-width: 900px){
   .nav-links{ display: none; }
-  .nav-toggle{ display: inline-flex; }
-}
-
-@media (max-width: 520px){
-  .brand-logo{ height: clamp(36px, 8vw, 50px); }
+  .nav-toggle{ display: inline-flex; }  /* ← solo móvil */
 }
 
 /* ========= UTILIDADES (secciones y cards existentes) ========= */
