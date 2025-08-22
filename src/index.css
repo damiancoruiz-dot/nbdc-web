@@ -1,11 +1,15 @@
 /* ========= RESET / BASE ========= */
 *,
 *::before,
-*::after { box-sizing: border-box; }
+*::after { 
+  box-sizing: border-box; 
+}
 
-html, body { height: 100%; }
+html, body { 
+  height: 100%; 
+}
 
-body{
+body {
   margin: 0;
   font-family: system-ui, -apple-system, "Segoe UI", Inter, Roboto, Arial, "Helvetica Neue", sans-serif;
   color: var(--ink-900);
@@ -15,11 +19,19 @@ body{
   -moz-osx-font-smoothing: grayscale;
 }
 
-img, svg { display:block; max-width:100%; height:auto; }
-a { color: inherit; text-decoration: none; }
+img, svg { 
+  display: block; 
+  max-width: 100%; 
+  height: auto; 
+}
+
+a { 
+  color: inherit; 
+  text-decoration: none; 
+}
 
 /* ========= THEME (variables) ========= */
-:root{
+:root {
   /* Marca */
   --brand-700: #0b6aa1;
   --brand-600: #0c7fbf;
@@ -41,28 +53,35 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ========= UTILIDADES / TIPOGRAFÍA ========= */
-.section{ padding: 56px 20px; }
-.container{ max-width: 1200px; margin: 0 auto; }
+.section { 
+  padding: 56px 20px; 
+}
 
-.h2{
+.container { 
+  max-width: 1200px; 
+  margin: 0 auto; 
+}
+
+.h2 {
   font-size: clamp(24px, 3.2vw, 36px);
   margin: 0 0 12px;
   color: var(--ink-900);
 }
-.lead{
+
+.lead {
   font-size: clamp(14px, 1.7vw, 18px);
   color: var(--ink-700);
   margin: 0;
 }
 
 /* ========= GRID / CARDS DE PRODUCTOS ========= */
-.features{
+.features {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 18px;
 }
 
-.card{
+.card {
   grid-column: span 4;
   background: var(--card);
   border: 1px solid var(--line);
@@ -71,16 +90,40 @@ a { color: inherit; text-decoration: none; }
   padding: 16px;
 }
 
-@media (max-width: 960px){ .card{ grid-column: span 6; } }
-@media (max-width: 600px){ .card{ grid-column: span 12; } }
+@media (max-width: 960px) { 
+  .card { grid-column: span 6; } 
+}
 
-.card h3{ margin: 0 0 6px; font-size: 20px; color: var(--ink-900); }
-.card p{ margin: 0 0 12px; color: var(--ink-700); }
-.card ul{ margin: 0 0 12px; padding-left: 18px; color: var(--ink-700); font-size: 14px; }
+@media (max-width: 600px) { 
+  .card { grid-column: span 12; } 
+}
 
-/* Pills de variantes */
-.pills{ display: flex; gap: 8px; flex-wrap: wrap; }
-.pill{
+.card h3 { 
+  margin: 0 0 6px; 
+  font-size: 20px; 
+  color: var(--ink-900); 
+}
+
+.card p { 
+  margin: 0 0 12px; 
+  color: var(--ink-700); 
+}
+
+.card ul { 
+  margin: 0 0 12px; 
+  padding-left: 18px; 
+  color: var(--ink-700); 
+  font-size: 14px; 
+}
+
+/* ========= Pills de variantes ========= */
+.pills { 
+  display: flex; 
+  gap: 8px; 
+  flex-wrap: wrap; 
+}
+
+.pill {
   border: 1px solid var(--line);
   border-radius: 999px;
   background: var(--bg-50);
@@ -89,22 +132,27 @@ a { color: inherit; text-decoration: none; }
   color: var(--ink-900);
 }
 
-/* Botones generales */
-.btn{
+/* ========= Botones generales ========= */
+.btn {
   display: inline-block;
   border-radius: 10px;
   padding: 10px 14px;
   font-weight: 700;
   text-decoration: none;
 }
-.btn-primary{
+
+.btn-primary {
   background: var(--brand-600);
-  color:#fff;
+  color: #fff;
 }
-.btn-primary:hover{ filter: brightness(1.05); }
 
-/* Nota legal */
-.footnote{ margin-top: 18px; font-size: 12px; color: var(--ink-300); }
+.btn-primary:hover { 
+  filter: brightness(1.05); 
+}
 
-/* ===== Header eliminado de este archivo.
-   Los estilos del header/nav viven en src/components/Navbar.jsx (clases nbdc-*) ===== */
+/* ========= Nota legal ========= */
+.footnote { 
+  margin-top: 18px; 
+  font-size: 12px; 
+  color: var(--ink-300); 
+}
