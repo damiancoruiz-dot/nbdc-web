@@ -22,16 +22,19 @@ export default function Navbar() {
           </nav>
 
           {/* Botón hamburguesa (solo móvil) */}
-          <button
+         <button
             className="nav-toggle"
-            aria-label="Abrir menú"
+            aria-label={open ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={open}
             onClick={() => setOpen(!open)}
-          >
+            >
+            {/* 3 barras reales */}
             <span className={`bar ${open ? "open" : ""}`} />
             <span className={`bar ${open ? "open" : ""}`} />
             <span className={`bar ${open ? "open" : ""}`} />
-          </button>
+            {/* Texto accesible oculto (por si quedara texto basura) */}
+            <span className="sr-only">{open ? "Cerrar" : "Abrir"}</span>
+        </button>
         </div>
       </header>
 
