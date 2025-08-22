@@ -1,29 +1,45 @@
-import { useState } from "react";
+// src/components/Navbar.jsx
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+
+  // Cerrar con ESC y bloquear scroll al abrir el drawer
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
     <header className="site-header">
       <div className="nav-wrap">
         {/* Marca */}
         <a href="#inicio" className="brand" aria-label="Ir al inicio">
-          <img src="/brand/nbdc-logo.svg" alt="NBDC" className="brand-logo" />
+          <img
+            src="/brand/nbdc-logo.svg"   // usa el SVG optimizado
+            alt="NBDC"
+            className="brand-logo"
+          />
         </a>
 
-        {/* Links desktop */}
-        <nav className="nav-links" aria-label="Principal">
+        {/* Links de escritorio */}
+        <nav className="nav-links" aria-label="Navegación principal">
           <a href="#nosotros">Nosotros</a>
           <a href="#productos">Productos</a>
           <a href="#contacto">Contacto</a>
         </nav>
 
-        {/* Botón hamburguesa (móvil) */}
+        {/* Burger (se muestra en móvil via CSS) */}
         <button
           className="nav-toggle"
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={open}
-          aria-controls="drawer"
+          aria-controls="mobile-drawer"
           onClick={() => setOpen((v) => !v)}
         >
           <span className={`bar ${open ? "open" : ""}`} />
@@ -40,9 +56,11 @@ export default function Navbar() {
 
       {/* Drawer móvil */}
       <aside
-        id="drawer"
+        id="mobile-drawer"
         className={`nav-drawer ${open ? "open" : ""}`}
-        aria-hidden={!open}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menú"
       >
         <div className="drawer-header">
           <strong>Menú</strong>
