@@ -72,7 +72,30 @@ export default function Hero() {
           </div>
         </SwiperSlide>
 
-        {/* 3) Producto 2 */}
+        {/* 3) Producto Vial */}
+<SwiperSlide>
+  <div className="hero-slide">
+    <img
+      className="hero-img"
+      src="/images/hero-xentra-s3-vial.webp"
+      alt="Xentra S3 — Vial 10 mL"
+    />
+    <div className="hero-overlay" />
+    <div className="hero-content container">
+      <h1 className="h2" style={{ color: "#fff", fontWeight: 800 }}>
+        Xentra S3 — Vial 10 mL
+      </h1>
+      <p className="lead" style={{ color: "#e7eef6" }}>
+        Solución para uso subcutáneo, frasco multidosis 10 mL
+      </p>
+      <div className="hero-actions">
+        <a href="#productos" className="btn btn-primary">Solicitar cotización</a>
+      </div>
+    </div>
+  </div>
+</SwiperSlide>
+
+        {/* 4) Producto 2 */}
         <SwiperSlide>
           <div className="hero-slide">
             <img className="hero-img" src="/images/hero-xentra-t3.webp" alt="Xentra T3" />
