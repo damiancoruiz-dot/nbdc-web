@@ -17,6 +17,21 @@ export default function Nosotros() {
           productos de alta calidad, cumplimiento regulatorio y trazabilidad.
         </p>
 
+        <div className="nosotros-highlights">
+          <div className="highlight">
+            <span className="icon">✅</span>
+            <p>Cumplimiento y trazabilidad</p>
+          </div>
+          <div className="highlight">
+            <span className="icon">🚚</span>
+            <p>Envíos confiables</p>
+          </div>
+          <div className="highlight">
+            <span className="icon">🤝</span>
+            <p>Soporte profesional</p>
+          </div>
+        </div>
+
         <div className="features">
           <div className="card">
             <h3>Misión</h3>

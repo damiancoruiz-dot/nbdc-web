@@ -278,3 +278,31 @@ a {
 
 .quote blockquote::before { content: "“"; left: 0; top: -6px; }
 .quote blockquote::after  { content: "”"; right: 0; bottom: -6px; }
+
+/* ========= NOSOTROS: BULLETS / HIGHLIGHTS ========= */
+.nosotros-highlights {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin: 48px 0; /* espacio arriba y abajo */
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.highlight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  max-width: 200px;
+}
+
+.highlight .icon {
+  font-size: 28px;
+}
+
+.highlight p {
+  margin: 0;
+  font-weight: 600;
+  color: var(--ink-700);
+}
