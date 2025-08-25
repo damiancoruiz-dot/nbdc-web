@@ -3,7 +3,7 @@ export const products = [
   {
     id: "xentra-s3-pen",
     lab: "Xentra Pharma",
-    brandLogo: "/brand/xentra-logo.png", // colócalo en /public/brand/
+    brandLogo: "/brand/xentra-logo.png",
     name: "Xentra S3 — Pluma multidosis",
     short: "Pluma con dosificación semanal y micro-unidades.",
     bullets: ["Uso SUB-C", "Trazabilidad y guía de uso"],
@@ -14,11 +14,12 @@ export const products = [
       "Torundas con alcohol",
       "Guía rápida"
     ],
-    price: null, // “Por confirmar”
+    price: null,
     cta: {
       label: "Solicitar cotización",
       href: "https://wa.me/5219981234567?text=Hola,%20me%20interesa%20Xentra%20S3%20Pluma%20multidosis"
-    }
+    },
+    image: "/images/products/xentra-s3-pen.webp",   // 👈 Nuevo campo
   },
   {
     id: "xentra-s3-vial",
@@ -33,7 +34,8 @@ export const products = [
     cta: {
       label: "Solicitar cotización",
       href: "https://wa.me/5219981234567?text=Hola,%20me%20interesa%20Xentra%20S3%20Vial%2010mL"
-    }
+    },
+    image: "/images/products/xentra-s3-vial.webp",  // 👈 Nuevo campo
   },
   {
     id: "xentra-t3",
@@ -48,6 +50,7 @@ export const products = [
     cta: {
       label: "Solicitar cotización",
       href: "https://wa.me/5219981234567?text=Hola,%20me%20interesa%20Xentra%20T3%20Pluma%20multidosis"
-    }
+    },
+    image: "/images/products/xentra-t3-pen.webp",   // 👈 Nuevo campo
   }
 ];

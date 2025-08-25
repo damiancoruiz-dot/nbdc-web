@@ -5,42 +5,57 @@ export default function ProductCard({ p }) {
   // Número de WhatsApp (con país, sin +). Ej: 52XXXXXXXXXX
   const waNumber = "5299900000000";
 
-  // Variante seleccionada (toma la primera por defecto si existe)
   const [variant, setVariant] = useState(p?.variants?.[0] ?? "");
   const [openIncludes, setOpenIncludes] = useState(false);
 
   const buildWaLink = () => {
     const base = `Hola, me interesa *${p.name}*`;
     const v = variant ? ` (presentación: ${variant})` : "";
-    const extra =
-      "\n¿Me compartes precio, disponibilidad y requisitos de compra?";
+    const extra = "\n¿Me compartes precio, disponibilidad y requisitos de compra?";
     const text = encodeURIComponent(`${base}${v}.${extra}`);
     return `https://wa.me/${waNumber}?text=${text}`;
   };
 
   return (
-    <div className="card" style={{ padding: 16, display: "flex", flexDirection: "column", gap: 12 }}>
-      {/* Encabezado pequeño con logo del proveedor */}
-      {(p.brandLogo || p.brandName) && (
+    <div className="card product-card" style={{ padding: 16, display: "flex", flexDirection: "column", gap: 12 }}>
+      {/* Imagen del producto */}
+      {p.image && (
+        <div className="prod-thumb">
+          <img
+            src={p.image}
+            alt={p.name}
+            loading="lazy"
+            width={800}
+            height={500}
+          />
+        </div>
+      )}
+
+      {/* Encabezado pequeño con logo + laboratorio */}
+      {(p.brandLogo || p.lab || p.brandName) && (
         <div style={{ display: "flex", alignItems: "center", gap: 8, color: "#6b7785", fontSize: 13 }}>
           {p.brandLogo ? (
             <img
               src={p.brandLogo}
-              alt={p.brandName || "Marca"}
+              alt={p.lab || p.brandName || "Marca"}
               style={{ height: 18, width: "auto", objectFit: "contain" }}
             />
           ) : null}
-          {p.brandName ? <span>{p.brandName}</span> : null}
+          <span>{p.lab || p.brandName}</span>
         </div>
       )}
 
-      {/* Título + descripción */}
+      {/* Título + descripción corta */}
       <div>
         <h3 style={{ margin: "0 0 6px", fontSize: 18, color: "#0b213a" }}>{p.name}</h3>
-        {p.desc && <p style={{ margin: "0 0 10px", color: "#556070" }}>{p.desc}</p>}
+        {(p.short || p.desc) && (
+          <p style={{ margin: "0 0 10px", color: "#556070" }}>
+            {p.short || p.desc}
+          </p>
+        )}
       </div>
 
-      {/* Bullets (opcional) */}
+      {/* Bullets */}
       {p.bullets?.length ? (
         <ul style={{ margin: "0 0 6px 16px", color: "#556070", fontSize: 14 }}>
           {p.bullets.map((b) => (
