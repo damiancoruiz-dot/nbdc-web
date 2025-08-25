@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import Quote from "./components/Quote";         // 👈 nuevo
 import Nosotros from "./components/Nosotros";
 import Productos from "./pages/Productos";
 import Contacto from "./components/Contacto";
@@ -9,6 +10,7 @@ export default function App() {
     <>
       <Navbar />
       <Hero />
+      <Quote />                                  {/* 👈 aquí va el bloque destacado */}
       <Nosotros />
       <Productos />
       <Contacto />

@@ -246,3 +246,35 @@ a {
   font-weight: 600;
   text-shadow: 0 1px 4px rgba(0,0,0,0.35);
 }
+/* ===== Quote destacado entre Hero y Nosotros ===== */
+.quote {
+  padding: clamp(28px, 4vw, 44px) 20px;
+  background: #f7f9fc;                 /* gris suave */
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin: 0;                           /* que quede pegado al hero */
+}
+
+.quote blockquote {
+  position: relative;
+  margin: 0 auto;
+  max-width: 900px;
+  text-align: center;
+  font-size: clamp(18px, 2.2vw, 22px);
+  line-height: 1.6;
+  color: var(--ink-700);
+  font-weight: 600;
+  font-style: italic;
+  padding: 8px 28px;                   /* espacio para comillas */
+}
+
+.quote blockquote::before,
+.quote blockquote::after {
+  position: absolute;
+  color: var(--brand-600);
+  font-size: 40px;
+  line-height: 1;
+}
+
+.quote blockquote::before { content: "“"; left: 0; top: -6px; }
+.quote blockquote::after  { content: "”"; right: 0; bottom: -6px; }
