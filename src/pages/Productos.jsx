@@ -10,7 +10,20 @@ export default function Productos() {
 
         <div className="features" style={{ marginTop: 28 }}>
           {products.map((p) => (
-            <article key={p.id} className="card">
+            <article key={p.id} className="card product-card">
+              {/* Imagen del producto */}
+              {p.image && (
+                <div className="prod-thumb">
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    loading="lazy"
+                    width={800}
+                    height={500}
+                  />
+                </div>
+              )}
+
               {/* Encabezado producto */}
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 10 }}>
                 {p.brandLogo && (
@@ -23,6 +36,7 @@ export default function Productos() {
                 <div style={{ fontSize: 13, color: "#556070" }}>{p.lab}</div>
               </div>
 
+              {/* Nombre + descripción corta */}
               <h3 style={{ margin: "0 0 6px", fontSize: 20, color: "#0b213a" }}>{p.name}</h3>
               <p style={{ color: "#556070", margin: "0 0 12px" }}>{p.short}</p>
 
