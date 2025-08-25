@@ -40,16 +40,12 @@ export default function Hero() {
               <h1 className="h2" style={{ color: "#fff", fontWeight: 800 }}>
                 Distribución biofarmacéutica confiable
               </h1>
-              
+
               <div className="hero-actions">
                 <a href="#productos" className="btn btn-primary">Ver productos</a>
                 <a href="#contacto" className="btn btn-outline">Contactar ventas</a>
               </div>
-              <div className="hero-bullets">
-                <span>• Cumplimiento y trazabilidad</span>
-                <span>• Envíos confiables</span>
-                <span>• Soporte profesional</span>
-              </div>
+            
             </div>
           </div>
         </SwiperSlide>
