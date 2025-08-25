@@ -8,6 +8,15 @@ export default function Nosotros() {
         <h2 className="h2" style={{ color: theme.colors.dark }}>
           Sobre nosotros
         </h2>
+
+        {/* Texto movido desde el Hero */}
+        <p className="lead" style={{ maxWidth: 780, marginTop: 12 }}>
+          Conectamos a laboratorios y profesionales de la salud con productos
+          de alta calidad, trazabilidad y soporte. Alianza con fabricantes
+          seleccionados.
+        </p>
+
+        {/* Texto que ya tenías */}
         <p className="lead">
           En <strong>NBDC</strong> trabajamos con compromiso y excelencia para 
           garantizar la distribución biofarmacéutica más confiable en México.  

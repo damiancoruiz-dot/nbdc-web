@@ -41,8 +41,7 @@ export default function Hero() {
                 Distribución biofarmacéutica confiable
               </h1>
               <p className="lead" style={{ color: "#e7eef6", maxWidth: 780, margin: "14px auto 0" }}>
-                Conectamos a laboratorios y profesionales de la salud con productos
-                de alta calidad, trazabilidad y soporte. Alianza con fabricantes seleccionados.
+                Calidad • Trazabilidad • Soporte profesional
               </p>
               <div className="hero-actions">
                 <a href="#productos" className="btn btn-primary">Ver productos</a>
