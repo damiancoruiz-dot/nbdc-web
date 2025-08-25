@@ -306,3 +306,38 @@ a {
   font-weight: 600;
   color: var(--ink-700);
 }
+/* ========= NOSOTROS: BULLETS / HIGHLIGHTS ========= */
+.nosotros-highlights {
+  display: flex;
+  justify-content: center;
+  gap: clamp(20px, 5vw, 48px);
+  margin: clamp(32px, 5vw, 60px) 0;  /* más espacio arriba/abajo */
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.highlight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  max-width: 240px;
+}
+
+.highlight .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px; 
+  height: 64px;
+  color: var(--brand-600);     /* color de trazo de los SVG (usa currentColor) */
+  background: #eef6fc;         /* circulito suave */
+  border-radius: 999px;
+}
+
+.highlight p {
+  margin: 0;
+  font-weight: 700;
+  color: var(--ink-700);
+  letter-spacing: .2px;
+}
