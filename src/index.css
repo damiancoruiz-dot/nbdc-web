@@ -365,3 +365,34 @@ a {
   transform: scale(1.02);
   transition: transform .25s ease;
 }
+/* ===== Scroller horizontal tipo Apple (móvil) ===== */
+@media (max-width: 900px){
+  /* Convierte el grid en carrusel horizontal */
+  .features{
+    grid-auto-flow: column;                 /* columnas en fila horizontal */
+    grid-auto-columns: calc(85% - 10px);    /* tamaño de cada tarjeta (deja ver la siguiente) */
+    overflow-x: auto;
+    gap: 12px;
+    padding: 8px 12px 12px;
+    margin: 16px -20px 0;                   /* full-bleed: ocupa todo el ancho del viewport */
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;      /* inercia iOS */
+    scrollbar-width: none;                  /* oculta scrollbar en Firefox */
+  }
+  .features::-webkit-scrollbar{ display: none; } /* oculta scrollbar en WebKit */
+
+  /* Cada card se alinea al “snap” del carrusel */
+  .features .card{
+    grid-column: auto !important;           /* ignora spans del grid vertical */
+    scroll-snap-align: start;
+    min-width: 0;                           /* evita overflow interno */
+  }
+}
+
+/* Un poco más compacto en pantallas muy pequeñas */
+@media (max-width: 520px){
+  .features{
+    grid-auto-columns: calc(88% - 8px);
+    gap: 10px;
+  }
+}
