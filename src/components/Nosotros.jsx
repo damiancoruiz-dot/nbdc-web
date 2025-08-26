@@ -1,41 +1,31 @@
 // src/components/Nosotros.jsx
-import { useRef, useState, useEffect } from "react";
 import { theme } from "../theme";
+import { useRef, useState, useEffect } from "react";
 
 export default function Nosotros() {
-  const scrollerRef = useRef(null);
-  const [canPrev, setCanPrev] = useState(false);
-  const [canNext, setCanNext] = useState(true);
+  const trackRef = useRef(null);
+  const [canLeft, setCanLeft] = useState(false);
+  const [canRight, setCanRight] = useState(true);
 
-  const updateArrows = () => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    const max = el.scrollWidth - el.clientWidth;
-    setCanPrev(el.scrollLeft > 8);
-    setCanNext(el.scrollLeft < max - 8);
-  };
-
+  // Habilita/deshabilita flechas según scroll
   useEffect(() => {
-    updateArrows();
-    const el = scrollerRef.current;
+    const el = trackRef.current;
     if (!el) return;
-    const onResize = () => updateArrows();
-    window.addEventListener("resize", onResize);
-    el.addEventListener("scroll", updateArrows, { passive: true });
+    const onScroll = () => {
+      setCanLeft(el.scrollLeft > 0);
+      setCanRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 1);
+    };
+    onScroll();
+    el.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
     return () => {
-      window.removeEventListener("resize", onResize);
-      el.removeEventListener("scroll", updateArrows);
+      el.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
     };
   }, []);
 
-  const step = () => {
-    // un paso agradable: ~una tarjeta y media
-    const el = scrollerRef.current;
-    return el ? Math.min(480, Math.floor(el.clientWidth * 0.6)) : 420;
-  };
-
-  const scrollBy = (dir) => {
-    scrollerRef.current?.scrollBy({ left: dir * step(), behavior: "smooth" });
+  const scrollBy = (dx) => {
+    trackRef.current?.scrollBy({ left: dx, behavior: "smooth" });
   };
 
   return (
@@ -47,17 +37,13 @@ export default function Nosotros() {
 
         <p className="lead">
           En <strong>NBDC</strong> trabajamos con compromiso y excelencia para 
-          garantizar la distribución biofarmacéutica más confiable en México.  
+          garantizar la distribución biofarmacéutica más confiable en México.
           Nuestra alianza con fabricantes y profesionales de la salud asegura 
           productos de alta calidad, cumplimiento regulatorio y trazabilidad.
         </p>
 
-        {/* Carrusel horizontal tipo Apple */}
-        <div
-          ref={scrollerRef}
-          className="features hscroll scroller scroller--peek scroller--roomy"
-          aria-label="Puntos fuertes de NBDC"
-        >
+        {/* Carrusel tipo Apple con aire y flechas debajo */}
+        <div className="scroller scroller--peek features hscroll" ref={trackRef}>
           <article className="card roomy-card">
             <div className="eyebrow eyebrow--blue">Calidad</div>
             <h3 className="roomy-title">Cumplimiento y trazabilidad</h3>
@@ -83,34 +69,28 @@ export default function Nosotros() {
           </article>
         </div>
 
-        {/* Flechas debajo, separadas del carrusel */}
+        {/* Flechas separadas del carrusel */}
         <div className="scroller-controls">
           <button
-            type="button"
             className="scroller-btn"
-            onClick={() => scrollBy(-1)}
-            aria-label="Desplazar a la izquierda"
-            disabled={!canPrev}
+            onClick={() => scrollBy(-420)}
+            disabled={!canLeft}
+            aria-label="Anterior"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path d="M15 5l-7 7 7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+            ‹
           </button>
           <button
-            type="button"
             className="scroller-btn"
-            onClick={() => scrollBy(1)}
-            aria-label="Desplazar a la derecha"
-            disabled={!canNext}
+            onClick={() => scrollBy(420)}
+            disabled={!canRight}
+            aria-label="Siguiente"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+            ›
           </button>
         </div>
 
-        {/* Tarjetas clásicas: Misión, Visión, Valores */}
-        <div className="features" style={{ marginTop: 28 }}>
+        {/* Debajo permanecen tus tarjetas clásicas Misión/Visión/Valores (grid) */}
+        <div className="features" style={{ marginTop: 32 }}>
           <div className="card">
             <h3>Misión</h3>
             <p>
