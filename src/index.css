@@ -396,3 +396,40 @@ a {
     gap: 10px;
   }
 }
+/* === Tarjetas grandes estilo Apple para Nosotros (solo texto) === */
+.card.big-tile{
+  border-radius: 20px;
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+/* ancho flexible cuando la lista esté en modo carrusel (opcional) */
+.features .card.big-tile{
+  /* se adapta bien tanto en grid normal como en carrusel horizontal */
+  min-width: clamp(280px, 28vw, 360px);
+}
+
+/* Tipos dentro de la tile */
+.tile-kicker{
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--brand-600);
+  margin: 0 0 6px;
+}
+
+.tile-title{
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 800;
+  margin: 0 0 10px;
+  color: var(--ink-900);
+}
+
+.tile-body{
+  font-size: 15px;
+  color: var(--ink-700);
+  margin: 0;
+}
