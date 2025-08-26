@@ -1,4 +1,6 @@
 // src/components/Nosotros.jsx
+import { Shield, Target, Heart } from "lucide-react";
+
 export default function Nosotros() {
   return (
     <section id="nosotros" className="section section-alt">
@@ -11,7 +13,7 @@ export default function Nosotros() {
           productos de alta calidad, cumplimiento regulatorio y trazabilidad.
         </p>
 
-        {/* Carrusel horizontal */}
+        {/* Carrusel horizontal con imágenes */}
         <div className="features hscroll">
           {/* Calidad */}
           <div
@@ -55,9 +57,10 @@ export default function Nosotros() {
           </div>
         </div>
 
-        {/* Misión, Visión, Valores (texto normal) */}
+        {/* Misión, Visión, Valores (con íconos planos en azul) */}
         <div className="features hscroll compact">
-          <div className="card">
+          <div className="card text-card">
+            <Shield size={28} strokeWidth={2} style={{ marginBottom: "8px", color: "var(--brand-600)" }} />
             <h3>Misión</h3>
             <p>
               Conectar a laboratorios, distribuidores y profesionales de la
@@ -65,14 +68,18 @@ export default function Nosotros() {
               accesibles.
             </p>
           </div>
-          <div className="card">
+
+          <div className="card text-card">
+            <Target size={28} strokeWidth={2} style={{ marginBottom: "8px", color: "var(--brand-600)" }} />
             <h3>Visión</h3>
             <p>
               Ser el centro de distribución biofarmacéutica de referencia en
               México, reconocido por la calidad, la innovación y el servicio.
             </p>
           </div>
-          <div className="card">
+
+          <div className="card text-card">
+            <Heart size={28} strokeWidth={2} style={{ marginBottom: "8px", color: "var(--brand-600)" }} />
             <h3>Valores</h3>
             <p>
               Ética, transparencia, compromiso con la salud y orientación al
