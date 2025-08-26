@@ -510,3 +510,83 @@ a {
   .hscroll-btn.left{ left: -4px; }
   .hscroll-btn.right{ right: -4px; }
 }
+/* ===== Scroller (Nosotros) con más aire & flechas abajo ===== */
+
+/* Más aire: padding/gaps y margen inferior para separar del resto */
+.scroller {
+  gap: 28px;
+  padding: 16px 24px 28px;     /* bottom más grande para respirar */
+  margin: 20px -20px 10px;     /* full-bleed; ajusta si tu container cambia */
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+@media (min-width: 900px){
+  .scroller { gap: 32px; padding: 18px 32px 32px; margin: 24px -32px 12px; }
+}
+
+/* Efecto “peek/fade” en los laterales (como Apple) */
+.scroller--peek {
+  -webkit-mask-image: linear-gradient(to right,
+    transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
+          mask-image: linear-gradient(to right,
+    transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
+}
+
+/* Tarjetas verticales/altas y un poco más estrechas */
+.features.hscroll .roomy-card {
+  flex: 0 0 clamp(300px, 30vw, 420px);
+  border-radius: 22px;
+  padding: clamp(18px, 2.2vw, 24px);
+  scroll-snap-align: start;
+}
+
+/* Tipografías dentro de cada tarjeta */
+.eyebrow {
+  font-weight: 800;
+  letter-spacing: .2px;
+  margin-bottom: 10px;
+  font-size: clamp(13px, 1.5vw, 14px);
+}
+.eyebrow--blue { color: #2b78ff; }
+.eyebrow--green { color: #14a86d; }
+.eyebrow--amber { color: #f59e0b; }
+
+.roomy-title {
+  margin: 0 0 10px;
+  font-weight: 900;
+  color: var(--ink-900);
+  font-size: clamp(20px, 2.6vw, 28px);
+  line-height: 1.2;
+}
+.roomy-text {
+  margin: 0;
+  color: #445166;
+  font-size: clamp(14px, 1.8vw, 16px);
+}
+
+/* Controles debajo, separados del carrusel */
+.scroller-controls {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;   /* pon 'center' si los quieres centrados */
+  padding: 4px 24px 0;         /* aire superior para separarlos */
+}
+@media (min-width: 900px){
+  .scroller-controls { padding: 8px 32px 0; }
+}
+
+/* Botones de flecha */
+.scroller-btn {
+  width: 44px; height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+  box-shadow: var(--shadow);
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+.scroller-btn:hover { transform: translateY(-1px); }
+.scroller-btn:disabled { opacity: .4; cursor: default; transform: none; }
