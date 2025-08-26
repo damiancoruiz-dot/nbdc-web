@@ -436,3 +436,77 @@ a {
   color: var(--ink-700);
   margin: 0;
 }
+/* ====== Carrusel tipo Apple: tarjetas verticales ====== */
+
+/* Contenedor con scroll horizontal (úsalo junto a .features) */
+.features.hscroll{
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  padding: 8px 12px 12px;
+  margin: 16px -20px 0;            /* full-bleed al borde del viewport */
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.features.hscroll::-webkit-scrollbar{ display: none; }
+
+/* Tarjeta “rectángulo vertical” */
+/* Desktop: grandes, verticales */
+.features.hscroll .card{
+  flex: 0 0 clamp(300px, 32vw, 420px);   /* ancho (deja “peek” lateral) */
+  min-height: clamp(380px, 48vh, 520px); /* altura vertical */
+  scroll-snap-align: start;
+  min-width: 0;
+  transition: transform .25s ease, box-shadow .25s ease;
+  border-radius: 22px;                   /* más redondeada como Apple */
+  padding: clamp(18px, 2vw, 28px);
+}
+
+/* Hover solo en dispositivos con hover (no móvil) */
+@media (hover: hover){
+  .features.hscroll .card:hover{
+    transform: scale(1.04);
+    box-shadow: 0 16px 32px rgba(0,0,0,.14);
+    z-index: 1;
+  }
+}
+
+/* Móvil: más compactas pero mismo formato vertical */
+@media (max-width: 900px){
+  .features.hscroll{
+    gap: 12px;
+    padding: 8px 10px 14px;
+  }
+  .features.hscroll .card{
+    flex: 0 0 clamp(240px, 78vw, 320px);  /* más angostas en móvil */
+    min-height: clamp(320px, 52vh, 420px);
+    border-radius: 20px;
+    padding: 18px;
+  }
+}
+
+/* Flechas de navegación opcionales */
+.hscroll-nav{ position: relative; }
+.hscroll-btn{
+  position: absolute;
+  top: 42%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,.92);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  width: 42px; height: 42px;
+  display: grid; place-items: center;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,.12);
+  transition: background .2s, transform .2s;
+}
+.hscroll-btn:hover{ background: #fff; transform: translateY(-50%) scale(1.04); }
+.hscroll-btn.left{ left: -6px; }
+.hscroll-btn.right{ right: -6px; }
+
+@media (max-width: 900px){
+  .hscroll-btn{ width: 36px; height: 36px; top: 45%; }
+  .hscroll-btn.left{ left: -4px; }
+  .hscroll-btn.right{ right: -4px; }
+}

@@ -1,7 +1,12 @@
 // src/components/Nosotros.jsx
+import { useRef } from "react";
 import { theme } from "../theme";
 
 export default function Nosotros() {
+  const stripRef = useRef(null);
+  const scroll = (px) =>
+    stripRef.current?.scrollBy({ left: px, behavior: "smooth" });
+
   return (
     <section id="nosotros" className="section section-alt">
       <div className="container">
@@ -16,97 +21,128 @@ export default function Nosotros() {
           productos de alta calidad, cumplimiento regulatorio y trazabilidad.
         </p>
 
-        {/* Fila 1: Tarjetas grandes estilo Apple (scroll horizontal en todas las pantallas) */}
-        <div className="features hscroll" style={{ marginTop: 28 }}>
-          <article className="card" aria-label="Calidad">
-            <div style={{ color: "#3b82f6", fontWeight: 700, marginBottom: 10 }}>
-              Calidad
-            </div>
-            <h3 style={{ fontSize: 28, lineHeight: 1.2, margin: "0 0 10px" }}>
-              Cumplimiento y
-              <br /> trazabilidad
-            </h3>
-            <p style={{ color: "#556070", margin: 0 }}>
-              Procesos y registros que aseguran seguridad y confianza en cada lote.
-            </p>
-          </article>
+        {/* === Carrusel tipo Apple: tarjetas verticales === */}
+        <div className="hscroll-nav" style={{ position: "relative" }}>
+          <button
+            className="hscroll-btn left"
+            onClick={() => scroll(-380)}
+            aria-label="Anterior"
+          >
+            ‹
+          </button>
 
-          <article className="card" aria-label="Logística">
-            <div style={{ color: "#14b8a6", fontWeight: 700, marginBottom: 10 }}>
-              Logística
-            </div>
-            <h3 style={{ fontSize: 28, lineHeight: 1.2, margin: "0 0 10px" }}>
-              Envíos confiables
-            </h3>
-            <p style={{ color: "#556070", margin: 0 }}>
-              Distribución eficiente y puntual a cualquier parte de México.
-            </p>
-          </article>
+          <div ref={stripRef} className="features hscroll">
+            <article className="card">
+              <div
+                style={{
+                  color: "#3b82f6",
+                  fontWeight: 800,
+                  letterSpacing: ".2px",
+                  marginBottom: 8,
+                }}
+              >
+                Calidad
+              </div>
+              <h3
+                style={{
+                  margin: "0 0 10px",
+                  fontSize: "clamp(22px,2.6vw,28px)",
+                  color: "#0b213a",
+                }}
+              >
+                Cumplimiento y trazabilidad
+              </h3>
+              <p style={{ color: "#556070", fontSize: 16, lineHeight: 1.6 }}>
+                Procesos y registros que aseguran seguridad y confianza en cada
+                lote.
+              </p>
+            </article>
 
-          <article className="card" aria-label="Soporte">
-            <div style={{ color: "#f59e0b", fontWeight: 700, marginBottom: 10 }}>
-              Soporte
-            </div>
-            <h3 style={{ fontSize: 28, lineHeight: 1.2, margin: "0 0 10px" }}>
-              Soporte profesional
-            </h3>
-            <p style={{ color: "#556070", margin: 0 }}>
-              Acompañamiento especializado para nuestros clientes en todo momento.
-            </p>
-          </article>
+            <article className="card">
+              <div
+                style={{
+                  color: "#10b981",
+                  fontWeight: 800,
+                  letterSpacing: ".2px",
+                  marginBottom: 8,
+                }}
+              >
+                Logística
+              </div>
+              <h3
+                style={{
+                  margin: "0 0 10px",
+                  fontSize: "clamp(22px,2.6vw,28px)",
+                  color: "#0b213a",
+                }}
+              >
+                Envíos confiables
+              </h3>
+              <p style={{ color: "#556070", fontSize: 16, lineHeight: 1.6 }}>
+                Distribución eficiente y puntual a cualquier parte de México.
+              </p>
+            </article>
+
+            <article className="card">
+              <div
+                style={{
+                  color: "#f59e0b",
+                  fontWeight: 800,
+                  letterSpacing: ".2px",
+                  marginBottom: 8,
+                }}
+              >
+                Soporte
+              </div>
+              <h3
+                style={{
+                  margin: "0 0 10px",
+                  fontSize: "clamp(22px,2.6vw,28px)",
+                  color: "#0b213a",
+                }}
+              >
+                Soporte profesional
+              </h3>
+              <p style={{ color: "#556070", fontSize: 16, lineHeight: 1.6 }}>
+                Acompañamiento especializado para nuestros clientes en todo
+                momento.
+              </p>
+            </article>
+          </div>
+
+          <button
+            className="hscroll-btn right"
+            onClick={() => scroll(380)}
+            aria-label="Siguiente"
+          >
+            ›
+          </button>
         </div>
 
-        {/* Fila 2: Misión / Visión / Valores, compactas con ícono */}
-        <div className="features hscroll compact" style={{ marginTop: 24 }}>
-          {/* Misión */}
-          <article className="card mini-card">
-            <span className="mini-icon" aria-hidden="true">
-              {/* shield-check */}
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                <path d="M12 3l6 2v5a8 8 0 0 1-6 7.75A8 8 0 0 1 6 10V5l6-2Z"
-                  stroke="currentColor" strokeWidth="1.8" />
-                <path d="M8.5 10.5l2.2 2.2 4.3-4.3"
-                  stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </span>
-            <h3 className="mini-label">Misión</h3>
-            <p style={{ color: "#556070", margin: 0 }}>
-              Conectar a laboratorios, distribuidores y profesionales de la salud con
-              soluciones biofarmacéuticas seguras, eficientes y accesibles.
+        {/* === Tarjetas clásicas: Misión / Visión / Valores === */}
+        <div className="features" style={{ marginTop: 28 }}>
+          <div className="card">
+            <h3>Misión</h3>
+            <p>
+              Conectar a laboratorios, distribuidores y profesionales de la
+              salud con soluciones biofarmacéuticas seguras, eficientes y
+              accesibles.
             </p>
-          </article>
-
-          {/* Visión */}
-          <article className="card mini-card">
-            <span className="mini-icon" aria-hidden="true">
-              {/* target / bullseye */}
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="7.5" stroke="currentColor" strokeWidth="1.8"/>
-                <circle cx="12" cy="12" r="3.5" stroke="currentColor" strokeWidth="1.8"/>
-                <circle cx="12" cy="12" r="1.2" fill="currentColor"/>
-              </svg>
-            </span>
-            <h3 className="mini-label">Visión</h3>
-            <p style={{ color: "#556070", margin: 0 }}>
-              Ser el centro de distribución biofarmacéutica de referencia en México,
-              reconocido por la calidad, la innovación y el servicio.
+          </div>
+          <div className="card">
+            <h3>Visión</h3>
+            <p>
+              Ser el centro de distribución biofarmacéutica de referencia en
+              México, reconocido por la calidad, la innovación y el servicio.
             </p>
-          </article>
-
-          {/* Valores */}
-          <article className="card mini-card">
-            <span className="mini-icon" aria-hidden="true">
-              {/* heart-handshake */}
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                <path d="M8 12l2.2 2.2a2.8 2.8 0 004 0L16 12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
-                <path d="M7 5a5 5 0 00-5 5c0 5 6.5 8 10 10 3.5-2 10-5 10-10a5 5 0 00-9-3" stroke="currentColor" strokeWidth="1.6" fill="none"/>
-              </svg>
-            </span>
-            <h3 className="mini-label">Valores</h3>
-            <p style={{ color: "#556070", margin: 0 }}>
-              Ética, transparencia, compromiso con la salud y orientación al cliente.
+          </div>
+          <div className="card">
+            <h3>Valores</h3>
+            <p>
+              Ética, transparencia, compromiso con la salud y orientación al
+              cliente en cada etapa de nuestro servicio.
             </p>
-          </article>
+          </div>
         </div>
       </div>
     </section>
