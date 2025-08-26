@@ -365,37 +365,40 @@ a {
   transform: scale(1.02);
   transition: transform .25s ease;
 }
-/* ===== Scroller horizontal tipo Apple (móvil) ===== */
-@media (max-width: 900px){
-  /* Convierte el grid en carrusel horizontal */
-  .features{
-    grid-auto-flow: column;                 /* columnas en fila horizontal */
-    grid-auto-columns: calc(85% - 10px);    /* tamaño de cada tarjeta (deja ver la siguiente) */
-    overflow-x: auto;
-    gap: 12px;
-    padding: 8px 12px 12px;
-    margin: 16px -20px 0;                   /* full-bleed: ocupa todo el ancho del viewport */
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;      /* inercia iOS */
-    scrollbar-width: none;                  /* oculta scrollbar en Firefox */
-  }
-  .features::-webkit-scrollbar{ display: none; } /* oculta scrollbar en WebKit */
+/* ✅ Carrusel horizontal SOLO cuando uses .features.hscroll */
+.features.hscroll{
+  display: flex !important;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 8px 12px 12px;
+  margin: 16px -20px 0;              /* full-bleed */
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.features.hscroll::-webkit-scrollbar{ display: none; }
 
-  /* Cada card se alinea al “snap” del carrusel */
-  .features .card{
-    grid-column: auto !important;           /* ignora spans del grid vertical */
-    scroll-snap-align: start;
-    min-width: 0;                           /* evita overflow interno */
-  }
+/* Tarjeta “grande” (Nosotros fila 1) — ancho cómodo en móvil y desktop */
+.features.hscroll .card{
+  flex: 0 0 clamp(300px, 86vw, 420px);  /* 👉 móvil ~pantalla completa; desktop 300–420px */
+  scroll-snap-align: start;
+  min-width: 0;
 }
 
-/* Un poco más compacto en pantallas muy pequeñas */
-@media (max-width: 520px){
-  .features{
-    grid-auto-columns: calc(88% - 8px);
-    gap: 10px;
-  }
+/* Variante compacta (Misión/Visión/Valores) */
+.features.hscroll.compact .card{
+  flex: 0 0 clamp(220px, 70vw, 320px);
 }
+
+/* Tipos responsivos dentro del carrusel para que no “griten” en móvil */
+.features.hscroll .card h3{
+  font-size: clamp(18px, 3.6vw, 28px);
+  line-height: 1.2;
+}
+.features.hscroll .card p{
+  font-size: clamp(14px, 2.8vw, 16px);
+}
+
 /* === Tarjetas grandes estilo Apple para Nosotros (solo texto) === */
 .card.big-tile{
   border-radius: 20px;
