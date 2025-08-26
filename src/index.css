@@ -122,13 +122,13 @@ a { color: inherit; text-decoration: none; }
 .prod-thumb img{ width:100%; height:100%; object-fit:contain; transform:translateZ(0); }
 .product-card:hover .prod-thumb img{ transform:scale(1.02); transition:transform .25s ease; }
 
-/* ========= CARRUSEL HORIZONTAL (activar con .features.hscroll) ========= */
+/* ========= CARRUSEL HORIZONTAL ========= */
 .features.hscroll{
   display:flex !important;
   gap:18px;
   overflow-x:auto;
   padding:8px 12px 12px;
-  margin:16px -20px 0;
+  margin:16px -20px 0;               
   scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch;
   scrollbar-width:none;
@@ -161,55 +161,40 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ========= TARJETA CON IMAGEN FULL-BLEED ========= */
-.image-card {
-  position: relative;
-  border-radius: 22px;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: clamp(360px,48vh,520px);
+.image-card{
+  position:relative;
+  border-radius:22px;
+  overflow:hidden;
   box-shadow: var(--shadow);
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
 }
-
-/* Overlay uniforme para legibilidad */
-.image-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: rgba(0, 0, 0, 0.55); /* 👈 ajusta el 0.55 más claro u oscuro */
-  pointer-events: none;
-  z-index: 0;
+.image-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background: rgba(0,0,0,0.45); /* Overlay oscuro uniforme */
+  pointer-events:none;
+  z-index:0;
 }
-
-
-
-/* Texto dentro de la tarjeta */
-.image-card .card-overlay {
-  position: relative;
-  z-index: 1;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  height: 100%;
-  padding: 18px;
+.image-card .card-overlay{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:20px;
+  z-index:1;
 }
-
-.image-card .card-overlay h3 {
-  margin: 0 0 6px;
-  font-size: clamp(20px, 2.6vw, 28px);
-  font-weight: 800;
-}
-
+/* ✅ Texto blanco dentro de las tarjetas con imagen */
+.image-card .card-overlay h3,
 .image-card .card-overlay p {
-  margin: 0;
-  font-size: clamp(14px, 1.8vw, 16px);
-  line-height: 1.4;
+  color: #fff;
 }
 
-/* ========= CONTROLES INFERIORES (opcional) ========= */
+/* ========= CONTROLES ========= */
 .scroller{ gap:28px; padding:16px 24px 28px; margin:20px -20px 10px; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; overscroll-behavior-x:contain; }
 @media (min-width:900px){ .scroller{ gap:32px; padding:18px 32px 32px; margin:24px -32px 12px; } }
 .scroller--peek{
