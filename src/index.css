@@ -172,21 +172,18 @@ a { color: inherit; text-decoration: none; }
   box-shadow: var(--shadow);
 }
 
-/* Overlay oscuro para legibilidad */
+/* Overlay uniforme para legibilidad */
 .image-card::after {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.0) 0%,
-    rgba(0, 0, 0, 0.4) 60%,
-    rgba(0, 0, 0, 0.65) 100%
-  );
+  background: rgba(0, 0, 0, 0.55); /* 👈 ajusta el 0.55 más claro u oscuro */
   pointer-events: none;
   z-index: 0;
 }
+
+
 
 /* Texto dentro de la tarjeta */
 .image-card .card-overlay {
