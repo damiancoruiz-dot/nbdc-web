@@ -122,7 +122,7 @@ a { color: inherit; text-decoration: none; }
 .prod-thumb img{ width:100%; height:100%; object-fit:contain; transform:translateZ(0); }
 .product-card:hover .prod-thumb img{ transform:scale(1.02); transition:transform .25s ease; }
 
-/* ========= CARRUSEL HORIZONTAL ========= */
+/* ========= CARRUSEL HORIZONTAL (activar con .features.hscroll) ========= */
 .features.hscroll{
   display:flex !important;
   gap:18px;
@@ -163,50 +163,56 @@ a { color: inherit; text-decoration: none; }
 /* ========= TARJETA CON IMAGEN FULL-BLEED ========= */
 .image-card {
   position: relative;
-  background-size: cover;
-  background-position: center;
   border-radius: 22px;
   overflow: hidden;
-  flex: 0 0 clamp(300px, 32vw, 420px);
-  min-height: clamp(360px, 48vh, 520px);
-  display: flex;
-  align-items: flex-end; /* texto abajo */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: clamp(360px,48vh,520px);
   box-shadow: var(--shadow);
 }
 
-/* Overlay degradado solo en la parte baja */
-.image-card .card-overlay {
+/* Overlay oscuro para legibilidad */
+.image-card::after {
+  content: "";
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  padding: 20px;
-  color: #fff;
-  text-align: left;
+  inset: 0;
+  border-radius: inherit;
   background: linear-gradient(
     180deg,
-    rgba(0,0,0,0) 0%,
-    rgba(0,0,0,0.6) 100%
+    rgba(0, 0, 0, 0.0) 0%,
+    rgba(0, 0, 0, 0.4) 60%,
+    rgba(0, 0, 0, 0.65) 100%
   );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Texto dentro de la tarjeta */
+.image-card .card-overlay {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  padding: 18px;
 }
 
 .image-card .card-overlay h3 {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
+  font-size: clamp(20px, 2.6vw, 28px);
   font-weight: 800;
-  font-size: clamp(20px, 2.6vw, 26px);
-  line-height: 1.2;
-  color: #fff;
 }
 
 .image-card .card-overlay p {
   margin: 0;
   font-size: clamp(14px, 1.8vw, 16px);
-  line-height: 1.45;
-  color: rgba(255,255,255,.92);
+  line-height: 1.4;
 }
 
-/* ========= CONTROLES INFERIORES ========= */
+/* ========= CONTROLES INFERIORES (opcional) ========= */
 .scroller{ gap:28px; padding:16px 24px 28px; margin:20px -20px 10px; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; overscroll-behavior-x:contain; }
 @media (min-width:900px){ .scroller{ gap:32px; padding:18px 32px 32px; margin:24px -32px 12px; } }
 .scroller--peek{
