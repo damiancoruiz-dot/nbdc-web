@@ -1,12 +1,12 @@
 /* ========= RESET / BASE ========= */
 *,
 *::before,
-*::after {
-  box-sizing: border-box;
+*::after { 
+  box-sizing: border-box; 
 }
 
-html, body {
-  height: 100%;
+html, body { 
+  height: 100%; 
 }
 
 body {
@@ -19,15 +19,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-img, svg {
-  display: block;
-  max-width: 100%;
-  height: auto;
+img, svg { 
+  display: block; 
+  max-width: 100%; 
+  height: auto; 
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+a { 
+  color: inherit; 
+  text-decoration: none; 
 }
 
 /* ========= THEME (variables) ========= */
@@ -44,22 +44,22 @@ a {
   --ink-300: #7a8699;
 
   /* UI */
-  --bg-50: #f7f9fc;
-  --card: #ffffff;
-  --line: #e8eef6;
+  --bg-50:   #f7f9fc;
+  --card:    #ffffff;
+  --line:    #e8eef6;
 
   /* Sombra genérica */
-  --shadow: 0 8px 18px rgba(0,0,0,.08);
+  --shadow:  0 8px 18px rgba(0,0,0,.08);
 }
 
 /* ========= UTILIDADES / TIPOGRAFÍA ========= */
-.section {
-  padding: 56px 20px;
+.section { 
+  padding: 56px 20px; 
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
+.container { 
+  max-width: 1200px; 
+  margin: 0 auto; 
 }
 
 .h2 {
@@ -74,7 +74,7 @@ a {
   margin: 0;
 }
 
-/* ========= GRID / CARDS ========= */
+/* ========= GRID / CARDS DE PRODUCTOS ========= */
 .features {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -91,37 +91,37 @@ a {
   padding: 16px;
 }
 
-@media (max-width: 960px) {
-  .card { grid-column: span 6; }
+@media (max-width: 960px) { 
+  .card { grid-column: span 6; } 
 }
 
-@media (max-width: 600px) {
-  .card { grid-column: span 12; }
+@media (max-width: 600px) { 
+  .card { grid-column: span 12; } 
 }
 
-.card h3 {
-  margin: 0 0 6px;
-  font-size: 20px;
-  color: var(--ink-900);
+.card h3 { 
+  margin: 0 0 6px; 
+  font-size: 20px; 
+  color: var(--ink-900); 
 }
 
-.card p {
-  margin: 0 0 12px;
-  color: var(--ink-700);
+.card p { 
+  margin: 0 0 12px; 
+  color: var(--ink-700); 
 }
 
-.card ul {
-  margin: 0 0 12px;
-  padding-left: 18px;
-  color: var(--ink-700);
-  font-size: 14px;
+.card ul { 
+  margin: 0 0 12px; 
+  padding-left: 18px; 
+  color: var(--ink-700); 
+  font-size: 14px; 
 }
 
 /* ========= Pills de variantes ========= */
-.pills {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+.pills { 
+  display: flex; 
+  gap: 8px; 
+  flex-wrap: wrap; 
 }
 
 .pill {
@@ -133,7 +133,7 @@ a {
   color: var(--ink-900);
 }
 
-/* ========= Botones ========= */
+/* ========= Botones generales ========= */
 .btn {
   display: inline-block;
   border-radius: 10px;
@@ -147,15 +147,15 @@ a {
   color: #fff;
 }
 
-.btn-primary:hover {
-  filter: brightness(1.05);
+.btn-primary:hover { 
+  filter: brightness(1.05); 
 }
 
 /* ========= Nota legal ========= */
-.footnote {
-  margin-top: 18px;
-  font-size: 12px;
-  color: var(--ink-300);
+.footnote { 
+  margin-top: 18px; 
+  font-size: 12px; 
+  color: var(--ink-300); 
 }
 
 /* ===== HERO / CARRUSEL ===== */
@@ -166,24 +166,24 @@ a {
   margin-bottom: clamp(16px, 3vw, 32px);
 }
 
-.hero .hero-swiper {
-  width: 100vw;
-  height: clamp(420px, 70vh, 720px);
+.hero .hero-swiper { 
+  width: 100vw; 
+  height: clamp(420px, 70vh, 720px); 
 }
 
-.hero-slide {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+.hero-slide { 
+  position: relative; 
+  width: 100%; 
+  height: 100%; 
+  overflow: hidden; 
 }
 
-.hero-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.hero-img { 
+  position: absolute; 
+  inset: 0; 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
 }
 
 .hero-overlay {
@@ -193,48 +193,35 @@ a {
 }
 
 .hero-content {
-  position: relative;
-  z-index: 1;
-  height: 100%;
-  display: grid;
-  align-content: center;
-  gap: 14px;
-  text-align: center;
-  color: #fff;
+  position: relative; z-index: 1; height: 100%;
+  display: grid; align-content: center; gap: 14px;
+  text-align: center; color: #fff;
   padding: 0;
 }
 
-.hero-actions {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  margin-top: 16px;
-  flex-wrap: wrap;
+.hero-actions { 
+  display: flex; gap: 12px; justify-content: center; 
+  margin-top: 16px; flex-wrap: wrap; 
 }
 
-.hero-bullets {
-  display: flex;
-  gap: 18px;
-  justify-content: center;
-  margin-top: 16px;
-  color: #d8e7f4;
-  font-size: 14px;
-  flex-wrap: wrap;
+.hero-bullets { 
+  display: flex; gap: 18px; justify-content: center; 
+  margin-top: 16px; color: #d8e7f4; font-size: 14px; flex-wrap: wrap; 
 }
 
 .hero .swiper-button-prev,
-.hero .swiper-button-next {
-  color: #fff;
-  text-shadow: 0 2px 8px rgba(0,0,0,.4);
+.hero .swiper-button-next { 
+  color: #fff; 
+  text-shadow: 0 2px 8px rgba(0,0,0,.4); 
 }
 
-.hero .swiper-pagination-bullet {
-  background: rgba(255,255,255,.7);
-  opacity: 1;
+.hero .swiper-pagination-bullet { 
+  background: rgba(255,255,255,.7); 
+  opacity: 1; 
 }
 
-.hero .swiper-pagination-bullet-active {
-  background: #fff;
+.hero .swiper-pagination-bullet-active { 
+  background: #fff; 
 }
 
 .btn-outline {
@@ -257,7 +244,7 @@ a {
   text-shadow: 0 1px 4px rgba(0,0,0,0.35);
 }
 
-/* ===== Quote entre Hero y Nosotros ===== */
+/* ===== Quote ===== */
 .quote {
   padding: clamp(28px, 4vw, 44px) 20px;
   background: #f7f9fc;
@@ -290,46 +277,10 @@ a {
 .quote blockquote::before { content: "“"; left: 0; top: -6px; }
 .quote blockquote::after  { content: "”"; right: 0; bottom: -6px; }
 
-/* ========= (opcional) Highlights circulares ========= */
-.nosotros-highlights {
-  display: flex;
-  justify-content: center;
-  gap: clamp(20px, 5vw, 48px);
-  margin: clamp(32px, 5vw, 60px) 0;
-  flex-wrap: wrap;
-  text-align: center;
-}
-
-.highlight {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  max-width: 240px;
-}
-
-.highlight .icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 64px;
-  height: 64px;
-  color: var(--brand-600);
-  background: #eef6fc;
-  border-radius: 999px;
-}
-
-.highlight p {
-  margin: 0;
-  font-weight: 700;
-  color: var(--ink-700);
-  letter-spacing: .2px;
-}
-
-/* ===== PRODUCT CARD: imagen ===== */
+/* ===== PRODUCT CARD ===== */
 .product-card { overflow: hidden; }
 
-.prod-thumb {
+.prod-thumb{
   background: #f4f8fc;
   border-radius: 14px;
   margin: 4px 4px 12px;
@@ -340,135 +291,99 @@ a {
   border: 1px solid var(--line);
 }
 
-.prod-thumb img {
+.prod-thumb img{
   width: 100%;
   height: 100%;
   object-fit: contain;
   transform: translateZ(0);
 }
-
-.product-card:hover .prod-thumb img {
+.product-card:hover .prod-thumb img{
   transform: scale(1.02);
   transition: transform .25s ease;
 }
 
-/* ===== Scroller (Nosotros) con más aire & flechas abajo ===== */
-
-/* Contenedor con scroll horizontal + aire */
-.scroller {
-  display: flex;               /* se usa junto a .features.hscroll, pero lo dejamos explícito */
-  gap: 28px;
-  overflow-x: auto;
-  padding: 16px 24px 28px;     /* bottom mayor para respirar */
-  margin: 20px -20px 10px;     /* full-bleed acorde al container */
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-x: contain;
-  scrollbar-width: none;
-}
-.scroller::-webkit-scrollbar { display: none; }
-
-@media (min-width: 900px) {
-  .scroller { gap: 32px; padding: 18px 32px 32px; margin: 24px -32px 12px; }
-}
-
-/* Efecto “peek/fade” en laterales */
-.scroller--peek {
-  -webkit-mask-image: linear-gradient(to right,
-    transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
-          mask-image: linear-gradient(to right,
-    transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
-}
-
-/* Asegura estilo sobre cualquier .features con hscroll */
-.features.hscroll {
+/* ===== Carrusel Apple style ===== */
+.features.hscroll{
   display: flex !important;
-  gap: 24px;                   /* separación entre tarjetas */
+  gap: 18px;
   overflow-x: auto;
-  padding: 0;                  /* scroller ya maneja el padding */
-  margin: 0;                   /* scroller ya maneja el margen */
+  padding: 8px 12px 12px;
+  margin: 40px -20px 24px;   /* ⬆️ más aire arriba y abajo */
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
-.features.hscroll::-webkit-scrollbar { display: none; }
+.features.hscroll::-webkit-scrollbar{ display: none; }
 
-/* Tarjetas verticales (roomy) */
-.features.hscroll .roomy-card {
-  flex: 0 0 clamp(300px, 30vw, 420px);
-  min-height: clamp(340px, 48vh, 520px);
-  border-radius: 22px;
-  padding: clamp(18px, 2.2vw, 24px);
+.features.hscroll .card{
+  flex: 0 0 clamp(300px, 32vw, 420px);
+  min-height: clamp(380px, 48vh, 520px);
   scroll-snap-align: start;
   transition: transform .25s ease, box-shadow .25s ease;
+  border-radius: 22px;
+  padding: clamp(18px, 2vw, 28px);
 }
 
-@media (hover: hover) {
-  .features.hscroll .roomy-card:hover {
+@media (hover: hover){
+  .features.hscroll .card:hover{
     transform: scale(1.04);
     box-shadow: 0 16px 32px rgba(0,0,0,.14);
     z-index: 1;
   }
 }
 
-@media (max-width: 900px) {
-  .features.hscroll { gap: 16px; }
-  .features.hscroll .roomy-card {
+@media (max-width: 900px){
+  .features.hscroll{
+    gap: 14px;
+    padding: 12px 10px 18px;
+    margin: 32px -16px 18px;
+  }
+  .features.hscroll .card{
     flex: 0 0 clamp(240px, 78vw, 320px);
-    min-height: clamp(300px, 52vh, 420px);
+    min-height: clamp(320px, 52vh, 420px);
     border-radius: 20px;
     padding: 18px;
   }
 }
 
-/* Tipografías internas de la tarjeta “roomy” */
-.eyebrow {
-  font-weight: 800;
-  letter-spacing: .2px;
-  margin-bottom: 10px;
-  font-size: clamp(13px, 1.5vw, 14px);
-}
-.eyebrow--blue  { color: #2b78ff; }
-.eyebrow--green { color: #14a86d; }
-.eyebrow--amber { color: #f59e0b; }
-
-.roomy-title {
-  margin: 0 0 10px;
-  font-weight: 900;
-  color: var(--ink-900);
-  font-size: clamp(20px, 2.6vw, 28px);
-  line-height: 1.2;
-}
-.roomy-text {
-  margin: 0;
-  color: #445166;
-  font-size: clamp(14px, 1.8vw, 16px);
-}
-
-/* Controles debajo, separados del carrusel */
+/* Flechas de navegación debajo */
 .scroller-controls {
   display: flex;
   gap: 12px;
-  justify-content: flex-end;  /* usa center si los quieres centrados */
-  padding: 4px 24px 0;
-}
-@media (min-width: 900px) {
-  .scroller-controls { padding: 8px 32px 0; }
+  justify-content: center;
+  padding: 8px 0 0;
 }
 
-/* Botones de flecha */
 .scroller-btn {
-  width: 44px;
-  height: 44px;
+  width: 44px; height: 44px;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: #fff;
   box-shadow: var(--shadow);
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center; justify-content: center;
   cursor: pointer;
   transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
 }
-.scroller-btn:hover   { transform: translateY(-1px); }
+.scroller-btn:hover { transform: translateY(-1px); }
 .scroller-btn:disabled { opacity: .4; cursor: default; transform: none; }
+/* ===== Tarjetas con imagen (Nosotros) ===== */
+.card-img {
+  width: 100%;
+  height: 180px;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  background: #eef2f7;
+}
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: translateZ(0);
+}
+
+@media (min-width: 900px){
+  .card-img { height: 200px; }
+}
