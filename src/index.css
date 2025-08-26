@@ -387,3 +387,40 @@ a {
 @media (min-width: 900px){
   .card-img { height: 200px; }
 }
+/* ===== Tarjetas con imagen de fondo ===== */
+.card.image-card {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  color: #fff; /* texto blanco encima de la imagen */
+  display: flex;
+  align-items: flex-end;   /* coloca texto en la parte baja */
+  min-height: 320px;       /* altura mínima */
+  overflow: hidden;
+}
+
+.card.image-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2));
+}
+
+.card.image-card .card-overlay {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+}
+
+.card.image-card h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.card.image-card p {
+  margin: 0;
+  font-size: 15px;
+  color: #f1f1f1;
+}
