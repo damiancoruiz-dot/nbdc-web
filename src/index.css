@@ -220,3 +220,52 @@ a { color: inherit; text-decoration: none; }
 }
 .scroller-btn:hover{ transform:translateY(-1px); }
 .scroller-btn:disabled{ opacity:.4; cursor:default; transform:none; }
+/* === Carrusel horizontal para productos (.features.hscroll) === */
+.features.hscroll{
+  /* fuerza a FLEX aunque .features tenga grid */
+  display: flex !important;
+  grid-template-columns: none !important;
+  gap: 18px;
+  overflow-x: auto;
+  padding: 8px 12px 12px;
+  margin: 16px -20px 0;              /* full-bleed */
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.features.hscroll::-webkit-scrollbar{ display: none; }
+
+/* Ancho de cada tarjeta en carrusel (desktop y móvil) */
+.features.hscroll .card{
+  flex: 0 0 clamp(280px, 34vw, 380px); /* 👉 tamaño tipo Apple */
+  scroll-snap-align: start;
+  min-width: 0;
+  border-radius: 18px;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+/* Efecto hover solo donde hay hover */
+@media (hover:hover){
+  .features.hscroll .card:hover{
+    transform: scale(1.03);
+    box-shadow: 0 14px 28px rgba(0,0,0,.12);
+    z-index: 1;
+  }
+}
+
+/* Ajustes de la miniatura de producto */
+.product-card .prod-thumb{
+  background: #f4f8fc;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  aspect-ratio: 16 / 9;
+  margin: 4px 4px 12px;
+  overflow: hidden;
+  display: grid; place-items: center;
+}
+.product-card .prod-thumb img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: translateZ(0);
+}
