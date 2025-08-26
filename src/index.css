@@ -1,9 +1,7 @@
 /* ========= RESET / BASE ========= */
 *,
 *::before,
-*::after {
-  box-sizing: border-box;
-}
+*::after { box-sizing: border-box; }
 
 html, body { height: 100%; }
 
@@ -27,24 +25,24 @@ a { color: inherit; text-decoration: none; }
   /* Tinta */
   --ink-900:#0b213a; --ink-700:#2f3e52; --ink-500:#556070; --ink-300:#7a8699;
   /* UI */
-  --bg-50:#f7f9fc; --card:#ffffff; --line:#e8eef6;
-  /* Sombra */
-  --shadow:0 8px 18px rgba(0,0,0,.08);
+  --bg-50:#f7f9fc; --card:#fff; --line:#e8eef6;
+  --shadow: 0 8px 18px rgba(0,0,0,.08);
 }
 
-/* ========= UTILIDADES / TIPOGRAFÍA ========= */
+/* ========= LAYOUT / TYPE ========= */
 .section { padding: 56px 20px; }
 .container { max-width: 1200px; margin: 0 auto; }
-.h2 { font-size: clamp(24px,3.2vw,36px); margin: 0 0 12px; color: var(--ink-900);}
-.lead { font-size: clamp(14px,1.7vw,18px); color: var(--ink-700); margin: 0; }
+.h2 { font-size: clamp(24px, 3.2vw, 36px); margin: 0 0 12px; color: var(--ink-900); }
+.lead { font-size: clamp(14px, 1.7vw, 18px); color: var(--ink-700); margin: 0; }
 
-/* ========= GRID / CARDS GENÉRICAS ========= */
+/* ========= GRID / CARDS ========= */
 .features{
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 18px;
-  margin-top: clamp(24px,4vw,48px);
+  margin-top: clamp(24px, 4vw, 48px);
 }
+
 .card{
   grid-column: span 4;
   background: var(--card);
@@ -56,23 +54,22 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 960px){ .card{ grid-column: span 6; } }
 @media (max-width: 600px){ .card{ grid-column: span 12; } }
 
-.card h3{ margin: 0 0 6px; font-size: 20px; color: var(--ink-900); }
-.card p{ margin: 0 0 12px; color: var(--ink-700); }
-.card ul{ margin: 0 0 12px; padding-left: 18px; color: var(--ink-700); font-size: 14px; }
+.card h3{ margin:0 0 6px; font-size:20px; color:var(--ink-900); }
+.card p{ margin:0 0 12px; color:var(--ink-700); }
+.card ul{ margin:0 0 12px; padding-left:18px; color:var(--ink-700); font-size:14px; }
 
-/* ========= PILLS ========= */
+/* ========= PILL ========= */
 .pills{ display:flex; gap:8px; flex-wrap:wrap; }
 .pill{ border:1px solid var(--line); border-radius:999px; background:var(--bg-50); padding:6px 10px; font-size:12px; color:var(--ink-900); }
 
-/* ========= BOTONES ========= */
+/* ========= BUTTON ========= */
 .btn{ display:inline-block; border-radius:10px; padding:10px 14px; font-weight:700; text-decoration:none; }
 .btn-primary{ background:var(--brand-600); color:#fff; }
 .btn-primary:hover{ filter:brightness(1.05); }
 
-/* ========= NOTA ========= */
 .footnote{ margin-top:18px; font-size:12px; color:var(--ink-300); }
 
-/* ========= HERO / CARRUSEL ========= */
+/* ========= HERO ========= */
 .hero{ padding:0; margin:0 0 clamp(16px,3vw,32px); width:100%; }
 .hero .hero-swiper{ width:100vw; height:clamp(420px,70vh,720px); }
 .hero-slide{ position:relative; width:100%; height:100%; overflow:hidden; }
@@ -81,17 +78,15 @@ a { color: inherit; text-decoration: none; }
 .hero-content{ position:relative; z-index:1; height:100%; display:grid; align-content:center; gap:14px; text-align:center; color:#fff; padding:0; }
 .hero-actions{ display:flex; gap:12px; justify-content:center; margin-top:16px; flex-wrap:wrap; }
 .hero-bullets{ display:flex; gap:18px; justify-content:center; margin-top:16px; color:#d8e7f4; font-size:14px; flex-wrap:wrap; }
-
 .hero .swiper-button-prev,.hero .swiper-button-next{ color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.4); }
 .hero .swiper-pagination-bullet{ background:rgba(255,255,255,.7); opacity:1; }
 .hero .swiper-pagination-bullet-active{ background:#fff; }
-
 .btn-outline{ border:1.5px solid #fff; color:#fff; background:transparent; }
-.btn-outline:hover{ background:rgba(255,255,255,.12); }
+.btn-outline:hover{ background: rgba(255,255,255,.12); }
 .hero .h2{ font-weight:900; text-shadow:0 2px 6px rgba(0,0,0,.4); }
 .hero .lead{ font-weight:600; text-shadow:0 1px 4px rgba(0,0,0,.35); }
 
-/* ========= QUOTE ENTRE HERO Y NOSOTROS ========= */
+/* ========= QUOTE entre Hero y Nosotros ========= */
 .quote{
   padding: clamp(28px,4vw,44px) 20px;
   background:#f7f9fc;
@@ -110,7 +105,7 @@ a { color: inherit; text-decoration: none; }
 .quote blockquote::before{ content:"“"; left:0; top:-6px; }
 .quote blockquote::after{ content:"”"; right:0; bottom:-6px; }
 
-/* ========= HIGHLIGHTS (si los usas) ========= */
+/* ========= HIGHLIGHTS (puedes usar o comentar si no lo necesitas) ========= */
 .nosotros-highlights{ display:flex; justify-content:center; gap:clamp(20px,5vw,48px); margin:clamp(32px,5vw,60px) 0; flex-wrap:wrap; text-align:center; }
 .highlight{ display:flex; flex-direction:column; align-items:center; gap:10px; max-width:240px; }
 .highlight .icon{ display:inline-flex; align-items:center; justify-content:center; width:64px; height:64px; color:var(--brand-600); background:#eef6fc; border-radius:999px; }
@@ -122,33 +117,30 @@ a { color: inherit; text-decoration: none; }
 .prod-thumb img{ width:100%; height:100%; object-fit:contain; transform:translateZ(0); }
 .product-card:hover .prod-thumb img{ transform:scale(1.02); transition:transform .25s ease; }
 
-/* ========= CARRUSEL HORIZONTAL (activar con .features.hscroll) ========= */
+/* ========= HSCROLL (usar .features.hscroll) ========= */
 .features.hscroll{
   display:flex !important;
   gap:18px;
   overflow-x:auto;
   padding:8px 12px 12px;
-  margin:16px -20px 0;               /* full-bleed */
+  margin:16px -20px 0;
   scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch;
   scrollbar-width:none;
 }
 .features.hscroll::-webkit-scrollbar{ display:none; }
+
 .features.hscroll .card{
   flex:0 0 clamp(300px,32vw,420px);
-  min-height: clamp(360px,48vh,520px);
+  min-height: clamp(380px,48vh,520px);
   scroll-snap-align:start;
   min-width:0;
-  transition:transform .25s ease, box-shadow .25s ease;
+  transition: transform .25s ease, box-shadow .25s ease;
   border-radius:22px;
-  padding: clamp(18px,2vw,28px);
+  padding: clamp(18px, 2vw, 28px);
 }
 @media (hover:hover){
-  .features.hscroll .card:hover{
-    transform:scale(1.04);
-    box-shadow:0 16px 32px rgba(0,0,0,.14);
-    z-index:1;
-  }
+  .features.hscroll .card:hover{ transform:scale(1.04); box-shadow:0 16px 32px rgba(0,0,0,.14); z-index:1; }
 }
 @media (max-width:900px){
   .features.hscroll{ gap:12px; padding:8px 10px 14px; }
@@ -160,72 +152,84 @@ a { color: inherit; text-decoration: none; }
   }
 }
 
-/* ========= TARJETA CON IMAGEN FULL-BLEED (Nosotros) ========= */
-.roomy-card{
-  position:relative;
-  overflow:hidden;
-  border-radius:22px;
-  padding: clamp(18px,2.2vw,24px);
-  min-height: clamp(360px,48vh,520px);
-  box-shadow: var(--shadow);
+/* ========= TARJETAS CON IMAGEN A FULL (Nosotros: Calidad/Logística/Soporte) ========= */
+.card-img{
+  position: relative;
+  border-radius: 22px;
+  padding: 0;                  /* la imagen ocupa todo, el texto va en overlay */
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #000;           /* por si tarda la imagen */
 }
 
-/* Fondo con imagen (usa style="background-image:url('/ruta.jpg')") */
-.roomy-card .tile-bg{
+/* La imagen cubre el 100% de la tarjeta */
+.card-img-media{
   position:absolute;
   inset:0;
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
-  transform:translateZ(0);
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform: translateZ(0);
+  filter: brightness(.92);
 }
 
-/* Veladura para legibilidad del texto */
-.roomy-card::after{
+/* Filtro / capa para legibilidad del texto */
+.card-img::after{
   content:"";
-  position:absolute;
-  inset:0;
-  border-radius:inherit;
+  position:absolute; inset:0;
   background: linear-gradient(
-    180deg,
-    rgba(255,255,255,.78) 0%,
-    rgba(255,255,255,.55) 38%,
-    rgba(255,255,255,.35) 100%
+    to top,
+    rgba(0,0,0,.55) 0%,
+    rgba(0,0,0,.28) 40%,
+    rgba(0,0,0,0) 100%
   );
   pointer-events:none;
 }
 
-/* Contenido por encima del fondo */
-.roomy-card .tile-content{ position:relative; z-index:1; }
-
-/* Tipos de estas tarjetas */
-.eyebrow{
-  font-weight:800; letter-spacing:.2px; margin-bottom:10px;
-  font-size: clamp(13px,1.5vw,14px);
+/* Overlay de texto */
+.card-img-overlay{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;   /* Desktop: texto abajo */
+  padding: clamp(18px, 2.2vw, 28px);
+  color:#fff;
+  z-index: 1;
 }
-.eyebrow--blue{ color:#2b78ff; }
-.eyebrow--green{ color:#14a86d; }
-.eyebrow--amber{ color:#f59e0b; }
-
-.roomy-title{
-  margin:0 0 10px; font-weight:900; color:var(--ink-900);
-  font-size: clamp(20px,2.6vw,28px); line-height:1.2;
+.card-img-overlay h3{
+  margin:0 0 8px;
+  font-weight: 900;
+  font-size: clamp(20px, 2.8vw, 34px);
+  line-height: 1.12;
 }
-.roomy-text{ margin:0; color:#445166; font-size:clamp(14px,1.8vw,16px); }
+.card-img-overlay p{
+  margin:0;
+  font-size: clamp(14px, 1.8vw, 18px);
+  color: #eef2f6;
+}
 
-/* ========= CONTROLES INFERIORES (opcional) ========= */
+/* ✅ Móvil: centrar mejor el bloque de texto para que no “salte” */
+@media (max-width: 600px){
+  .card-img-overlay{
+    justify-content: flex-start;   /* o "center" si lo prefieres totalmente centrado */
+    padding-top: 40px;
+    text-align: center;
+  }
+  .card-img-overlay h3,
+  .card-img-overlay p{ text-align: center; }
+}
+
+/* ========= CONTROLES BAJO EL CARRUSEL (opcional) ========= */
 .scroller{ gap:28px; padding:16px 24px 28px; margin:20px -20px 10px; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; overscroll-behavior-x:contain; }
 @media (min-width:900px){ .scroller{ gap:32px; padding:18px 32px 32px; margin:24px -32px 12px; } }
-.scroller--peek{
-  -webkit-mask-image:linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
-          mask-image:linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
-}
+
 .scroller-controls{ display:flex; gap:12px; justify-content:flex-end; padding:4px 24px 0; }
 @media (min-width:900px){ .scroller-controls{ padding:8px 32px 0; } }
+
 .scroller-btn{
-  width:44px; height:44px; border-radius:999px; border:1px solid var(--line);
-  background:#fff; box-shadow:var(--shadow); display:inline-flex; align-items:center; justify-content:center;
-  cursor:pointer; transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+  width:44px; height:44px; border-radius:999px; border:1px solid var(--line); background:#fff; box-shadow:var(--shadow);
+  display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
 }
-.scroller-btn:hover{ transform:translateY(-1px); }
+.scroller-btn:hover{ transform: translateY(-1px); }
 .scroller-btn:disabled{ opacity:.4; cursor:default; transform:none; }
