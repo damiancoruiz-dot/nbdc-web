@@ -175,7 +175,7 @@ a { color: inherit; text-decoration: none; }
   position:absolute;
   inset:0;
   border-radius:inherit;
-  background: rgba(0,0,0,0.45); /* Overlay oscuro uniforme */
+  background: rgba(0,0,0,0.35); /* Overlay oscuro uniforme */
   pointer-events:none;
   z-index:0;
 }
