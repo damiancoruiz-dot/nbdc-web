@@ -214,3 +214,78 @@ a { color: inherit; text-decoration: none; }
 }
 .scroller-btn:hover{ transform:translateY(-1px); }
 .scroller-btn:disabled{ opacity:.4; cursor:default; transform:none; }
+/* ===== Sección de laboratorio (Acerca de Xentra/Centrafarma) ===== */
+.lab-section {
+  padding-top: 24px;
+}
+
+.lab-card {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  padding: clamp(16px, 2.2vw, 24px);
+}
+
+.lab-header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.lab-logo {
+  width: clamp(72px, 10vw, 120px);
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.lab-title {
+  margin: 0 0 6px;
+  font-size: clamp(18px, 2.4vw, 22px);
+  color: var(--ink-900);
+}
+
+.lab-lead {
+  margin: 0;
+  color: var(--ink-700);
+  font-size: clamp(14px, 2vw, 16px);
+}
+
+.lab-details {
+  margin-top: 10px;
+}
+
+.lab-summary {
+  cursor: pointer;
+  user-select: none;
+  width: fit-content;
+  background: #f5f9ff;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-weight: 700;
+  color: var(--brand-600);
+  transition: filter .15s ease;
+}
+
+.lab-summary:hover { filter: brightness(0.98); }
+
+.lab-body {
+  margin-top: 14px;
+  color: var(--ink-700);
+  font-size: 15px;
+}
+
+.lab-h4 {
+  margin: 14px 0 6px;
+  color: var(--ink-900);
+  font-size: 16px;
+}
+
+.lab-list {
+  margin: 0 0 8px 0;
+  padding-left: 18px;
+}
