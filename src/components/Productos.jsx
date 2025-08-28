@@ -1,7 +1,18 @@
 // src/pages/Productos.jsx
+import { useRef } from "react";
 import { products } from "../data/products";
 
 export default function Productos() {
+  const railRef = useRef(null);
+
+  const scrollByCards = (dir = 1) => {
+    const rail = railRef.current;
+    if (!rail) return;
+    const card = rail.querySelector(".card");
+    const cardWidth = card ? card.getBoundingClientRect().width : 320;
+    rail.scrollBy({ left: dir * (cardWidth + 18), behavior: "smooth" });
+  };
+
   return (
     <section id="productos" className="section">
       <div className="container">
@@ -9,99 +20,90 @@ export default function Productos() {
         <p className="lead">Portafolio disponible a través de NBDC como distribuidor.</p>
 
         {/* Carrusel horizontal (desktop y móvil) */}
-        <div className="features hscroll">
+        <div ref={railRef} className="features hscroll">
           {products.map((p) => (
             <article key={p.id} className="card product-card">
-              {/* imagen arriba */}
+              {/* Imagen del producto */}
               {p.image && (
-                <div className="prod-thumb">
-                  <img
-                    src={p.image}
-                    alt={p.name}
-                    loading="lazy"
-                  />
+                <div className="product-hero">
+                  <img src={p.image} alt={p.name} loading="lazy" />
                 </div>
               )}
 
-              {/* Encabezado proveedor */}
-              {(p.brandLogo || p.lab) && (
-                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 10 }}>
-                  {p.brandLogo && (
-                    <img
-                      src={p.brandLogo}
-                      alt={`${p.lab || "Marca"} logo`}
-                      style={{ height: 26, width: "auto", objectFit: "contain" }}
-                    />
-                  )}
-                  {p.lab && <div style={{ fontSize: 13, color: "#556070" }}>{p.lab}</div>}
-                </div>
-              )}
-
-              {/* Título y descripción */}
-              <h3 style={{ margin: "0 0 6px", fontSize: 20, color: "#0b213a" }}>{p.name}</h3>
-              {p.short && <p style={{ color: "#556070", margin: "0 0 12px" }}>{p.short}</p>}
-
-              {/* Bullets */}
-              {p.bullets?.length > 0 && (
-                <ul style={{ paddingLeft: 18, margin: "0 0 12px", color: "#556070", fontSize: 14 }}>
-                  {p.bullets.map((b) => <li key={b}>{b}</li>)}
-                </ul>
-              )}
-
-              {/* Variantes */}
-              {p.variants?.length > 0 && (
-                <div style={{ marginBottom: 12 }}>
-                  <div style={{ fontSize: 13, color: "#0b213a", fontWeight: 600, marginBottom: 6 }}>
-                    Presentaciones
+              {/* Contenido */}
+              <div className="product-body">
+                {(p.brandLogo || p.lab) && (
+                  <div className="brand-row">
+                    {p.brandLogo && (
+                      <img
+                        className="brand-logo"
+                        src={p.brandLogo}
+                        alt={`${p.lab || "Marca"} logo`}
+                      />
+                    )}
+                    {p.lab && <span className="brand-lab">{p.lab}</span>}
                   </div>
-                  <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                    {p.variants.map((v) => (
-                      <span
-                        key={v}
-                        style={{
-                          border: "1px solid #e8eef6",
-                          borderRadius: 999,
-                          padding: "6px 10px",
-                          fontSize: 12,
-                          color: "#0b213a",
-                          background: "#f7f9fc"
-                        }}
-                      >
-                        {v}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
+                )}
 
-              {/* Incluye */}
-              {p.includes?.length > 0 && (
-                <details style={{ margin: "8px 0 12px" }}>
-                  <summary style={{ cursor: "pointer", fontSize: 13, color: "#0b213a" }}>
-                    ¿Qué incluye?
-                  </summary>
-                  <ul style={{ paddingLeft: 18, marginTop: 8, color: "#556070", fontSize: 14 }}>
-                    {p.includes.map((i) => <li key={i}>{i}</li>)}
+                <h3 className="product-title">{p.name}</h3>
+                {p.short && <p className="product-short">{p.short}</p>}
+
+                {p.bullets?.length > 0 && (
+                  <ul className="product-bullets">
+                    {p.bullets.map((b) => <li key={b}>{b}</li>)}
                   </ul>
-                </details>
-              )}
+                )}
 
-              {/* CTA */}
-              <div style={{
-                display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 12
-              }}>
-                <span style={{ fontSize: 14, color: "#556070" }}>
-                  <em>{p.price ? `$${p.price.toLocaleString("es-MX")} MXN` : "Precio por confirmar"}</em>
-                </span>
-                <a href={p.cta.href} className="btn btn-primary">
-                  {p.cta.label}
-                </a>
+                {p.variants?.length > 0 && (
+                  <div className="product-variants">
+                    <div className="variants-label">Presentaciones</div>
+                    <div className="pills">
+                      {p.variants.map((v) => (
+                        <span key={v} className="pill">{v}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  marginTop: "auto"
+                }}>
+                  <span style={{ fontSize: 14, color: "var(--ink-500)" }}>
+                    <em>{p.price ? `$${p.price.toLocaleString("es-MX")} MXN` : "Precio por confirmar"}</em>
+                  </span>
+                  <a href={p.cta.href} className="btn btn-primary">
+                    {p.cta.label}
+                  </a>
+                </div>
               </div>
             </article>
           ))}
         </div>
 
-        {/* Nota legal/aviso */}
+        {/* Flechas debajo del carrusel */}
+        <div className="scroller-controls">
+          <button
+            type="button"
+            className="scroller-btn"
+            aria-label="Desplazar productos a la izquierda"
+            onClick={() => scrollByCards(-1)}
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            className="scroller-btn"
+            aria-label="Desplazar productos a la derecha"
+            onClick={() => scrollByCards(1)}
+          >
+            ›
+          </button>
+        </div>
+
+        {/* Nota legal */}
         <p className="footnote">
           * Información de presentaciones basada en materiales del fabricante. Venta responsable y sujeta a validación.
           No constituye consejo médico; consultar a un profesional de la salud.
