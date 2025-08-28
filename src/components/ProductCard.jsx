@@ -1,32 +1,43 @@
 // src/components/ProductCard.jsx
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 export default function ProductCard({ p }) {
-  // Número de WhatsApp (con país, sin +). Ej: 52XXXXXXXXXX
-  const waNumber = "5299900000000";
+  // WhatsApp sin "+"
+  const waNumber = "524428781486";
 
+  // Variante seleccionada (primera por defecto)
   const [variant, setVariant] = useState(p?.variants?.[0] ?? "");
-  const [openIncludes, setOpenIncludes] = useState(false);
 
+  // Imagen actual: si existe un mapa por variante úsalo; si no, usa p.image
+  const currentImage = useMemo(() => {
+    if (p?.imagesByVariant && variant && p.imagesByVariant[variant]) {
+      return p.imagesByVariant[variant];
+    }
+    return p.image;
+  }, [p, variant]);
+
+  // Link dinámico a WhatsApp con producto + variante
   const buildWaLink = () => {
     const base = `Hola, me interesa *${p.name}*`;
     const v = variant ? ` (presentación: ${variant})` : "";
-    const extra = "\n¿Me compartes precio, disponibilidad y requisitos de compra?";
+    const extra =
+      "\n¿Me compartes precio, disponibilidad y requisitos de compra?";
     const text = encodeURIComponent(`${base}${v}.${extra}`);
     return `https://wa.me/${waNumber}?text=${text}`;
   };
 
   return (
-    <div className="card product-card" style={{ padding: 16, display: "flex", flexDirection: "column", gap: 12 }}>
+    <article className="card product-card" style={{ padding: 16, display: "flex", flexDirection: "column", gap: 12 }}>
       {/* Imagen del producto */}
-      {p.image && (
+      {currentImage && (
         <div className="prod-thumb">
           <img
-            src={p.image}
+            src={currentImage}
             alt={p.name}
             loading="lazy"
             width={800}
             height={500}
+            style={{ objectFit: "contain", width: "100%", height: "100%" }}
           />
         </div>
       )}
@@ -47,9 +58,9 @@ export default function ProductCard({ p }) {
 
       {/* Título + descripción corta */}
       <div>
-        <h3 style={{ margin: "0 0 6px", fontSize: 18, color: "#0b213a" }}>{p.name}</h3>
+        <h3 style={{ margin: "0 0 6px", fontSize: 18, color: "var(--ink-900)" }}>{p.name}</h3>
         {(p.short || p.desc) && (
-          <p style={{ margin: "0 0 10px", color: "#556070" }}>
+          <p style={{ margin: "0 0 10px", color: "var(--ink-700)" }}>
             {p.short || p.desc}
           </p>
         )}
@@ -57,17 +68,17 @@ export default function ProductCard({ p }) {
 
       {/* Bullets */}
       {p.bullets?.length ? (
-        <ul style={{ margin: "0 0 6px 16px", color: "#556070", fontSize: 14 }}>
+        <ul style={{ margin: "0 0 6px 16px", color: "var(--ink-700)", fontSize: 14 }}>
           {p.bullets.map((b) => (
             <li key={b} style={{ marginBottom: 4 }}>{b}</li>
           ))}
         </ul>
       ) : null}
 
-      {/* Presentaciones */}
+      {/* Presentaciones (variante seleccionable) */}
       {p.variants?.length ? (
         <div>
-          <div style={{ fontWeight: 600, marginBottom: 6, color: "#0b213a" }}>Presentaciones</div>
+          <div style={{ fontWeight: 600, marginBottom: 6, color: "var(--ink-900)" }}>Presentaciones</div>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             {p.variants.map((v) => {
               const active = variant === v;
@@ -82,8 +93,8 @@ export default function ProductCard({ p }) {
                     fontSize: 13,
                     cursor: "pointer",
                     border: active ? "1px solid #026fd0" : "1px solid #d1d5db",
-                    background: active ? "#e9f2ff" : "#f9fafb",
-                    color: active ? "#026fd0" : "#0b213a",
+                    background: active ? "#e9f2ff" : "#f7f9fc",
+                    color: active ? "#026fd0" : "var(--ink-900)",
                     transition: "all .15s ease",
                   }}
                 >
@@ -97,46 +108,21 @@ export default function ProductCard({ p }) {
 
       {/* Acordeón: ¿Qué incluye? */}
       {p.includes?.length ? (
-        <div style={{ marginTop: 6 }}>
-          <button
-            type="button"
-            onClick={() => setOpenIncludes((s) => !s)}
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              background: "transparent",
-              border: "none",
-              color: "#0b213a",
-              cursor: "pointer",
-              padding: 0,
-              fontWeight: 600,
-            }}
-          >
-            <span style={{ transform: openIncludes ? "rotate(90deg)" : "none", transition: "transform .15s" }}>
-              ▶
-            </span>
+        <details style={{ marginTop: 6 }}>
+          <summary style={{ cursor: "pointer", fontSize: 13, color: "var(--ink-900)", fontWeight: 600 }}>
             ¿Qué incluye?
-          </button>
-          <div
-            style={{
-              maxHeight: openIncludes ? 200 : 0,
-              overflow: "hidden",
-              transition: "max-height .25s ease",
-            }}
-          >
-            <ul style={{ margin: "8px 0 0 16px", color: "#556070", fontSize: 14 }}>
-              {p.includes.map((it) => (
-                <li key={it} style={{ marginBottom: 4 }}>{it}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
+          </summary>
+          <ul style={{ margin: "8px 0 0 16px", color: "var(--ink-700)", fontSize: 14 }}>
+            {p.includes.map((it) => (
+              <li key={it} style={{ marginBottom: 4 }}>{it}</li>
+            ))}
+          </ul>
+        </details>
       ) : null}
 
       {/* Precio + CTA */}
       <div style={{ display: "flex", gap: 12, alignItems: "center", justifyContent: "space-between", marginTop: "auto" }}>
-        <div style={{ fontWeight: 700, color: "#0b213a" }}>
+        <div style={{ fontWeight: 700, color: "var(--ink-900)" }}>
           {p.price ? `$${p.price.toLocaleString("es-MX")} MXN` : "Precio por confirmar"}
         </div>
 
@@ -150,6 +136,6 @@ export default function ProductCard({ p }) {
           Solicitar cotización
         </a>
       </div>
-    </div>
+    </article>
   );
 }
