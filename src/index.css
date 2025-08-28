@@ -22,13 +22,9 @@ a { color: inherit; text-decoration: none; }
 
 /* ========= THEME ========= */
 :root{
-  /* Marca */
   --brand-700:#0b6aa1; --brand-600:#0c7fbf; --brand-500:#1196e6;
-  /* Tinta */
   --ink-900:#0b213a; --ink-700:#2f3e52; --ink-500:#556070; --ink-300:#7a8699;
-  /* UI */
   --bg-50:#f7f9fc; --card:#ffffff; --line:#e8eef6;
-  /* Sombra */
   --shadow:0 8px 18px rgba(0,0,0,.08);
 }
 
@@ -38,7 +34,7 @@ a { color: inherit; text-decoration: none; }
 .h2 { font-size: clamp(24px,3.2vw,36px); margin: 0 0 12px; color: var(--ink-900);}
 .lead { font-size: clamp(14px,1.7vw,18px); color: var(--ink-700); margin: 0; }
 
-/* ========= GRID / CARDS GENÉRICAS ========= */
+/* ========= GRID / CARDS ========= */
 .features{
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -91,7 +87,7 @@ a { color: inherit; text-decoration: none; }
 .hero .h2{ font-weight:900; text-shadow:0 2px 6px rgba(0,0,0,.4); }
 .hero .lead{ font-weight:600; text-shadow:0 1px 4px rgba(0,0,0,.35); }
 
-/* ========= QUOTE ENTRE HERO Y NOSOTROS ========= */
+/* ========= QUOTE ========= */
 .quote{
   padding: clamp(28px,4vw,44px) 20px;
   background:#f7f9fc;
@@ -110,63 +106,7 @@ a { color: inherit; text-decoration: none; }
 .quote blockquote::before{ content:"“"; left:0; top:-6px; }
 .quote blockquote::after{ content:"”"; right:0; bottom:-6px; }
 
-/* ========= HIGHLIGHTS (si los usas) ========= */
-.nosotros-highlights{ display:flex; justify-content:center; gap:clamp(20px,5vw,48px); margin:clamp(32px,5vw,60px) 0; flex-wrap:wrap; text-align:center; }
-.highlight{ display:flex; flex-direction:column; align-items:center; gap:10px; max-width:240px; }
-.highlight .icon{ font-size:28px; color:var(--brand-600); }
-.highlight p{ margin:0; font-weight:700; color:var(--ink-700); letter-spacing:.2px; }
-
-/* ========= PRODUCT CARD (thumb) ========= */
-.product-card{ overflow:hidden; border-radius:22px; background:#fff; box-shadow:var(--shadow); flex:0 0 clamp(260px,28vw,340px); display:flex; flex-direction:column; }
-.product-hero{ aspect-ratio:16/9; overflow:hidden; }
-.product-hero img{ width:100%; height:100%; object-fit:cover; }
-.product-body{ padding:16px; display:flex; flex-direction:column; gap:10px; }
-.product-title{ font-size:18px; font-weight:700; margin:0; color:var(--ink-900); }
-.product-short{ font-size:14px; color:var(--ink-700); margin:0; }
-.product-bullets{ margin:0; padding-left:18px; font-size:13px; color:var(--ink-700); }
-.product-variants{ margin-top:6px; }
-.variants-label{ font-size:12px; font-weight:600; margin-bottom:4px; color:var(--ink-700); }
-.brand-row{ display:flex; align-items:center; gap:8px; margin-bottom:6px; }
-.brand-logo{ max-height:26px; }
-.brand-lab{ font-size:13px; font-weight:600; color:var(--ink-500); }
-
-/* ========= CARRUSEL HORIZONTAL ========= */
-.features.hscroll{
-  display:flex !important;
-  gap:18px;
-  overflow-x:auto;
-  padding:8px 12px 12px;
-  margin:16px -20px 0;               /* full-bleed */
-  scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:none;
-}
-.features.hscroll::-webkit-scrollbar{ display:none; }
-.features.hscroll .card{
-  flex:0 0 clamp(300px,32vw,420px);
-  min-height: clamp(320px,48vh,520px);
-  scroll-snap-align:start;
-  min-width:0;
-  transition:transform .25s ease, box-shadow .25s ease;
-  border-radius:22px;
-}
-@media (hover:hover){
-  .features.hscroll .card:hover{
-    transform:scale(1.04);
-    box-shadow:0 16px 32px rgba(0,0,0,.14);
-    z-index:1;
-  }
-}
-@media (max-width:900px){
-  .features.hscroll{ gap:12px; padding:8px 10px 14px; }
-  .features.hscroll .card{
-    flex:0 0 clamp(240px,78vw,320px);
-    min-height: clamp(280px,52vh,380px);
-    border-radius:20px;
-  }
-}
-
-/* ========= TARJETAS CON IMAGEN (Nosotros) ========= */
+/* ========= NOSOTROS: IMAGE CARDS ========= */
 .image-card{
   position:relative;
   flex:0 0 clamp(280px,30vw,400px);
@@ -182,7 +122,7 @@ a { color: inherit; text-decoration: none; }
   content:"";
   position:absolute;
   inset:0;
-  background: rgba(0,0,0,0.45); /* overlay uniforme */
+  background: rgba(0,0,0,0.55); /* overlay más oscuro */
   border-radius:inherit;
   pointer-events:none;
   z-index:0;
@@ -200,7 +140,61 @@ a { color: inherit; text-decoration: none; }
 .card-overlay h3{ margin:0 0 8px; font-size:20px; font-weight:700; color:#fff; }
 .card-overlay p{ margin:0; font-size:14px; color:#f0f0f0; }
 
-/* ========= CONTROLES INFERIORES (flechas debajo) ========= */
+/* ========= Misión, Visión, Valores (compact) ========= */
+.features.hscroll.compact .card h3{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:18px;
+  color: var(--brand-600);
+}
+.features.hscroll.compact .card h3 svg{
+  width:20px; height:20px; flex-shrink:0;
+  color: var(--brand-600);
+}
+
+/* ========= PRODUCTOS ========= */
+.product-card{ overflow:hidden; border-radius:22px; background:#fff; box-shadow:var(--shadow); flex:0 0 clamp(280px,32vw,380px); display:flex; flex-direction:column; }
+.product-card .prod-thumb{ background:#f4f8fc; border:1px solid var(--line); border-radius:14px; aspect-ratio:16/9; margin:4px 4px 12px; overflow:hidden; display:grid; place-items:center; }
+.product-card .prod-thumb img{ width:100%; height:100%; object-fit:contain; transform:translateZ(0); }
+.product-card:hover .prod-thumb img{ transform:scale(1.02); transition:transform .25s ease; }
+
+/* ========= CARRUSEL HORIZONTAL (Apple style) ========= */
+.features.hscroll{
+  display:flex !important;
+  grid-template-columns:none !important;
+  gap:18px;
+  overflow-x:auto;
+  padding:8px 12px 12px;
+  margin:16px -20px 0;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.features.hscroll::-webkit-scrollbar{ display:none; }
+.features.hscroll .card{
+  flex:0 0 clamp(280px,34vw,380px);
+  scroll-snap-align:start;
+  min-width:0;
+  border-radius:18px;
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+@media (hover:hover){
+  .features.hscroll .card:hover{
+    transform:scale(1.03);
+    box-shadow:0 14px 28px rgba(0,0,0,.12);
+    z-index:1;
+  }
+}
+@media (max-width:900px){
+  .features.hscroll{ gap:12px; padding:8px 10px 14px; }
+  .features.hscroll .card{
+    flex:0 0 clamp(240px,78vw,320px);
+    border-radius:20px;
+  }
+}
+
+/* ========= CONTROLES INFERIORES ========= */
 .scroller-controls{
   display:flex;
   gap:12px;
@@ -220,52 +214,3 @@ a { color: inherit; text-decoration: none; }
 }
 .scroller-btn:hover{ transform:translateY(-1px); }
 .scroller-btn:disabled{ opacity:.4; cursor:default; transform:none; }
-/* === Carrusel horizontal para productos (.features.hscroll) === */
-.features.hscroll{
-  /* fuerza a FLEX aunque .features tenga grid */
-  display: flex !important;
-  grid-template-columns: none !important;
-  gap: 18px;
-  overflow-x: auto;
-  padding: 8px 12px 12px;
-  margin: 16px -20px 0;              /* full-bleed */
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.features.hscroll::-webkit-scrollbar{ display: none; }
-
-/* Ancho de cada tarjeta en carrusel (desktop y móvil) */
-.features.hscroll .card{
-  flex: 0 0 clamp(280px, 34vw, 380px); /* 👉 tamaño tipo Apple */
-  scroll-snap-align: start;
-  min-width: 0;
-  border-radius: 18px;
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-
-/* Efecto hover solo donde hay hover */
-@media (hover:hover){
-  .features.hscroll .card:hover{
-    transform: scale(1.03);
-    box-shadow: 0 14px 28px rgba(0,0,0,.12);
-    z-index: 1;
-  }
-}
-
-/* Ajustes de la miniatura de producto */
-.product-card .prod-thumb{
-  background: #f4f8fc;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  aspect-ratio: 16 / 9;
-  margin: 4px 4px 12px;
-  overflow: hidden;
-  display: grid; place-items: center;
-}
-.product-card .prod-thumb img{
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  transform: translateZ(0);
-}
