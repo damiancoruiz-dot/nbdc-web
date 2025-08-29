@@ -1,71 +1,73 @@
 /* ========= RESET / BASE ========= */
 *,
 *::before,
-*::after {
-  box-sizing: border-box;
-}
+*::after { box-sizing: border-box; }
 
 html, body { height: 100%; }
 
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, "Segoe UI", Inter, Roboto, Arial, "Helvetica Neue", sans-serif;
+body{
+  margin:0;
+  font-family: system-ui,-apple-system,"Segoe UI",Inter,Roboto,Arial,"Helvetica Neue",sans-serif;
   color: var(--ink-900);
-  background: #fff;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background:#fff;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
-img, svg { display: block; max-width: 100%; height: auto; }
-a { color: inherit; text-decoration: none; }
+img,svg{ display:block; max-width:100%; height:auto; }
+a{ color:inherit; text-decoration:none; }
 
 /* ========= THEME ========= */
 :root{
+  /* Marca */
   --brand-700:#0b6aa1; --brand-600:#0c7fbf; --brand-500:#1196e6;
+  /* Tinta */
   --ink-900:#0b213a; --ink-700:#2f3e52; --ink-500:#556070; --ink-300:#7a8699;
+  /* UI */
   --bg-50:#f7f9fc; --card:#ffffff; --line:#e8eef6;
+  /* Sombra */
   --shadow:0 8px 18px rgba(0,0,0,.08);
 }
 
-/* ========= UTILIDADES / TIPOGRAFÍA ========= */
-.section { padding: 56px 20px; }
-.container { max-width: 1200px; margin: 0 auto; }
-.h2 { font-size: clamp(24px,3.2vw,36px); margin: 0 0 12px; color: var(--ink-900);}
-.lead { font-size: clamp(14px,1.7vw,18px); color: var(--ink-700); margin: 0; }
+/* ========= TIPOGRAFÍA / LAYOUT ========= */
+.section{ padding:56px 20px; }
+.container{ max-width:1200px; margin:0 auto; }
+.h2{ font-size:clamp(24px,3.2vw,36px); margin:0 0 12px; color:var(--ink-900); }
+.lead{ font-size:clamp(14px,1.7vw,18px); color:var(--ink-700); margin:0; }
 
-/* ========= GRID / CARDS ========= */
+/* ========= GRID (fallback) ========= */
 .features{
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 18px;
-  margin-top: clamp(24px,4vw,48px);
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:18px;
+  margin-top:clamp(24px,4vw,48px);
 }
 .card{
-  grid-column: span 4;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  box-shadow: var(--shadow);
-  padding: 16px;
+  grid-column:span 4;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  padding:16px;
 }
-@media (max-width: 960px){ .card{ grid-column: span 6; } }
-@media (max-width: 600px){ .card{ grid-column: span 12; } }
+@media (max-width:960px){ .card{ grid-column:span 6; } }
+@media (max-width:600px){ .card{ grid-column:span 12; } }
 
-.card h3{ margin: 0 0 6px; font-size: 20px; color: var(--ink-900); }
-.card p{ margin: 0 0 12px; color: var(--ink-700); }
-.card ul{ margin: 0 0 12px; padding-left: 18px; color: var(--ink-700); font-size: 14px; }
+.card h3{ margin:0 0 6px; font-size:20px; color:var(--ink-900); }
+.card p{ margin:0 0 12px; color:var(--ink-700); }
+.card ul{ margin:0 0 12px; padding-left:18px; color:var(--ink-700); font-size:14px; }
 
 /* ========= PILLS ========= */
 .pills{ display:flex; gap:8px; flex-wrap:wrap; }
 .pill{ border:1px solid var(--line); border-radius:999px; background:var(--bg-50); padding:6px 10px; font-size:12px; color:var(--ink-900); }
 
 /* ========= BOTONES ========= */
-.btn{ display:inline-block; border-radius:10px; padding:10px 14px; font-weight:700; text-decoration:none; }
-.btn-primary{ background:var(--brand-600); color:#fff; text-align:center; }
+.btn{ display:inline-block; border-radius:12px; padding:12px 16px; font-weight:700; text-align:center; }
+.btn-primary{ background:var(--brand-600); color:#fff; }
 .btn-primary:hover{ filter:brightness(1.05); }
-.btn-outline{ border:1.5px solid #fff; color:#fff; background:transparent; }
-.btn-outline:hover{ background:rgba(255,255,255,.12); }
+.btn-secondary{ background:#fff; color:var(--brand-600); border:1px solid var(--line); }
+.btn-secondary:hover{ filter:brightness(.98); }
 
 /* ========= NOTA ========= */
 .footnote{ margin-top:18px; font-size:12px; color:var(--ink-300); }
@@ -78,17 +80,17 @@ a { color: inherit; text-decoration: none; }
 .hero-overlay{ position:absolute; inset:0; background:rgba(0,0,0,.45); }
 .hero-content{ position:relative; z-index:1; height:100%; display:grid; align-content:center; gap:14px; text-align:center; color:#fff; padding:0; }
 .hero-actions{ display:flex; gap:12px; justify-content:center; margin-top:16px; flex-wrap:wrap; }
-.hero-bullets{ display:flex; gap:18px; justify-content:center; margin-top:16px; color:#d8e7f4; font-size:14px; flex-wrap:wrap; }
-
 .hero .swiper-button-prev,.hero .swiper-button-next{ color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.4); }
 .hero .swiper-pagination-bullet{ background:rgba(255,255,255,.7); opacity:1; }
 .hero .swiper-pagination-bullet-active{ background:#fff; }
+.btn-outline{ border:1.5px solid #fff; color:#fff; background:transparent; }
+.btn-outline:hover{ background:rgba(255,255,255,.12); }
 .hero .h2{ font-weight:900; text-shadow:0 2px 6px rgba(0,0,0,.4); }
 .hero .lead{ font-weight:600; text-shadow:0 1px 4px rgba(0,0,0,.35); }
 
 /* ========= QUOTE ========= */
 .quote{
-  padding: clamp(28px,4vw,44px) 20px;
+  padding:clamp(28px,4vw,44px) 20px;
   background:#f7f9fc;
   border-top:1px solid var(--line);
   border-bottom:1px solid var(--line);
@@ -105,11 +107,11 @@ a { color: inherit; text-decoration: none; }
 .quote blockquote::before{ content:"“"; left:0; top:-6px; }
 .quote blockquote::after{ content:"”"; right:0; bottom:-6px; }
 
-/* ========= NOSOTROS ========= */
+/* ========= NOSOTROS: IMAGE CARDS ========= */
 .image-card{
   position:relative;
   flex:0 0 clamp(280px,30vw,400px);
-  min-height: clamp(320px,50vh,440px);
+  min-height:clamp(320px,50vh,440px);
   border-radius:22px;
   background-size:cover;
   background-position:center;
@@ -118,99 +120,96 @@ a { color: inherit; text-decoration: none; }
   overflow:hidden;
 }
 .image-card::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: rgba(0,0,0,0.55);
-  border-radius:inherit;
-  pointer-events:none;
-  z-index:0;
+  content:""; position:absolute; inset:0; background:rgba(0,0,0,.55);
+  border-radius:inherit; pointer-events:none; z-index:0;
 }
-.card-overlay{
-  position:absolute;
-  inset:0;
-  padding:20px;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  color:#fff;
-  z-index:1;
-}
+.card-overlay{ position:absolute; inset:0; padding:20px; display:flex; flex-direction:column; justify-content:flex-end; color:#fff; z-index:1; }
 .card-overlay h3{ margin:0 0 8px; font-size:20px; font-weight:700; color:#fff; }
 .card-overlay p{ margin:0; font-size:14px; color:#f0f0f0; }
 
+/* ========= MISIÓN/VISIÓN/VALORES COMPACT ========= */
+.features.hscroll.compact .card h3{ display:flex; align-items:center; gap:8px; font-size:18px; color:var(--brand-600); }
+.features.hscroll.compact .card h3 svg{ width:20px; height:20px; flex-shrink:0; color:var(--brand-600); }
+
 /* ========= PRODUCTOS ========= */
+
+/* —— tarjeta base con alturas consistentes —— */
 .product-card{
-  border-radius:22px;
-  overflow:hidden;                 /* clip */
-  background:#fff;
-  box-shadow:var(--shadow);
-  flex:0 0 clamp(280px,32vw,360px);
-  display:flex;
-  flex-direction:column;
-  min-height:660px;                /* altura uniforme */
-  scroll-margin-top: 96px;
-}
-.product-hero{
-  aspect-ratio:16/9;
-  border-top-left-radius:inherit;
-  border-top-right-radius:inherit;
+  /* la tarjeta en el carrusel */
+  display:flex; flex-direction:column;
+  flex:0 0 clamp(300px,34vw,380px);         /* ancho de “slide” */
+  background:#fff; border:1px solid var(--line);
+  border-radius:22px; box-shadow:var(--shadow);
   overflow:hidden;
-  background:#eef5fb;
+  /* misma altura entre tarjetas */
+  min-height: 640px;                         /* ajusta si lo quieres más alto/bajo */
 }
-.product-hero img{
-  width:100%; height:100%;
-  object-fit:cover;
-  display:block;
-}
+
+/* imagen arriba, sin deformar y ocupando el ancho */
+.product-hero{ aspect-ratio:16/9; overflow:hidden; }
+.product-hero img{ width:100%; height:100%; object-fit:cover; }
+
+/* cuerpo: ocupa todo el espacio y empuja acciones al final */
 .product-body{
-  display:grid;
-  grid-template-rows:auto auto auto auto 1fr auto;
-  gap:10px;
+  display:flex; flex-direction:column; gap:10px;
   padding:16px;
+  flex:1 1 auto;                             /* toma todo el alto disponible */
+  min-height: 0;                             
 }
+
+.product-title{ font-size:22px; font-weight:800; margin:0; color:var(--ink-900); }
+.product-short{ font-size:14px; color:var(--ink-700); margin:0; }
+.product-bullets{ margin:0; padding-left:18px; font-size:14px; color:var(--ink-700); }
+.product-variants{ margin-top:6px; }
+.variants-label{ font-size:12px; font-weight:600; margin-bottom:4px; color:var(--ink-700); }
 .brand-row{ display:flex; align-items:center; gap:8px; margin-bottom:6px; }
 .brand-logo{ max-height:26px; width:auto; object-fit:contain; }
 .brand-lab{ font-size:13px; font-weight:600; color:var(--ink-500); }
 
-.product-title{
-  font-size:20px; font-weight:800; margin:0; color:var(--ink-900);
-  display:-webkit-box; -webkit-box-orient:vertical; overflow:hidden;
-  -webkit-line-clamp:2; line-clamp:2;
+/* Pastillas clicables (para cuando las uses) */
+.pill-btn{
+  border:1px solid var(--line); background:var(--bg-50); color:var(--ink-900);
+  border-radius:999px; padding:6px 12px; font-size:12px; cursor:pointer;
+  transition:all .15s ease;
 }
-.product-short{
-  font-size:14px; color:var(--ink-700); margin:0;
-  display:-webkit-box; -webkit-box-orient:vertical; overflow:hidden;
-  -webkit-line-clamp:3; line-clamp:3;
-}
-.product-bullets{ margin:0; padding-left:18px; font-size:13px; color:var(--ink-700); }
-.product-variants{ margin-top:6px; }
-.variants-label{ font-size:12px; font-weight:600; margin-bottom:4px; color:var(--ink-700); }
+.pill-btn.is-active{ border-color:#026fd0; background:#e9f2ff; color:#026fd0; }
 
+/* —— acciones: SIEMPRE al fondo, full width y alineadas —— */
 .card-actions{
-  display:flex; flex-direction:column; gap:10px;
-  align-items:stretch;
-  padding-top:12px;
+  margin-top:auto;                 /* empuja al fondo */
+  display:flex; flex-direction:column;
+  gap:10px;
+  align-items:stretch;             /* full width */
+  padding-top:12px;                /* aire arriba para que no “pegue” */
 }
 .card-actions .btn{ width:100%; }
 
-/* ========= CARRUSEL HORIZONTAL ========= */
+/* margen de scroll para que no la tape el header al llegar desde el Hero */
+.product-card{ scroll-margin-top: 96px; }
+
+/* efecto de llegada desde el Hero */
+.product-card.pulse{
+  box-shadow:0 0 0 4px rgba(17,150,230,.35), var(--shadow);
+  transition: box-shadow .2s ease;
+}
+
+/* ========= CARRUSEL HORIZONTAL (Apple style) ========= */
 .features.hscroll{
   display:flex !important;
+  grid-template-columns:none !important;
   gap:18px;
   overflow-x:auto;
   padding:8px 12px 12px;
-  margin:16px -20px 0;
+  margin:16px -20px 0;             /* full-bleed */
   scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch;
   scrollbar-width:none;
 }
 .features.hscroll::-webkit-scrollbar{ display:none; }
 .features.hscroll .card{
-  flex:0 0 clamp(280px,34vw,360px);
+  flex:0 0 clamp(300px,34vw,380px);
   scroll-snap-align:start;
   min-width:0;
-  border-radius:18px;
   transition:transform .25s ease, box-shadow .25s ease;
 }
 @media (hover:hover){
@@ -222,34 +221,86 @@ a { color: inherit; text-decoration: none; }
 }
 @media (max-width:900px){
   .features.hscroll{ gap:12px; padding:8px 10px 14px; }
-  .features.hscroll .card{
-    flex:0 0 clamp(240px,78vw,320px);
-    border-radius:20px;
-  }
+  .features.hscroll .card{ flex:0 0 clamp(260px,78vw,340px); }
 }
 
 /* ========= CONTROLES INFERIORES ========= */
 .scroller-controls{
-  display:flex;
-  gap:12px;
-  justify-content:center;
-  padding:10px 0 0;
+  display:flex; gap:12px; justify-content:center; padding:10px 0 0;
 }
 .scroller-btn{
-  width:42px; height:42px;
-  border-radius:999px;
-  border:1px solid var(--line);
-  background:#fff;
-  box-shadow:var(--shadow);
+  width:42px; height:42px; border-radius:999px; border:1px solid var(--line);
+  background:#fff; box-shadow:var(--shadow);
   display:inline-flex; align-items:center; justify-content:center;
-  font-size:20px;
-  cursor:pointer;
+  font-size:20px; cursor:pointer;
   transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
 }
 .scroller-btn:hover{ transform:translateY(-1px); }
 .scroller-btn:disabled{ opacity:.4; cursor:default; transform:none; }
 
-/* ========= EFECTOS HERO → PRODUCTO ========= */
+/* ========= LAB INFO (si usas la sección del laboratorio) ========= */
+.lab-section{ padding-top:24px; }
+.lab-card{ border:1px solid var(--line); border-radius:18px; background:var(--card); box-shadow:var(--shadow); padding:clamp(16px,2.2vw,24px); }
+.lab-header{ display:grid; grid-template-columns:auto 1fr; align-items:center; gap:16px; margin-bottom:8px; }
+.lab-logo{ width:clamp(72px,10vw,120px); height:auto; object-fit:contain; display:block; }
+.lab-title{ margin:0 0 6px; font-size:clamp(18px,2.4vw,22px); color:var(--ink-900); }
+.lab-lead{ margin:0; color:var(--ink-700); font-size:clamp(14px,2vw,16px); }
+.lab-details{ margin-top:10px; }
+.lab-summary{ cursor:pointer; user-select:none; width:fit-content; background:#f5f9ff; border:1px solid var(--line); border-radius:999px; padding:8px 12px; font-weight:700; color:var(--brand-600); transition:filter .15s ease; }
+.lab-summary:hover{ filter:brightness(.98); }
+.lab-body{ margin-top:14px; color:var(--ink-700); font-size:15px; }
+.lab-h4{ margin:14px 0 6px; color:var(--ink-900); font-size:16px; }
+.lab-list{ margin:0 0 8px 0; padding-left:18px; }
+/* El cuerpo ahora usa grid y empuja Acciones al fondo */
+.product-body{
+  display:grid;
+  grid-template-rows:
+    auto   /* brand row */
+    auto   /* título */
+    auto   /* short */
+    auto   /* bullets/variantes */
+    1fr    /* espacio flexible que uniforma alturas */
+    auto;  /* acciones (PDF / Cotizar) */
+  gap:10px;
+  padding:16px;
+  min-height: 0;
+}
+
+/* Marca (logo + lab) con altura compacta y sin saltos raros */
+.brand-row{ display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+.brand-logo{ max-height:26px; width:auto; object-fit:contain; }
+.brand-lab{ font-size:13px; font-weight:600; color:var(--ink-500); }
+
+/* Título y descripción con “line clamp” para alturas coherentes */
+.product-title{
+  font-size:22px; font-weight:800; margin:0; color:var(--ink-900);
+  display:-webkit-box; -webkit-box-orient:vertical; overflow:hidden;
+  -webkit-line-clamp: 2; line-clamp: 2;       /* 2 líneas */
+}
+
+.product-short{
+  font-size:14px; color:var(--ink-700); margin:0;
+  display:-webkit-box; -webkit-box-orient:vertical; overflow:hidden;
+  -webkit-line-clamp: 3; line-clamp: 3;       /* 3 líneas */
+}
+
+/* Bullets y variantes mantienen estilo */
+.product-bullets{ margin:0; padding-left:18px; font-size:14px; color:var(--ink-700); }
+.product-variants{ margin-top:6px; }
+.variants-label{ font-size:12px; font-weight:600; margin-bottom:4px; color:var(--ink-700); }
+
+/* Acciones SIEMPRE al fondo, ancho completo y alineadas entre sí */
+.card-actions{
+  display:flex; flex-direction:column; gap:10px;
+  align-items:stretch;           /* full width */
+  padding-top:12px;
+}
+.card-actions .btn{ width:100%; }
+
+/* margen de scroll para que al venir del Hero no tape el header */
+.product-card{ scroll-margin-top: 96px; }
+
+/* Resaltado breve al llegar desde el Hero */
 .product-card.pulse{
   box-shadow:0 0 0 4px rgba(17,150,230,.35), var(--shadow);
   transition: box-shadow .2s ease;
