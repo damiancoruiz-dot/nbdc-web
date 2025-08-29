@@ -4,7 +4,9 @@
 *::after {
   box-sizing: border-box;
 }
-html, body { height: 100%; scroll-behavior: smooth; } /* 👈 smooth */
+
+html, body { height: 100%; }
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, "Segoe UI", Inter, Roboto, Arial, "Helvetica Neue", sans-serif;
@@ -14,6 +16,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 img, svg { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
 
@@ -61,14 +64,6 @@ a { color: inherit; text-decoration: none; }
 .btn{ display:inline-block; border-radius:10px; padding:10px 14px; font-weight:700; text-decoration:none; }
 .btn-primary{ background:var(--brand-600); color:#fff; }
 .btn-primary:hover{ filter:brightness(1.05); }
-.btn-outline{ border:1.5px solid #fff; color:#fff; background:transparent; }
-.btn-outline:hover{ background:rgba(255,255,255,.12); }
-.btn-secondary{
-  background:#fff;
-  color: var(--brand-600);
-  border:1px solid var(--line);
-}
-.btn-secondary:hover{ filter: brightness(0.98); }
 
 /* ========= NOTA ========= */
 .footnote{ margin-top:18px; font-size:12px; color:var(--ink-300); }
@@ -82,9 +77,13 @@ a { color: inherit; text-decoration: none; }
 .hero-content{ position:relative; z-index:1; height:100%; display:grid; align-content:center; gap:14px; text-align:center; color:#fff; padding:0; }
 .hero-actions{ display:flex; gap:12px; justify-content:center; margin-top:16px; flex-wrap:wrap; }
 .hero-bullets{ display:flex; gap:18px; justify-content:center; margin-top:16px; color:#d8e7f4; font-size:14px; flex-wrap:wrap; }
+
 .hero .swiper-button-prev,.hero .swiper-button-next{ color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.4); }
 .hero .swiper-pagination-bullet{ background:rgba(255,255,255,.7); opacity:1; }
 .hero .swiper-pagination-bullet-active{ background:#fff; }
+
+.btn-outline{ border:1.5px solid #fff; color:#fff; background:transparent; }
+.btn-outline:hover{ background:rgba(255,255,255,.12); }
 .hero .h2{ font-weight:900; text-shadow:0 2px 6px rgba(0,0,0,.4); }
 .hero .lead{ font-weight:600; text-shadow:0 1px 4px rgba(0,0,0,.35); }
 
@@ -141,7 +140,7 @@ a { color: inherit; text-decoration: none; }
 .card-overlay h3{ margin:0 0 8px; font-size:20px; font-weight:700; color:#fff; }
 .card-overlay p{ margin:0; font-size:14px; color:#f0f0f0; }
 
-/* ========= Misión, Visión, Valores (compact) ========= */
+/* ========= Misión, Visión, Valores ========= */
 .features.hscroll.compact .card h3{
   display:flex;
   align-items:center;
@@ -154,83 +153,45 @@ a { color: inherit; text-decoration: none; }
   color: var(--brand-600);
 }
 
-/* ========= PRODUCTOS (tarjeta) ========= */
-.product-card{
-  overflow:hidden;
-  border-radius:22px;
-  background:#fff;
-  box-shadow:var(--shadow);
-  flex:0 0 clamp(280px,32vw,380px);
-  display:flex; flex-direction:column;
-  scroll-margin-top: 90px; /* que no la tape el header */
-}
+/* ========= PRODUCTOS ========= */
+.product-card{ overflow:hidden; border-radius:22px; background:#fff; box-shadow:var(--shadow); flex:0 0 clamp(280px,32vw,380px); display:flex; flex-direction:column; }
+.product-card .prod-thumb{ background:#f4f8fc; border:1px solid var(--line); border-radius:14px; aspect-ratio:16/9; margin:4px 4px 12px; overflow:hidden; display:grid; place-items:center; }
+.product-card .prod-thumb img{ width:100%; height:100%; object-fit:contain; transform:translateZ(0); }
+.product-card:hover .prod-thumb img{ transform:scale(1.02); transition:transform .25s ease; }
+
+/* === PRODUCT HERO: llenar sin barras === */
 .product-hero{
-  aspect-ratio: 16/9;
-  overflow:hidden;
-  border:1px solid var(--line);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
   border-radius: 14px;
-  background:#f4f8fc;
-  margin:4px 4px 12px;
+  margin: 0 0 12px;
+  background: #f0f4f8;
+  border: 1px solid var(--line);
 }
 .product-hero img{
-  width:100%; height:100%;
-  object-fit: contain;           /* 👈 CORRECCIÓN encuadre */
-}
-.product-body{ padding:16px; display:flex; flex-direction:column; gap:10px; }
-
-/* Títulos y textos */
-.product-title{ font-size:18px; font-weight:700; margin:0; color:var(--ink-900); }
-.product-short{
-  font-size:14px; color:var(--ink-700); margin:0;
-  display:-webkit-box; -webkit-box-orient:vertical;
-  -webkit-line-clamp:2; line-clamp:2; overflow:hidden; /* 👈 compat */
-}
-.product-bullets{ margin:0; padding-left:18px; font-size:13px; color:var(--ink-700); }
-.product-variants{ margin-top:6px; }
-.variants-label{ font-size:12px; font-weight:600; margin-bottom:4px; color:var(--ink-700); }
-.brand-row{ display:flex; align-items:center; gap:8px; margin-bottom:6px; }
-.brand-logo{ max-height:26px; width:auto; object-fit:contain; }
-.brand-lab{ font-size:13px; font-weight:600; color:var(--ink-500); }
-
-/* Pastillas clicables (presentaciones) */
-.pill-btn{
-  border:1px solid var(--line);
-  background:var(--bg-50);
-  color:var(--ink-900);
-  border-radius:999px;
-  padding:6px 12px;
-  font-size:12px;
-  cursor:pointer;
-  transition:all .15s ease;
-}
-.pill-btn.is-active{
-  border-color:#026fd0;
-  background:#e9f2ff;
-  color:#026fd0;
-}
-
-/* Acciones uniformes al fondo */
-.card-actions{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  align-items:center;
-  justify-content:flex-end;
-  margin-top:auto;  /* 👈 empuja al fondo */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    /* 👈 llena */
+  object-position: center;
 }
 
 /* ========= CARRUSEL HORIZONTAL ========= */
 .features.hscroll{
-  display:flex !important; grid-template-columns:none !important;
-  gap:18px; overflow-x:auto;
-  padding:8px 12px 12px; margin:16px -20px 0;
-  scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+  display:flex !important;
+  grid-template-columns:none !important;
+  gap:18px;
+  overflow-x:auto;
+  padding:8px 12px 12px;
+  margin:16px -20px 0;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
   scrollbar-width:none;
 }
 .features.hscroll::-webkit-scrollbar{ display:none; }
 .features.hscroll .card{
   flex:0 0 clamp(280px,34vw,380px);
-  scroll-snap-align:start; min-width:0;
+  scroll-snap-align:start;
+  min-width:0;
   border-radius:18px;
   transition:transform .25s ease, box-shadow .25s ease;
 }
@@ -243,25 +204,160 @@ a { color: inherit; text-decoration: none; }
 }
 @media (max-width:900px){
   .features.hscroll{ gap:12px; padding:8px 10px 14px; }
-  .features.hscroll .card{ flex:0 0 clamp(240px,78vw,320px); border-radius:20px; }
+  .features.hscroll .card{
+    flex:0 0 clamp(240px,78vw,320px);
+    border-radius:20px;
+  }
 }
 
 /* ========= CONTROLES INFERIORES ========= */
 .scroller-controls{
-  display:flex; gap:12px; justify-content:center; padding:10px 0 0;
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  padding:10px 0 0;
 }
 .scroller-btn{
-  width:42px; height:42px; border-radius:999px; border:1px solid var(--line);
-  background:#fff; box-shadow:var(--shadow);
+  width:42px; height:42px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:#fff;
+  box-shadow:var(--shadow);
   display:inline-flex; align-items:center; justify-content:center;
-  font-size:20px; cursor:pointer;
+  font-size:20px;
+  cursor:pointer;
   transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
 }
 .scroller-btn:hover{ transform:translateY(-1px); }
 .scroller-btn:disabled{ opacity:.4; cursor:default; transform:none; }
 
-/* ========= RESALTADO al llegar desde Hero ========= */
-.product-card.pulse{
-  box-shadow:0 0 0 4px rgba(17,150,230,.35), var(--shadow);
+/* ========= LAB SECTION ========= */
+.lab-section { padding-top: 24px; }
+.lab-card { border: 1px solid var(--line); border-radius: 18px; background: var(--card); box-shadow: var(--shadow); padding: clamp(16px, 2.2vw, 24px); }
+.lab-header { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 16px; margin-bottom: 8px; }
+.lab-logo { width: clamp(72px, 10vw, 120px); height: auto; object-fit: contain; display: block; }
+.lab-title { margin: 0 0 6px; font-size: clamp(18px, 2.4vw, 22px); color: var(--ink-900); }
+.lab-lead { margin: 0; color: var(--ink-700); font-size: clamp(14px, 2vw, 16px); }
+.lab-details { margin-top: 10px; }
+.lab-summary { cursor: pointer; user-select: none; width: fit-content; background: #f5f9ff; border: 1px solid var(--line); border-radius: 999px; padding: 8px 12px; font-weight: 700; color: var(--brand-600); transition: filter .15s ease; }
+.lab-summary:hover { filter: brightness(0.98); }
+.lab-body { margin-top: 14px; color: var(--ink-700); font-size: 15px; }
+.lab-h4 { margin: 14px 0 6px; color: var(--ink-900); font-size: 16px; }
+.lab-list { margin: 0 0 8px 0; padding-left: 18px; }
+
+/* ========= PRODUCT CARD BEHAVIOR ========= */
+.product-card { scroll-margin-top: 90px; }
+.product-card.pulse { box-shadow: 0 0 0 4px rgba(17,150,230,.35), var(--shadow); transition: box-shadow .2s ease; }
+
+.card-actions{ display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap; }
+
+.btn-secondary{ border:1px solid var(--line); background:#fff; color:var(--ink-900); }
+.btn-secondary:hover{ background:var(--bg-50); }
+
+.btn-secondary{ background: #fff; color: var(--brand-600); border: 1px solid var(--line); }
+.btn-secondary:hover{ filter: brightness(0.98); }
+
+.pill-btn{ border: 1px solid var(--line); background: var(--bg-50); color: var(--ink-900); border-radius: 999px; padding: 6px 12px; font-size: 12px; cursor: pointer; transition: all .15s ease; }
+.pill-btn.is-active{ border-color: #026fd0; background: #e9f2ff; color: #026fd0; }
+
+.product-card{ overflow: hidden; border-radius: 22px; background: #fff; box-shadow: var(--shadow); flex: 0 0 clamp(260px, 28vw, 340px); display: flex; flex-direction: column; }
+.product-hero{ aspect-ratio: 16/9; overflow: hidden; }
+.product-hero img{ width: 100%; height: 100%; object-fit: cover; }
+.product-body{ padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.product-title{ font-size: 18px; font-weight: 700; margin: 0; color: var(--ink-900); }
+.product-short{ font-size: 14px; color: var(--ink-700); margin: 0; }
+.product-bullets{ margin: 0; padding-left: 18px; font-size: 13px; color: var(--ink-700); }
+.product-variants{ margin-top: 6px; }
+.variants-label{ font-size: 12px; font-weight: 600; margin-bottom: 4px; color: var(--ink-700); }
+.brand-row{ display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.brand-logo{ max-height: 26px; }
+.brand-lab{ font-size: 13px; font-weight: 600; color: var(--ink-500); }
+/* === Productos: imagen que nunca se corta + botones pegados al fondo === */
+.product-card{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: var(--shadow);
+  flex: 0 0 clamp(300px, 34vw, 380px); /* ancho consistente en carrusel */
+}
+
+/* Thumb con “aire” y sin recortes */
+.product-hero{
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 16px;
+  margin: 4px 4px 12px;
+  background: #f4f8fc;               /* fondo claro */
+  display: grid; place-items: center; /* centra la imagen */
+}
+.product-hero img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;                /* << NO recorta la imagen */
+  transform: translateZ(0);
+}
+
+/* Cuerpo con grid para empujar acciones al fondo SIEMPRE */
+.product-body{
+  display: grid;
+  grid-template-rows: auto auto auto 1fr auto; /* título, short, bullets/variants, relleno, acciones */
+  gap: 10px;
+  padding: 16px;
+  min-height: 360px;                  /* asegura que todas “midan” parecido */
+}
+@media (max-width: 900px){
+  .product-body{ min-height: 320px; }
+}
+
+.product-title{ font-size: 22px; line-height: 1.2; margin: 0; color: var(--ink-900); }
+.product-short{ font-size: 14px; color: var(--ink-700); margin: 0; }
+.product-bullets{ margin: 0; padding-left: 18px; font-size: 14px; color: var(--ink-700); }
+.product-variants{ margin-top: 4px; }
+.variants-label{ font-size: 12px; font-weight: 600; margin-bottom: 4px; color: var(--ink-700); }
+.pills{ display:flex; gap:8px; flex-wrap:wrap; }
+.pill-btn{
+  border: 1px solid var(--line);
+  background: var(--bg-50);
+  color: var(--ink-900);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.pill-btn.is-active{
+  border-color: #026fd0;
+  background: #e9f2ff;
+  color: #026fd0;
+}
+
+/* Acciones SIEMPRE abajo y alineadas a la derecha */
+.card-actions{
+  margin-top: auto;                   /* empuja a fondo */
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 4px;
+}
+
+/* Botón de PDF (secundario) */
+.btn-secondary{
+  background: #fff;
+  color: var(--brand-600);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+}
+.btn-secondary:hover{ filter: brightness(0.98); }
+
+/* Suavidad al llegar desde el Hero y margen con el header */
+html { scroll-behavior: smooth; }     /* suaviza anchors fallback */
+.product-card { scroll-margin-top: 90px; }
+.product-card.pulse {
+  box-shadow: 0 0 0 4px rgba(17,150,230,.35), var(--shadow);
   transition: box-shadow .2s ease;
 }

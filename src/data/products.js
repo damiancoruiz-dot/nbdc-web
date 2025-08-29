@@ -31,7 +31,7 @@ export const products = [
     name: "Xentra S3 — Vial 10 mL",
     short: "Solución para uso subcutáneo, frasco multidosis 10 mL.",
     bullets: ["Esterilidad garantizada", "Uso SUB-C"],
-    variants: ["5 mg/mL", "20 mg/mL"],
+    variants: ["5 mg/1 mL"],
     image: "/images/products/xentra-s3-vial.webp",
     includes: ["Frasco vial 10 mL", "Guía de uso"],
     datasheet: "/docs/xentra-s3-vial.pdf", // ✅
@@ -63,7 +63,7 @@ export const products = [
     name: "Xentra T3 — Vial 10 mL",
     short: "Solución inyectable en frasco multidosis 10 mL.",
     bullets: ["Uso SUB-C", "Esterilidad garantizada"],
-    variants: ["10 mg/mL", "20 mg/mL"],
+    variants: ["20 mg/1 mL"],
     image: "/images/products/xentra-t3-vial.webp",
     includes: ["Frasco vial 10 mL", "Guía de uso"],
     datasheet: "/docs/xentra-t3-inyeccion.pdf", // ✅

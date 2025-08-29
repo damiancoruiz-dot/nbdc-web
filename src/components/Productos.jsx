@@ -17,7 +17,7 @@ export default function Productos() {
   return (
     <section id="productos" className="section">
       <div className="container">
-        <h2 className="h2" style={{ marginBottom: 8 }}>Productos</h2>
+        <h2 className="h2" style={{ marginBottom: 8 }}>Encuentra el producto ideal para ti</h2>
         <p className="lead">Portafolio disponible a través de NBDC como distribuidor.</p>
 
         {/* Carrusel horizontal (desktop y móvil) */}
