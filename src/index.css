@@ -251,3 +251,57 @@ a{ color:inherit; text-decoration:none; }
 .lab-body{ margin-top:14px; color:var(--ink-700); font-size:15px; }
 .lab-h4{ margin:14px 0 6px; color:var(--ink-900); font-size:16px; }
 .lab-list{ margin:0 0 8px 0; padding-left:18px; }
+/* El cuerpo ahora usa grid y empuja Acciones al fondo */
+.product-body{
+  display:grid;
+  grid-template-rows:
+    auto   /* brand row */
+    auto   /* título */
+    auto   /* short */
+    auto   /* bullets/variantes */
+    1fr    /* espacio flexible que uniforma alturas */
+    auto;  /* acciones (PDF / Cotizar) */
+  gap:10px;
+  padding:16px;
+  min-height: 0;
+}
+
+/* Marca (logo + lab) con altura compacta y sin saltos raros */
+.brand-row{ display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+.brand-logo{ max-height:26px; width:auto; object-fit:contain; }
+.brand-lab{ font-size:13px; font-weight:600; color:var(--ink-500); }
+
+/* Título y descripción con “line clamp” para alturas coherentes */
+.product-title{
+  font-size:22px; font-weight:800; margin:0; color:var(--ink-900);
+  display:-webkit-box; -webkit-box-orient:vertical; overflow:hidden;
+  -webkit-line-clamp: 2; line-clamp: 2;       /* 2 líneas */
+}
+
+.product-short{
+  font-size:14px; color:var(--ink-700); margin:0;
+  display:-webkit-box; -webkit-box-orient:vertical; overflow:hidden;
+  -webkit-line-clamp: 3; line-clamp: 3;       /* 3 líneas */
+}
+
+/* Bullets y variantes mantienen estilo */
+.product-bullets{ margin:0; padding-left:18px; font-size:14px; color:var(--ink-700); }
+.product-variants{ margin-top:6px; }
+.variants-label{ font-size:12px; font-weight:600; margin-bottom:4px; color:var(--ink-700); }
+
+/* Acciones SIEMPRE al fondo, ancho completo y alineadas entre sí */
+.card-actions{
+  display:flex; flex-direction:column; gap:10px;
+  align-items:stretch;           /* full width */
+  padding-top:12px;
+}
+.card-actions .btn{ width:100%; }
+
+/* margen de scroll para que al venir del Hero no tape el header */
+.product-card{ scroll-margin-top: 96px; }
+
+/* Resaltado breve al llegar desde el Hero */
+.product-card.pulse{
+  box-shadow:0 0 0 4px rgba(17,150,230,.35), var(--shadow);
+  transition: box-shadow .2s ease;
+}
