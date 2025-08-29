@@ -19,6 +19,16 @@ body {
 
 img, svg { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
+/* Suaviza TODOS los desplazamientos de anclas */
+html { scroll-behavior: smooth; }
+
+/* Brillo/halo breve para resaltar una tarjeta */
+@keyframes pulseGlow {
+  0%   { box-shadow: 0 0 0 rgba(17,150,230,0); }
+  50%  { box-shadow: 0 0 0 8px rgba(17,150,230,.18); }
+  100% { box-shadow: 0 0 0 rgba(17,150,230,0); }
+}
+.pulse { animation: pulseGlow 1.1s ease-out; }
 
 /* ========= THEME ========= */
 :root{
@@ -297,6 +307,7 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 0 0 4px rgba(17,150,230,.35), var(--shadow);
   transition: box-shadow .2s ease;
 }
+
 /* Acciones al final de la tarjeta */
 .card-actions{
   display:flex;
@@ -305,31 +316,15 @@ a { color: inherit; text-decoration: none; }
   flex-wrap:wrap;
 }
 
-/* Botón secundario para PDF */
+/* Botón contorno secundario (una sola definición) */
 .btn-secondary{
-  border:1px solid var(--line);
   background:#fff;
-  color:var(--ink-900);
-}
-.btn-secondary:hover{
-  background:var(--bg-50);
-}
-
-/* Por si vienes del Hero y quieres resaltar la tarjeta */
-.product-card { scroll-margin-top: 90px; }
-.product-card.pulse {
-  box-shadow: 0 0 0 4px rgba(17,150,230,.35), var(--shadow);
-  transition: box-shadow .2s ease;
-}
-/* Botón contorno secundario */
-.btn-secondary{
-  background: #fff;
-  color: var(--brand-600);
-  border: 1px solid var(--line);
+  color:var(--brand-600);
+  border:1px solid var(--line);
 }
 .btn-secondary:hover{ filter: brightness(0.98); }
 
-/* Pastillas clicables (presentaciones) */
+/* Pastillas clicables (presentaciones) – una sola definición */
 .pill-btn{
   border: 1px solid var(--line);
   background: var(--bg-50);
@@ -346,62 +341,21 @@ a { color: inherit; text-decoration: none; }
   color: #026fd0;
 }
 
-/* Tarjeta de producto base (si no estaba) */
+/* Tarjeta de producto base – una sola definición */
 .product-card{
   overflow: hidden;
   border-radius: 22px;
   background: #fff;
   box-shadow: var(--shadow);
   flex: 0 0 clamp(260px, 28vw, 340px);
-  display: flex; flex-direction: column;
-}
-.product-hero{ aspect-ratio: 16/9; overflow: hidden; }
-.product-hero img{ width: 100%; height: 100%; object-fit: cover; }
-.product-body{ padding: 16px; display: flex; flex-direction: column; gap: 10px; }
-.product-title{ font-size: 18px; font-weight: 700; margin: 0; color: var(--ink-900); }
-.product-short{ font-size: 14px; color: var(--ink-700); margin: 0; }
-.product-bullets{ margin: 0; padding-left: 18px; font-size: 13px; color: var(--ink-700); }
-.product-variants{ margin-top: 6px; }
-.variants-label{ font-size: 12px; font-weight: 600; margin-bottom: 4px; color: var(--ink-700); }
-.brand-row{ display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
-.brand-logo{ max-height: 26px; }
-.brand-lab{ font-size: 13px; font-weight: 600; color: var(--ink-500); }
-/* Botón contorno secundario */
-.btn-secondary{
-  background: #fff;
-  color: var(--brand-600);
-  border: 1px solid var(--line);
-}
-.btn-secondary:hover{ filter: brightness(0.98); }
-
-/* Pastillas clicables (presentaciones) */
-.pill-btn{
-  border: 1px solid var(--line);
-  background: var(--bg-50);
-  color: var(--ink-900);
-  border-radius: 999px;
-  padding: 6px 12px;
-  font-size: 12px;
-  cursor: pointer;
-  transition: all .15s ease;
-}
-.pill-btn.is-active{
-  border-color: #026fd0;
-  background: #e9f2ff;
-  color: #026fd0;
+  display: flex; 
+  flex-direction: column;
 }
 
-/* Tarjeta de producto base */
-.product-card{
-  overflow: hidden;
-  border-radius: 22px;
-  background: #fff;
-  box-shadow: var(--shadow);
-  flex: 0 0 clamp(260px, 28vw, 340px);
-  display: flex; flex-direction: column;
-}
+/* Dos variantes de “hero” de imagen que usamos en productos */
 .product-hero{ aspect-ratio: 16/9; overflow: hidden; }
 .product-hero img{ width: 100%; height: 100%; object-fit: cover; }
+
 .product-body{ padding: 16px; display: flex; flex-direction: column; gap: 10px; }
 .product-title{ font-size: 18px; font-weight: 700; margin: 0; color: var(--ink-900); }
 .product-short{ font-size: 14px; color: var(--ink-700); margin: 0; }

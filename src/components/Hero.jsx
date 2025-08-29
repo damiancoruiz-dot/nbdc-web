@@ -7,33 +7,39 @@ import "swiper/css/navigation";
 import { theme } from "../theme";
 
 export default function Hero() {
-  // 👉 helper: scroll suave a la tarjeta e iluminación breve
+  // Scroll suave a la sección y centrado de la tarjeta en el carrusel horizontal
   const gotoProduct = (id) => (e) => {
     e.preventDefault();
-    // buscar por data-id, id o cualquier selector útil
-    const selectors = [
-      `[data-id="${id}"]`,
-      `#${id}`,
-      `[id="${id}"]`,
-      `[name="${id}"]`,
-    ];
-    let el = null;
-    for (const sel of selectors) {
-      el = document.querySelector(sel);
-      if (el) break;
+
+    const section = document.querySelector("#productos");
+
+    // 1) Llevar la vista a la sección de productos (suave)
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      // fallback
+      window.location.hash = "#productos";
     }
 
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "center" });
-      // aplicar "pulse" sólo si es una tarjeta (tiene data-id) para no resaltar secciones
-      if (el.dataset && el.dataset.id) {
-        el.classList.add("pulse");
-        setTimeout(() => el.classList.remove("pulse"), 1200);
+    // 2) Cuando estamos ahí, centrar la tarjeta dentro del carrusel horizontal
+    // Damos un pequeño tiempo para que el scroll vertical ocurra primero
+    setTimeout(() => {
+      const rail = document.querySelector("#productos .features.hscroll");
+      const card = document.querySelector(`#productos [data-id="${id}"]`);
+
+      if (rail && card) {
+        // centra horizontalmente la tarjeta y no mueve el eje vertical
+        card.scrollIntoView({
+          behavior: "smooth",
+          inline: "center",
+          block: "nearest",
+        });
+
+        // resaltar brevemente
+        card.classList.add("pulse");
+        setTimeout(() => card.classList.remove("pulse"), 1200);
       }
-    } else {
-      // fallback por si no encuentra el elemento: cambiar hash para permitir navegación
-      window.location.hash = `#${id}`;
-    }
+    }, 350);
   };
 
   return (
@@ -71,20 +77,8 @@ export default function Hero() {
               </h1>
 
               <div className="hero-actions">
-                <a
-                  href="#productos"
-                  onClick={gotoProduct("productos")}
-                  className="btn btn-primary"
-                >
-                  Ver productos
-                </a>
-                <a
-                  href="#contacto"
-                  onClick={gotoProduct("contacto")}
-                  className="btn btn-outline"
-                >
-                  Contactar ventas
-                </a>
+                <a href="#productos" className="btn btn-primary">Ver productos</a>
+                <a href="#contacto" className="btn btn-outline">Contactar ventas</a>
               </div>
             </div>
           </div>
@@ -169,7 +163,7 @@ export default function Hero() {
           </div>
         </SwiperSlide>
 
-        {/* 5) Xentra T3 — Vial (nuevo hero) */}
+        {/* 5) Xentra T3 — Vial */}
         <SwiperSlide>
           <div className="hero-slide">
             <img
