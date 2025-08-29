@@ -58,9 +58,16 @@ export default function Hero() {
                 Distribución biofarmacéutica confiable
               </h1>
               <div className="hero-actions">
-                <a href="#productos" className="btn btn-primary">Ver productos</a>
+                <a
+                  href="#productos"
+                  onClick={gotoProduct("xentra-s3-pen")}
+                  className="btn btn-primary"
+                >
+                  Ver productos
+                </a>
                 <a href="#contacto" className="btn btn-outline">Contactar ventas</a>
               </div>
+
             </div>
           </div>
         </SwiperSlide>
