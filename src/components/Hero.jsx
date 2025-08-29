@@ -7,38 +7,27 @@ import "swiper/css/navigation";
 import { theme } from "../theme";
 
 export default function Hero() {
-  // Scroll suave a la sección y centrado de la tarjeta en el carrusel horizontal
-  // 👉 helper: scroll suave a la tarjeta e iluminación breve + scroll horizontal del carrusel
-const gotoProduct = (id) => (e) => {
-  e.preventDefault();
-
-  // 1) Baja a la sección de productos suavemente
-  const section = document.querySelector('#productos');
-  if (section) {
-    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  } else {
-    window.location.hash = '#productos';
-  }
-
-  // 2) Cuando ya está visible, centra la tarjeta dentro del carrusel horizontal
-  setTimeout(() => {
-    const rail = document.querySelector('#productos .features.hscroll');
-    const card = document.querySelector(`#productos [data-id="${id}"]`);
-    if (!rail || !card) return;
-
-    const railRect = rail.getBoundingClientRect();
-    const cardRect = card.getBoundingClientRect();
-    const offset =
-      (cardRect.left - railRect.left) -
-      (rail.clientWidth - cardRect.width) / 2;
-
-    rail.scrollBy({ left: offset, behavior: 'smooth' });
-
-    // 3) Resalta la tarjeta brevemente
-    card.classList.add('pulse');
-    setTimeout(() => card.classList.remove('pulse'), 1200);
-  }, 350); // pequeño delay para que termine el scroll vertical
-};
+  // Scroll suave al producto y resaltado breve
+  const gotoProduct = (id) => (e) => {
+    e.preventDefault();
+    const el = document.querySelector(`[data-id="${id}"]`);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      el.classList.add("pulse");
+      setTimeout(() => el.classList.remove("pulse"), 1200);
+    } else {
+      // fallback
+      window.location.hash = "#productos";
+      setTimeout(() => {
+        const again = document.querySelector(`[data-id="${id}"]`);
+        if (again) {
+          again.scrollIntoView({ behavior: "smooth", block: "center" });
+          again.classList.add("pulse");
+          setTimeout(() => again.classList.remove("pulse"), 1200);
+        }
+      }, 300);
+    }
+  };
 
   return (
     <section
@@ -62,18 +51,12 @@ const gotoProduct = (id) => (e) => {
         {/* 1) Slide general */}
         <SwiperSlide>
           <div className="hero-slide">
-            <img
-              className="hero-img"
-              src="/images/hero-lab.webp"
-              alt="Laboratorio biofarmacéutico"
-              loading="eager"
-            />
+            <img className="hero-img" src="/images/hero-lab.webp" alt="Laboratorio biofarmacéutico" loading="eager" />
             <div className="hero-overlay" />
             <div className="hero-content container">
               <h1 className="h2" style={{ color: "#fff", fontWeight: 800 }}>
                 Distribución biofarmacéutica confiable
               </h1>
-
               <div className="hero-actions">
                 <a href="#productos" className="btn btn-primary">Ver productos</a>
                 <a href="#contacto" className="btn btn-outline">Contactar ventas</a>
@@ -82,80 +65,46 @@ const gotoProduct = (id) => (e) => {
           </div>
         </SwiperSlide>
 
-        {/* 2) Xentra S3 — Pluma multidosis */}
+        {/* 2) Xentra S3 — Pluma */}
         <SwiperSlide>
           <div className="hero-slide">
-            <img className="hero-img" src="/images/hero-xentra-s3.webp" alt="Xentra S3" />
+            <img className="hero-img" src="/images/hero-xentra-s3.webp" alt="Xentra S3 — Pluma" />
             <div className="hero-overlay" />
             <div className="hero-content container">
-              <h1 className="h2" style={{ color: "#fff", fontWeight: 800 }}>
-                Xentra S3 — Pluma multidosis
-              </h1>
-              <p className="lead" style={{ color: "#e7eef6" }}>
-                Uso SUB-C • Trazabilidad y guía de uso
-              </p>
+              <h1 className="h2" style={{ color: "#fff", fontWeight: 800 }}>Xentra S3 — Pluma multidosis</h1>
+              <p className="lead" style={{ color: "#e7eef6" }}>Uso SUB-C • Trazabilidad y guía de uso</p>
               <div className="hero-actions">
-                <a
-                  href="#productos"
-                  onClick={gotoProduct("xentra-s3-pen")}
-                  className="btn btn-primary"
-                >
-                  Ver producto
-                </a>
+                <a href="#productos" onClick={gotoProduct("xentra-s3-pen")} className="btn btn-primary">Ver producto</a>
               </div>
             </div>
           </div>
         </SwiperSlide>
 
-        {/* 3) Xentra S3 — Vial 10 mL */}
+        {/* 3) Xentra S3 — Vial */}
         <SwiperSlide>
           <div className="hero-slide">
-            <img
-              className="hero-img"
-              src="/images/hero-xentra-s3-vial.webp"
-              alt="Xentra S3 — Vial 10 mL"
-            />
+            <img className="hero-img" src="/images/hero-xentra-s3-vial.webp" alt="Xentra S3 — Vial 10 mL" />
             <div className="hero-overlay" />
             <div className="hero-content container">
-              <h1 className="h2" style={{ color: "#fff", fontWeight: 800 }}>
-                Xentra S3 — Vial 10 mL
-              </h1>
-              <p className="lead" style={{ color: "#e7eef6" }}>
-                Solución para uso subcutáneo, frasco multidosis 10 mL
-              </p>
+              <h1 className="h2" style={{ color: "#fff", fontWeight: 800 }}>Xentra S3 — Vial 10 mL</h1>
+              <p className="lead" style={{ color: "#e7eef6" }}>Solución para uso subcutáneo</p>
               <div className="hero-actions">
-                <a
-                  href="#productos"
-                  onClick={gotoProduct("xentra-s3-vial")}
-                  className="btn btn-primary"
-                >
-                  Ver producto
-                </a>
+                <a href="#productos" onClick={gotoProduct("xentra-s3-vial")} className="btn btn-primary">Ver producto</a>
               </div>
             </div>
           </div>
         </SwiperSlide>
 
-        {/* 4) Xentra T3 — Pluma multidosis */}
+        {/* 4) Xentra T3 — Pluma */}
         <SwiperSlide>
           <div className="hero-slide">
-            <img className="hero-img" src="/images/hero-xentra-t3.webp" alt="Xentra T3" />
+            <img className="hero-img" src="/images/hero-xentra-t3.webp" alt="Xentra T3 — Pluma" />
             <div className="hero-overlay" />
             <div className="hero-content container">
-              <h1 className="h2" style={{ color: "#fff", fontWeight: 800 }}>
-                Xentra T3 — Pluma multidosis
-              </h1>
-              <p className="lead" style={{ color: "#e7eef6" }}>
-                Presentaciones escalables para dosificación semanal
-              </p>
+              <h1 className="h2" style={{ color: "#fff", fontWeight: 800 }}>Xentra T3 — Pluma multidosis</h1>
+              <p className="lead" style={{ color: "#e7eef6" }}>Dosificación semanal</p>
               <div className="hero-actions">
-                <a
-                  href="#productos"
-                  onClick={gotoProduct("xentra-t3-pen")}
-                  className="btn btn-primary"
-                >
-                  Ver producto
-                </a>
+                <a href="#productos" onClick={gotoProduct("xentra-t3-pen")} className="btn btn-primary">Ver producto</a>
               </div>
             </div>
           </div>
@@ -164,27 +113,13 @@ const gotoProduct = (id) => (e) => {
         {/* 5) Xentra T3 — Vial */}
         <SwiperSlide>
           <div className="hero-slide">
-            <img
-              className="hero-img"
-              src="/images/hero-xentra-t3-vial.webp"
-              alt="Xentra T3 — Vial"
-            />
+            <img className="hero-img" src="/images/hero-xentra-t3-vial.webp" alt="Xentra T3 — Vial" />
             <div className="hero-overlay" />
             <div className="hero-content container">
-              <h1 className="h2" style={{ color: "#fff", fontWeight: 800 }}>
-                Xentra T3 — Vial
-              </h1>
-              <p className="lead" style={{ color: "#e7eef6" }}>
-                Solución para uso subcutáneo
-              </p>
+              <h1 className="h2" style={{ color: "#fff", fontWeight: 800 }}>Xentra T3 — Vial 10 mL</h1>
+              <p className="lead" style={{ color: "#e7eef6" }}>Solución inyectable</p>
               <div className="hero-actions">
-                <a
-                  href="#productos"
-                  onClick={gotoProduct("xentra-t3-vial")}
-                  className="btn btn-primary"
-                >
-                  Ver producto
-                </a>
+                <a href="#productos" onClick={gotoProduct("xentra-t3-vial")} className="btn btn-primary">Ver producto</a>
               </div>
             </div>
           </div>

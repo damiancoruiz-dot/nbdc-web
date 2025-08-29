@@ -20,36 +20,19 @@ export default function Productos() {
         <h2 className="h2" style={{ marginBottom: 8 }}>Productos</h2>
         <p className="lead">Portafolio disponible a través de NBDC como distribuidor.</p>
 
-        {/* Carrusel horizontal */}
         <div ref={railRef} className="features hscroll">
           {products.map((p) => (
             <ProductCard key={p.id} p={p} />
           ))}
         </div>
 
-        {/* Flechas debajo */}
         <div className="scroller-controls">
-          <button
-            type="button"
-            className="scroller-btn"
-            aria-label="Desplazar productos a la izquierda"
-            onClick={() => scrollByCards(-1)}
-          >
-            ‹
-          </button>
-          <button
-            type="button"
-            className="scroller-btn"
-            aria-label="Desplazar productos a la derecha"
-            onClick={() => scrollByCards(1)}
-          >
-            ›
-          </button>
+          <button className="scroller-btn" onClick={() => scrollByCards(-1)} aria-label="Anterior">‹</button>
+          <button className="scroller-btn" onClick={() => scrollByCards(1)} aria-label="Siguiente">›</button>
         </div>
 
-        <p className="footnote" style={{ marginTop: 18 }}>
-          * Información basada en materiales del fabricante. Venta responsable y sujeta a validación.
-          No constituye consejo médico; consultar a un profesional de la salud.
+        <p className="footnote">
+          * Información de presentaciones basada en materiales del fabricante. Venta responsable y sujeta a validación. No constituye consejo médico; consultar a un profesional de la salud.
         </p>
       </div>
     </section>
