@@ -7,7 +7,7 @@ import "swiper/css/navigation";
 import { theme } from "../theme";
 
 export default function Hero() {
-  // Scroll suave al producto y resaltado breve
+  // Scroll suave a una tarjeta de producto por id (data-id)
   const gotoProduct = (id) => (e) => {
     e.preventDefault();
     const el = document.querySelector(`[data-id="${id}"]`);
@@ -16,16 +16,19 @@ export default function Hero() {
       el.classList.add("pulse");
       setTimeout(() => el.classList.remove("pulse"), 1200);
     } else {
-      // fallback
-      window.location.hash = "#productos";
-      setTimeout(() => {
-        const again = document.querySelector(`[data-id="${id}"]`);
-        if (again) {
-          again.scrollIntoView({ behavior: "smooth", block: "center" });
-          again.classList.add("pulse");
-          setTimeout(() => again.classList.remove("pulse"), 1200);
-        }
-      }, 300);
+      // fallback por si aún no existe el nodo
+      document.querySelector("#productos")?.scrollIntoView({ behavior: "smooth" });
+      history.replaceState(null, "", "#productos");
+    }
+  };
+
+  // Scroll suave a cualquier sección (ej. #contacto)
+  const gotoSection = (hash) => (e) => {
+    e.preventDefault();
+    const el = document.querySelector(hash);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      history.replaceState(null, "", hash);
     }
   };
 
@@ -51,67 +54,112 @@ export default function Hero() {
         {/* 1) Slide general */}
         <SwiperSlide>
           <div className="hero-slide">
-            <img className="hero-img" src="/images/hero-lab.webp" alt="Laboratorio biofarmacéutico" loading="eager" />
+            <img
+              className="hero-img"
+              src="/images/hero-lab.webp"
+              alt="Laboratorio biofarmacéutico"
+              loading="eager"
+            />
             <div className="hero-overlay" />
             <div className="hero-content container">
               <h1 className="h2" style={{ color: "#fff", fontWeight: 800 }}>
                 Distribución biofarmacéutica confiable
               </h1>
+
+              <div className="hero-actions">
+                <a
+                  href="#productos"
+                  onClick={gotoSection("#productos")}
+                  className="btn btn-primary"
+                >
+                  Ver productos
+                </a>
+                <a
+                  href="#contacto"
+                  onClick={gotoSection("#contacto")}
+                  className="btn btn-outline"
+                >
+                  Contactar ventas
+                </a>
+              </div>
+            </div>
+          </div>
+        </SwiperSlide>
+
+        {/* 2) Xentra S3 — Pluma multidosis */}
+        <SwiperSlide>
+          <div className="hero-slide">
+            <img className="hero-img" src="/images/hero-xentra-s3.webp" alt="Xentra S3" />
+            <div className="hero-overlay" />
+            <div className="hero-content container">
+              <h1 className="h2" style={{ color: "#fff", fontWeight: 800 }}>
+                Xentra S3 — Pluma multidosis
+              </h1>
+              <p className="lead" style={{ color: "#e7eef6" }}>
+                Uso SUB-C • Trazabilidad y guía de uso
+              </p>
               <div className="hero-actions">
                 <a
                   href="#productos"
                   onClick={gotoProduct("xentra-s3-pen")}
                   className="btn btn-primary"
                 >
-                  Ver productos
+                  Ver producto
                 </a>
-                <a href="#contacto" className="btn btn-outline">Contactar ventas</a>
-              </div>
-
-            </div>
-          </div>
-        </SwiperSlide>
-
-        {/* 2) Xentra S3 — Pluma */}
-        <SwiperSlide>
-          <div className="hero-slide">
-            <img className="hero-img" src="/images/hero-xentra-s3.webp" alt="Xentra S3 — Pluma" />
-            <div className="hero-overlay" />
-            <div className="hero-content container">
-              <h1 className="h2" style={{ color: "#fff", fontWeight: 800 }}>Xentra S3 — Pluma multidosis</h1>
-              <p className="lead" style={{ color: "#e7eef6" }}>Uso SUB-C • Trazabilidad y guía de uso</p>
-              <div className="hero-actions">
-                <a href="#productos" onClick={gotoProduct("xentra-s3-pen")} className="btn btn-primary">Ver producto</a>
               </div>
             </div>
           </div>
         </SwiperSlide>
 
-        {/* 3) Xentra S3 — Vial */}
+        {/* 3) Xentra S3 — Vial 10 mL */}
         <SwiperSlide>
           <div className="hero-slide">
-            <img className="hero-img" src="/images/hero-xentra-s3-vial.webp" alt="Xentra S3 — Vial 10 mL" />
+            <img
+              className="hero-img"
+              src="/images/hero-xentra-s3-vial.webp"
+              alt="Xentra S3 — Vial 10 mL"
+            />
             <div className="hero-overlay" />
             <div className="hero-content container">
-              <h1 className="h2" style={{ color: "#fff", fontWeight: 800 }}>Xentra S3 — Vial 10 mL</h1>
-              <p className="lead" style={{ color: "#e7eef6" }}>Solución para uso subcutáneo</p>
+              <h1 className="h2" style={{ color: "#fff", fontWeight: 800 }}>
+                Xentra S3 — Vial 10 mL
+              </h1>
+              <p className="lead" style={{ color: "#e7eef6" }}>
+                Solución para uso subcutáneo, frasco multidosis 10 mL
+              </p>
               <div className="hero-actions">
-                <a href="#productos" onClick={gotoProduct("xentra-s3-vial")} className="btn btn-primary">Ver producto</a>
+                <a
+                  href="#productos"
+                  onClick={gotoProduct("xentra-s3-vial")}
+                  className="btn btn-primary"
+                >
+                  Ver producto
+                </a>
               </div>
             </div>
           </div>
         </SwiperSlide>
 
-        {/* 4) Xentra T3 — Pluma */}
+        {/* 4) Xentra T3 — Pluma multidosis */}
         <SwiperSlide>
           <div className="hero-slide">
-            <img className="hero-img" src="/images/hero-xentra-t3.webp" alt="Xentra T3 — Pluma" />
+            <img className="hero-img" src="/images/hero-xentra-t3.webp" alt="Xentra T3" />
             <div className="hero-overlay" />
             <div className="hero-content container">
-              <h1 className="h2" style={{ color: "#fff", fontWeight: 800 }}>Xentra T3 — Pluma multidosis</h1>
-              <p className="lead" style={{ color: "#e7eef6" }}>Dosificación semanal</p>
+              <h1 className="h2" style={{ color: "#fff", fontWeight: 800 }}>
+                Xentra T3 — Pluma multidosis
+              </h1>
+              <p className="lead" style={{ color: "#e7eef6" }}>
+                Presentaciones escalables para dosificación semanal
+              </p>
               <div className="hero-actions">
-                <a href="#productos" onClick={gotoProduct("xentra-t3-pen")} className="btn btn-primary">Ver producto</a>
+                <a
+                  href="#productos"
+                  onClick={gotoProduct("xentra-t3-pen")}
+                  className="btn btn-primary"
+                >
+                  Ver producto
+                </a>
               </div>
             </div>
           </div>
@@ -120,13 +168,27 @@ export default function Hero() {
         {/* 5) Xentra T3 — Vial */}
         <SwiperSlide>
           <div className="hero-slide">
-            <img className="hero-img" src="/images/hero-xentra-t3-vial.webp" alt="Xentra T3 — Vial" />
+            <img
+              className="hero-img"
+              src="/images/hero-xentra-t3-vial.webp"
+              alt="Xentra T3 — Vial"
+            />
             <div className="hero-overlay" />
             <div className="hero-content container">
-              <h1 className="h2" style={{ color: "#fff", fontWeight: 800 }}>Xentra T3 — Vial 10 mL</h1>
-              <p className="lead" style={{ color: "#e7eef6" }}>Solución inyectable</p>
+              <h1 className="h2" style={{ color: "#fff", fontWeight: 800 }}>
+                Xentra T3 — Vial
+              </h1>
+              <p className="lead" style={{ color: "#e7eef6" }}>
+                Solución para uso subcutáneo
+              </p>
               <div className="hero-actions">
-                <a href="#productos" onClick={gotoProduct("xentra-t3-vial")} className="btn btn-primary">Ver producto</a>
+                <a
+                  href="#productos"
+                  onClick={gotoProduct("xentra-t3-vial")}
+                  className="btn btn-primary"
+                >
+                  Ver producto
+                </a>
               </div>
             </div>
           </div>

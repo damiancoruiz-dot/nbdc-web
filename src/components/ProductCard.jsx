@@ -1,9 +1,10 @@
 // src/components/ProductCard.jsx
 import { useState } from "react";
 
-const WA_NUMBER = "524428781486"; // +52 442 878 1486 (sin +)
+export default function ProductCard({ p }) {
+  // WhatsApp del negocio
+  const waNumber = "524428781486"; // +52 442 878 1486 (sin +)
 
-export default function ProductCard({ p, dataId }) {
   const [variant, setVariant] = useState(p?.variants?.[0] ?? "");
   const [openIncludes, setOpenIncludes] = useState(false);
 
@@ -12,24 +13,32 @@ export default function ProductCard({ p, dataId }) {
     const v = variant ? ` (presentación: ${variant})` : "";
     const extra = "\n¿Me compartes precio, disponibilidad y requisitos de compra?";
     const text = encodeURIComponent(`${base}${v}.${extra}`);
-    return `https://wa.me/${WA_NUMBER}?text=${text}`;
+    return `https://wa.me/${waNumber}?text=${text}`;
   };
-
-  // Si se decide usar imágenes por variante en el futuro:
-  const imgSrc = variant && p.variantImages?.[variant] ? p.variantImages[variant] : p.image;
 
   return (
     <article
       className="card product-card"
-      // 👉 estos dos atributos permiten que el Hero localice y destaque la tarjeta
-      data-id={dataId}
-      id={dataId ? `prod-${dataId}` : undefined}
-      style={{ display: "flex", flexDirection: "column", padding: 16, gap: 12 }}
+      id={`prod-${p.id}`}
+      data-id={p.id}
+      style={{ display: "flex", flexDirection: "column" }}
     >
-      {/* Imagen */}
-      {imgSrc && (
-        <div className="product-hero">
-          <img src={imgSrc} alt={p.name} loading="lazy" />
+      {/* Imagen del producto (borde a borde) */}
+      {p.image && (
+        <div
+          className="product-hero"
+          style={{
+            borderRadius: "16px 16px 0 0",
+            overflow: "hidden",
+            margin: "-16px -16px 12px -16px",  // imagen sin padding lateral/superior
+          }}
+        >
+          <img
+            src={p.image}
+            alt={p.name}
+            loading="lazy"
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
         </div>
       )}
 
@@ -49,7 +58,7 @@ export default function ProductCard({ p, dataId }) {
 
       {/* Título + descripción */}
       <div>
-        <h3 style={{ margin: "0 0 6px", fontSize: 20, color: "#0b213a" }}>{p.name}</h3>
+        <h3 style={{ margin: "8px 0 6px", fontSize: 22, color: "#0b213a" }}>{p.name}</h3>
         {(p.short || p.desc) && (
           <p style={{ margin: "0 0 10px", color: "#556070" }}>
             {p.short || p.desc}
@@ -66,7 +75,7 @@ export default function ProductCard({ p, dataId }) {
         </ul>
       ) : null}
 
-      {/* Variantes */}
+      {/* Presentaciones */}
       {p.variants?.length ? (
         <div>
           <div style={{ fontWeight: 600, marginBottom: 6, color: "#0b213a" }}>Presentaciones</div>
@@ -103,7 +112,7 @@ export default function ProductCard({ p, dataId }) {
               color: "#0b213a",
               cursor: "pointer",
               padding: 0,
-              fontWeight: 600,
+              fontWeight: 700,
             }}
           >
             <span style={{ transform: openIncludes ? "rotate(90deg)" : "none", transition: "transform .15s" }}>
@@ -127,26 +136,35 @@ export default function ProductCard({ p, dataId }) {
         </div>
       ) : null}
 
-      {/* Acciones (alineadas abajo con marginTop:auto) */}
-      <div style={{ display: "flex", gap: 10, alignItems: "center", justifyContent: "space-between", marginTop: "auto" }}>
-        {/* Botón de PDF si existe */}
-        {p.datasheet ? (
+      {/* Acciones (apiladas) */}
+      <div
+        className="card-actions"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "stretch",
+          gap: 12,
+          marginTop: "auto",    // Siempre al fondo de la tarjeta
+        }}
+      >
+        {p.datasheet && (
           <a
             className="btn btn-secondary"
             href={p.datasheet}
             target="_blank"
             rel="noopener noreferrer"
+            style={{ textAlign: "center" }}
           >
             Ficha técnica (PDF)
           </a>
-        ) : <span />}
+        )}
 
         <a
           className="btn btn-primary"
           href={buildWaLink()}
           target="_blank"
           rel="noopener noreferrer"
-          style={{ whiteSpace: "nowrap" }}
+          style={{ textAlign: "center" }}
         >
           Solicitar cotización
         </a>

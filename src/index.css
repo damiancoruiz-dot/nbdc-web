@@ -427,3 +427,27 @@ details[open] > .lab-summary::after{ transform: rotate(45deg); }
   margin: 0 0 8px 0;
   padding-left: 18px;
 }
+/* --- Overrides de producto (apilar acciones y borde-a-borde) --- */
+
+/* Asegura que las acciones queden apiladas en todas las vistas */
+.card-actions{
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:12px;
+  margin-top:auto;
+}
+
+/* Botones sin romper línea (evita saltos raros) */
+.btn{ white-space:nowrap; }
+
+/* Imagen de producto: cubrir y respetar bordes superiores redondeados */
+.product-hero{ aspect-ratio: 16 / 9; }
+.product-hero img{ width:100%; height:100%; object-fit:cover; }
+
+/* Por si vienes desde el Hero, resalta la tarjeta brevemente */
+.product-card { scroll-margin-top: 90px; }
+.product-card.pulse {
+  box-shadow: 0 0 0 4px rgba(17,150,230,.35), var(--shadow);
+  transition: box-shadow .2s ease;
+}
