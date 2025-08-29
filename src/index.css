@@ -342,3 +342,88 @@ a{ color:inherit; text-decoration:none; }
 @media (min-width: 0px){
   .features.hscroll{ padding-top: 12px; }
 }
+/* ====== LABORATORIO (Xentra Pharma) ====== */
+.lab-section{
+  padding: clamp(32px,4vw,48px) 20px 0;
+}
+
+.lab-card{
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  padding: clamp(16px,2.2vw,24px);
+}
+
+.lab-header{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.lab-logo{
+  width: clamp(84px,12vw,128px);
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.lab-title{
+  margin: 0 0 4px;
+  font-size: clamp(18px,2.3vw,22px);
+  color: var(--ink-900);
+}
+
+.lab-lead{
+  margin: 0;
+  color: var(--ink-700);
+  font-size: clamp(14px,1.8vw,16px);
+}
+
+.lab-details{ margin-top: 10px; }
+
+/* Botón/summary “Acerca de…” */
+.lab-summary{
+  cursor: pointer;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #f5f9ff;
+  color: var(--brand-600);
+  font-weight: 700;
+  transition: filter .15s ease;
+}
+.lab-summary:hover{ filter: brightness(.98); }
+.lab-summary::after{
+  content: "";
+  width: 10px; height: 10px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg);
+  margin-left: 4px;
+  transition: transform .2s ease;
+}
+details[open] > .lab-summary::after{ transform: rotate(45deg); }
+
+.lab-body{
+  margin-top: 12px;
+  color: var(--ink-700);
+  font-size: 15px;
+}
+
+.lab-h4{
+  margin: 14px 0 6px;
+  color: var(--ink-900);
+  font-size: 16px;
+}
+
+.lab-list{
+  margin: 0 0 8px 0;
+  padding-left: 18px;
+}

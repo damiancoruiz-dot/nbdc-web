@@ -1,62 +1,53 @@
 // src/components/LabInfo.jsx
-export default function LabInfo() {
-  const LAB = {
-    name: "Xentra Pharma",
-    logo: "/brand/xentra-logo.png", // <- coincide con tu carpeta public/brand/
-  };
+import xentraLogo from "/brand/xentra-logo.png";
 
+export default function LabInfo() {
   return (
     <section className="lab-section">
       <div className="container">
         <div className="lab-card">
+          {/* Encabezado */}
           <div className="lab-header">
-            <img className="lab-logo" src={LAB.logo} alt={`${LAB.name} logo`} />
+            <img
+              src={xentraLogo}
+              alt="Xentra Pharma logo"
+              className="lab-logo"
+            />
             <div>
-              <h3 className="lab-title">Acerca de {LAB.name}</h3>
+              <h3 className="lab-title">Xentra Pharma</h3>
               <p className="lab-lead">
-                {LAB.name} suministra agonistas GLP-1 y péptidos de primera calidad
-                para aplicaciones comerciales y de investigación (RUO), con red de
-                distribución global y altos estándares de pureza y cumplimiento.
+                Laboratorio especializado en soluciones biofarmacéuticas.
               </p>
             </div>
           </div>
 
-          <details className="lab-details">
-            <summary className="lab-summary">Ver más sobre {LAB.name}</summary>
+          {/* Detalles */}
+          <div className="lab-details">
+            <details>
+              <summary className="lab-summary">Acerca de Xentra Pharma</summary>
+              <div className="lab-body">
+                <p>
+                  Xentra Pharma desarrolla soluciones biofarmacéuticas con un
+                  enfoque en trazabilidad, esterilidad y facilidad de uso en
+                  aplicaciones subcutáneas.
+                </p>
 
-            <div className="lab-body">
-              <h4 className="lab-h4">
-                {LAB.name.toUpperCase()}: LÍDERES EN LA DISTRIBUCIÓN DE AGONISTAS GLP-1 Y PÉPTIDOS
-              </h4>
-              <p>
-                En {LAB.name}, proporcionamos agonistas GLP-1 y péptidos de primera calidad a
-                compañías farmacéuticas internacionales, instituciones de investigación e innovadores del
-                sector salud. Ya sea que necesite agonistas GLP-1 de grado comercial o preparados sólo para
-                uso en investigación (RUO), nuestra red de distribución garantiza acceso fluido a
-                compuestos de la más alta calidad.
-              </p>
+                <h4 className="lab-h4">Fortalezas clave:</h4>
+                <ul className="lab-list">
+                  <li>Control de calidad certificado</li>
+                  <li>Protocolos de trazabilidad robustos</li>
+                  <li>Presentaciones adaptadas a la dosificación moderna</li>
+                  <li>Enfoque en innovación y seguridad del paciente</li>
+                </ul>
 
-              <h4 className="lab-h4">SOLUCIONES PERSONALIZADAS PARA CLIENTES GLOBALES</h4>
-              <p>
-                Con enfoque en precisión, pureza y confiabilidad, suministramos compuestos que satisfacen
-                necesidades específicas tanto comerciales como de investigación.
-              </p>
-
-              <h4 className="lab-h4">¿POR QUÉ ELEGIR {LAB.name.toUpperCase()}?</h4>
-              <ul className="lab-list">
-                <li><strong>Disponibilidad completa</strong> — estándar o RUO.</li>
-                <li><strong>Red internacional</strong> — envíos confiables y eficientes.</li>
-                <li><strong>Máxima pureza y cumplimiento</strong> — resultados óptimos.</li>
-                <li><strong>Soporte profesional</strong> — asesoramiento experto.</li>
-              </ul>
-
-              <h4 className="lab-h4">IMPULSANDO LA CIENCIA</h4>
-              <p>
-                Al asociarse con {LAB.name}, accedes a péptidos y terapias GLP-1 de vanguardia que
-                potencian la innovación y aceleran el progreso en la ciencia médica.
-              </p>
-            </div>
-          </details>
+                <p>
+                  Gracias a su capacidad de investigación y desarrollo, Xentra
+                  Pharma se posiciona como un aliado confiable para la práctica
+                  médica y la distribución biofarmacéutica responsable.
+                </p>
+              </div>
+            </details>
+          </div>
         </div>
       </div>
     </section>
