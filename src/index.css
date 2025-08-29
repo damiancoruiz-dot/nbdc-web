@@ -451,3 +451,88 @@ details[open] > .lab-summary::after{ transform: rotate(45deg); }
   box-shadow: 0 0 0 4px rgba(17,150,230,.35), var(--shadow);
   transition: box-shadow .2s ease;
 }
+/* ==== scroll suave global (para #contacto, #productos, etc.) ==== */
+html { scroll-behavior: smooth; }
+
+/* ==== Reveal on scroll (aplícalo con la clase .reveal) ==== */
+.reveal{
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .6s ease, transform .6s ease;
+  will-change: opacity, transform;
+}
+.reveal.is-visible{
+  opacity: 1;
+  transform: none;
+}
+
+/* ==== Mantener botones alineados al fondo de la tarjeta ==== */
+.product-card{
+  display: flex;
+  flex-direction: column;
+}
+.card-actions{
+  margin-top: auto;
+  display: grid;
+  gap: 10px;             /* PDF arriba, WhatsApp abajo */
+  grid-auto-flow: row;
+}
+@media (min-width: 700px){
+  /* Si algún día quisieras ponerlos lado a lado en desktop,
+     cambia grid-auto-flow a column y agrega grid-auto-columns. */
+}
+
+/* ==== Hero de producto full-bleed con esquinas redondeadas ==== */
+.product-hero{
+  position: relative;
+  isolation: isolate;
+  margin: -16px -16px 12px -16px;       /* sangra hasta los bordes de la card */
+  height: clamp(220px, 30vw, 300px);
+  overflow: hidden;
+}
+.product-hero::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-bottom-left-radius: 22px;
+  border-bottom-right-radius: 22px;
+  border-top-left-radius: 22px;
+  border-top-right-radius: 22px;
+  box-shadow: inset 0 0 0 1px var(--line);
+  pointer-events: none;
+  z-index: 2;
+}
+.product-hero img{
+  position: absolute; inset:0;
+  width: 100%; height: 100%;
+  object-fit: cover;                     /* llena y recorta como Apple */
+  transform: translateZ(0);
+}
+/* ==== Splash / cortinilla del logo ==== */
+@media (prefers-reduced-motion: no-preference){
+  .splash{
+    position: fixed; inset: 0;
+    background: var(--brand-600);
+    display: grid; place-items: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity .6s ease .4s; /* se queda un instante y luego desvanece */
+  }
+  .splash.hide{
+    opacity: 0;
+    pointer-events: none;
+  }
+  .splash-logo{
+    width: clamp(140px, 22vw, 280px);
+    transform: translate(0, 0) scale(1);
+    transition: transform .8s ease;
+  }
+  /* "vuela" hacia la esquina sup. izq. simulando el logo del navbar */
+  .splash.hide .splash-logo{
+    transform: translate(calc(-50vw + 36px), calc(-50vh + 22px)) scale(.36);
+  }
+}
+/* Si el usuario prefiere menos animaciones, simplemente ocultamos rápido */
+@media (prefers-reduced-motion: reduce){
+  .splash{ display: none; }
+}

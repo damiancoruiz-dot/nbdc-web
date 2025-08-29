@@ -1,11 +1,14 @@
 // src/pages/Productos.jsx
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { products } from "../data/products";
 import ProductCard from "../components/ProductCard";
-import LabInfo from "../components/LabInfo"; // 👈 importa aquí
+import useReveal from "../hooks/useReveal";
 
 export default function Productos() {
   const railRef = useRef(null);
+
+  // activa reveal en cualquier .reveal del DOM
+  useReveal(".reveal");
 
   const scrollByCards = (dir = 1) => {
     const rail = railRef.current;
@@ -16,49 +19,25 @@ export default function Productos() {
   };
 
   return (
-    <section id="productos" className="section">
+    <section id="productos" className="section reveal">
       <div className="container">
-        <h2 className="h2" style={{ marginBottom: 8 }}>
-          Encuentra el producto ideal para ti
-        </h2>
-        <p className="lead">
-          Portafolio disponible a través de NBDC como distribuidor.
-        </p>
+        <h2 className="h2" style={{ marginBottom: 8 }}>Encuentra el producto ideal para ti</h2>
+        <p className="lead">Portafolio disponible a través de NBDC como distribuidor.</p>
 
-        {/* Carrusel horizontal */}
-        <div ref={railRef} className="features hscroll">
+        <div ref={railRef} className="features hscroll reveal">
           {products.map((p) => (
-            <ProductCard key={p.id} p={p} dataId={p.id} />
+            <ProductCard key={p.id} p={p} />
           ))}
         </div>
 
-        {/* Flechas */}
-        <div className="scroller-controls">
-          <button
-            className="scroller-btn"
-            onClick={() => scrollByCards(-1)}
-            aria-label="Anterior"
-          >
-            ‹
-          </button>
-          <button
-            className="scroller-btn"
-            onClick={() => scrollByCards(1)}
-            aria-label="Siguiente"
-          >
-            ›
-          </button>
+        <div className="scroller-controls reveal">
+          <button className="scroller-btn" onClick={() => scrollByCards(-1)} aria-label="Anterior">‹</button>
+          <button className="scroller-btn" onClick={() => scrollByCards(1)} aria-label="Siguiente">›</button>
         </div>
 
-        {/* Nota legal */}
-        <p className="footnote">
-          * Información de presentaciones basada en materiales del fabricante.
-          Venta responsable y sujeta a validación. No constituye consejo médico;
-          consultar a un profesional de la salud.
+        <p className="footnote reveal">
+          * Información de presentaciones basada en materiales del fabricante. Venta responsable y sujeta a validación. No constituye consejo médico; consultar a un profesional de la salud.
         </p>
-
-        {/* 👉 Sección del laboratorio */}
-        <LabInfo />
       </div>
     </section>
   );

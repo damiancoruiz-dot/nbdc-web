@@ -1,3 +1,14 @@
+import SplashIntro from "./components/SplashIntro";
+
+export default function App() {
+  return (
+    <>
+      <SplashIntro />
+      {/* ...lo que ya tienes (Navbar, Hero, etc.) */}
+    </>
+  );
+}
+
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Quote from "./components/Quote";         // 👈 nuevo
