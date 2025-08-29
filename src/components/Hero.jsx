@@ -10,14 +10,29 @@ export default function Hero() {
   // 👉 helper: scroll suave a la tarjeta e iluminación breve
   const gotoProduct = (id) => (e) => {
     e.preventDefault();
-    const el = document.querySelector(`[data-id="${id}"]`);
+    // buscar por data-id, id o cualquier selector útil
+    const selectors = [
+      `[data-id="${id}"]`,
+      `#${id}`,
+      `[id="${id}"]`,
+      `[name="${id}"]`,
+    ];
+    let el = null;
+    for (const sel of selectors) {
+      el = document.querySelector(sel);
+      if (el) break;
+    }
+
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "center" });
-      el.classList.add("pulse");
-      setTimeout(() => el.classList.remove("pulse"), 1200);
+      // aplicar "pulse" sólo si es una tarjeta (tiene data-id) para no resaltar secciones
+      if (el.dataset && el.dataset.id) {
+        el.classList.add("pulse");
+        setTimeout(() => el.classList.remove("pulse"), 1200);
+      }
     } else {
-      // fallback por si no encuentra la tarjeta
-      window.location.hash = "#productos";
+      // fallback por si no encuentra el elemento: cambiar hash para permitir navegación
+      window.location.hash = `#${id}`;
     }
   };
 
@@ -56,8 +71,20 @@ export default function Hero() {
               </h1>
 
               <div className="hero-actions">
-                <a href="#productos" className="btn btn-primary">Ver productos</a>
-                <a href="#contacto" className="btn btn-outline">Contactar ventas</a>
+                <a
+                  href="#productos"
+                  onClick={gotoProduct("productos")}
+                  className="btn btn-primary"
+                >
+                  Ver productos
+                </a>
+                <a
+                  href="#contacto"
+                  onClick={gotoProduct("contacto")}
+                  className="btn btn-outline"
+                >
+                  Contactar ventas
+                </a>
               </div>
             </div>
           </div>
