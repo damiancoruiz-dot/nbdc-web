@@ -8,39 +8,37 @@ import { theme } from "../theme";
 
 export default function Hero() {
   // Scroll suave a la sección y centrado de la tarjeta en el carrusel horizontal
-  const gotoProduct = (id) => (e) => {
-    e.preventDefault();
+  // 👉 helper: scroll suave a la tarjeta e iluminación breve + scroll horizontal del carrusel
+const gotoProduct = (id) => (e) => {
+  e.preventDefault();
 
-    const section = document.querySelector("#productos");
+  // 1) Baja a la sección de productos suavemente
+  const section = document.querySelector('#productos');
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } else {
+    window.location.hash = '#productos';
+  }
 
-    // 1) Llevar la vista a la sección de productos (suave)
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else {
-      // fallback
-      window.location.hash = "#productos";
-    }
+  // 2) Cuando ya está visible, centra la tarjeta dentro del carrusel horizontal
+  setTimeout(() => {
+    const rail = document.querySelector('#productos .features.hscroll');
+    const card = document.querySelector(`#productos [data-id="${id}"]`);
+    if (!rail || !card) return;
 
-    // 2) Cuando estamos ahí, centrar la tarjeta dentro del carrusel horizontal
-    // Damos un pequeño tiempo para que el scroll vertical ocurra primero
-    setTimeout(() => {
-      const rail = document.querySelector("#productos .features.hscroll");
-      const card = document.querySelector(`#productos [data-id="${id}"]`);
+    const railRect = rail.getBoundingClientRect();
+    const cardRect = card.getBoundingClientRect();
+    const offset =
+      (cardRect.left - railRect.left) -
+      (rail.clientWidth - cardRect.width) / 2;
 
-      if (rail && card) {
-        // centra horizontalmente la tarjeta y no mueve el eje vertical
-        card.scrollIntoView({
-          behavior: "smooth",
-          inline: "center",
-          block: "nearest",
-        });
+    rail.scrollBy({ left: offset, behavior: 'smooth' });
 
-        // resaltar brevemente
-        card.classList.add("pulse");
-        setTimeout(() => card.classList.remove("pulse"), 1200);
-      }
-    }, 350);
-  };
+    // 3) Resalta la tarjeta brevemente
+    card.classList.add('pulse');
+    setTimeout(() => card.classList.remove('pulse'), 1200);
+  }, 350); // pequeño delay para que termine el scroll vertical
+};
 
   return (
     <section

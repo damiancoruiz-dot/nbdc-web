@@ -365,3 +365,39 @@ html { scroll-behavior: smooth; }
 .brand-row{ display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
 .brand-logo{ max-height: 26px; }
 .brand-lab{ font-size: 13px; font-weight: 600; color: var(--ink-500); }
+/* === Altura uniforme de tarjetas de producto (desktop/móvil) === */
+@media (min-width: 901px){
+  .product-card{ height: 520px; }
+}
+@media (max-width: 900px){
+  .product-card{ height: 420px; }
+}
+
+/* Asegurar que el contenido crece y las acciones quedan al fondo */
+.product-body{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.card-actions{ margin-top: auto; }
+
+/* Clamps para que descripciones/bullets no estiren tanto la tarjeta */
+.clamp-2{
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.clamp-3{
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Resaltado cuando llegas desde el Hero (ya lo usas, lo dejo por si faltaba) */
+.product-card { scroll-margin-top: 90px; }
+.product-card.pulse{
+  box-shadow: 0 0 0 4px rgba(17,150,230,.35), var(--shadow);
+  transition: box-shadow .2s ease;
+}
