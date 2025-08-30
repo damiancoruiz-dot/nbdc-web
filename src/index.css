@@ -1,13 +1,13 @@
 /* ========= RESET / BASE ========= */
 *,
 *::before,
-*::after { box-sizing: border-box; }
+*::after {
+  box-sizing: border-box;
+}
 
 html, body { height: 100%; }
 
-html { scroll-behavior: smooth; }             /* scroll suave global */
-
-body{
+body {
   margin: 0;
   font-family: system-ui, -apple-system, "Segoe UI", Inter, Roboto, Arial, "Helvetica Neue", sans-serif;
   color: var(--ink-900);
@@ -17,88 +17,58 @@ body{
   -moz-osx-font-smoothing: grayscale;
 }
 
-img, svg{ display:block; max-width:100%; height:auto; }
-a{ color:inherit; text-decoration:none; }
+img, svg { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
 
 /* ========= THEME ========= */
 :root{
-  /* Marca */
   --brand-700:#0b6aa1; --brand-600:#0c7fbf; --brand-500:#1196e6;
-  /* Tinta */
   --ink-900:#0b213a; --ink-700:#2f3e52; --ink-500:#556070; --ink-300:#7a8699;
-  /* UI */
   --bg-50:#f7f9fc; --card:#ffffff; --line:#e8eef6;
-  /* Sombras suaves (solo si se necesitan en otras secciones) */
   --shadow:0 8px 18px rgba(0,0,0,.08);
 }
 
 /* ========= UTILIDADES / TIPOGRAFÍA ========= */
-.section{ padding:56px 20px; }
-.container{ max-width:1200px; margin:0 auto; }
-.h2{ font-size:clamp(24px,3.2vw,36px); margin:0 0 12px; color:var(--ink-900); }
-.lead{ font-size:clamp(14px,1.7vw,18px); color:var(--ink-700); margin:0; }
+.section { padding: 56px 20px; }
+.container { max-width: 1200px; margin: 0 auto; }
+.h2 { font-size: clamp(24px,3.2vw,36px); margin: 0 0 12px; color: var(--ink-900);}
+.lead { font-size: clamp(14px,1.7vw,18px); color: var(--ink-700); margin: 0; }
 
-/* ========= GRID BASE ========= */
+/* ========= GRID / CARDS ========= */
 .features{
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-  gap:18px;
-  margin-top:clamp(24px,4vw,48px);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 18px;
+  margin-top: clamp(24px,4vw,48px);
 }
 .card{
-  grid-column:span 4;
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:16px;
+  grid-column: span 4;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 16px;
 }
-@media (max-width:960px){ .card{ grid-column:span 6; } }
-@media (max-width:600px){ .card{ grid-column:span 12; } }
+@media (max-width: 960px){ .card{ grid-column: span 6; } }
+@media (max-width: 600px){ .card{ grid-column: span 12; } }
 
-.card h3{ margin:0 0 6px; font-size:20px; color:var(--ink-900); }
-.card p{ margin:0 0 12px; color:var(--ink-700); }
-.card ul{ margin:0 0 12px; padding-left:18px; color:var(--ink-700); font-size:14px; }
+.card h3{ margin: 0 0 6px; font-size: 20px; color: var(--ink-900); }
+.card p{ margin: 0 0 12px; color: var(--ink-700); }
+.card ul{ margin: 0 0 12px; padding-left: 18px; color: var(--ink-700); font-size: 14px; }
 
 /* ========= PILLS ========= */
 .pills{ display:flex; gap:8px; flex-wrap:wrap; }
 .pill{ border:1px solid var(--line); border-radius:999px; background:var(--bg-50); padding:6px 10px; font-size:12px; color:var(--ink-900); }
 
-/* Pastillas clicables (presentaciones) */
-.pill-btn{
-  border:1px solid var(--line);
-  background:var(--bg-50);
-  color:var(--ink-900);
-  border-radius:999px;
-  padding:6px 12px;
-  font-size:12px;
-  cursor:pointer;
-  transition:all .15s ease;
-}
-.pill-btn.is-active{
-  border-color:#026fd0;
-  background:#e9f2ff;
-  color:#026fd0;
-}
-
 /* ========= BOTONES ========= */
-.btn{ display:inline-block; border-radius:10px; padding:10px 14px; font-weight:700; }
+.btn{ display:inline-block; border-radius:10px; padding:10px 14px; font-weight:700; text-decoration:none; }
 .btn-primary{ background:var(--brand-600); color:#fff; }
 .btn-primary:hover{ filter:brightness(1.05); }
-
-.btn-outline{ border:1.5px solid #fff; color:#fff; background:transparent; }
-.btn-outline:hover{ background:rgba(255,255,255,.12); }
-
-.btn-secondary{
-  background:#fff;
-  color:var(--brand-600);
-  border:1px solid var(--line);
-}
-.btn-secondary:hover{ filter:brightness(.98); }
 
 /* ========= NOTA ========= */
 .footnote{ margin-top:18px; font-size:12px; color:var(--ink-300); }
 
-/* ========= HERO ========= */
+/* ========= HERO / CARRUSEL ========= */
 .hero{ padding:0; margin:0 0 clamp(16px,3vw,32px); width:100%; }
 .hero .hero-swiper{ width:100vw; height:clamp(420px,70vh,720px); }
 .hero-slide{ position:relative; width:100%; height:100%; overflow:hidden; }
@@ -106,16 +76,20 @@ a{ color:inherit; text-decoration:none; }
 .hero-overlay{ position:absolute; inset:0; background:rgba(0,0,0,.45); }
 .hero-content{ position:relative; z-index:1; height:100%; display:grid; align-content:center; gap:14px; text-align:center; color:#fff; padding:0; }
 .hero-actions{ display:flex; gap:12px; justify-content:center; margin-top:16px; flex-wrap:wrap; }
+.hero-bullets{ display:flex; gap:18px; justify-content:center; margin-top:16px; color:#d8e7f4; font-size:14px; flex-wrap:wrap; }
 
 .hero .swiper-button-prev,.hero .swiper-button-next{ color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.4); }
 .hero .swiper-pagination-bullet{ background:rgba(255,255,255,.7); opacity:1; }
 .hero .swiper-pagination-bullet-active{ background:#fff; }
+
+.btn-outline{ border:1.5px solid #fff; color:#fff; background:transparent; }
+.btn-outline:hover{ background:rgba(255,255,255,.12); }
 .hero .h2{ font-weight:900; text-shadow:0 2px 6px rgba(0,0,0,.4); }
 .hero .lead{ font-weight:600; text-shadow:0 1px 4px rgba(0,0,0,.35); }
 
 /* ========= QUOTE ========= */
 .quote{
-  padding:clamp(28px,4vw,44px) 20px;
+  padding: clamp(28px,4vw,44px) 20px;
   background:#f7f9fc;
   border-top:1px solid var(--line);
   border-bottom:1px solid var(--line);
@@ -132,289 +106,118 @@ a{ color:inherit; text-decoration:none; }
 .quote blockquote::before{ content:"“"; left:0; top:-6px; }
 .quote blockquote::after{ content:"”"; right:0; bottom:-6px; }
 
-/* ========= NOSOTROS (image-card) ========= */
+/* ========= NOSOTROS: IMAGE CARDS ========= */
 .image-card{
   position:relative;
   flex:0 0 clamp(280px,30vw,400px);
-  min-height:clamp(320px,50vh,440px);
+  min-height: clamp(320px,50vh,440px);
   border-radius:22px;
-  background-size:cover; background-position:center; background-repeat:no-repeat;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
   box-shadow:var(--shadow);
   overflow:hidden;
 }
 .image-card::after{
-  content:""; position:absolute; inset:0; background:rgba(0,0,0,.55); border-radius:inherit; pointer-events:none; z-index:0;
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,0.55);
+  border-radius:inherit;
+  pointer-events:none;
+  z-index:0;
 }
-.card-overlay{ position:absolute; inset:0; padding:20px; display:flex; flex-direction:column; justify-content:flex-end; color:#fff; z-index:1; }
+.card-overlay{
+  position:absolute;
+  inset:0;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  color:#fff;
+  z-index:1;
+}
 .card-overlay h3{ margin:0 0 8px; font-size:20px; font-weight:700; color:#fff; }
 .card-overlay p{ margin:0; font-size:14px; color:#f0f0f0; }
 
-/* ========= Misión/Visión/Valores compact ========= */
-.features.hscroll.compact .card h3{ display:flex; align-items:center; gap:8px; font-size:18px; color:var(--brand-600); }
-.features.hscroll.compact .card h3 svg{ width:20px; height:20px; flex-shrink:0; color:var(--brand-600); }
-
-/* ========= HSCROLL (Apple-style) – Global ========= */
-.features.hscroll{
-  display:flex !important;
-  grid-template-columns:none !important;
-  gap:18px;
-  overflow-x:auto;
-  padding:8px 12px 12px;
-  margin:16px -20px 0;              /* full-bleed */
-  scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:none;
-}
-.features.hscroll::-webkit-scrollbar{ display:none; }
-.features.hscroll .card{
-  flex:0 0 clamp(280px,34vw,380px);
-  scroll-snap-align:start;
-  min-width:0;
-  border-radius:22px;
-}
-@media (hover:hover){
-  .features.hscroll .card:hover{ transform:scale(1.03); box-shadow:0 14px 28px rgba(0,0,0,.12); z-index:1; }
-}
-@media (max-width:900px){
-  .features.hscroll{ gap:12px; padding:8px 10px 14px; }
-  .features.hscroll .card{ flex:0 0 clamp(240px,78vw,320px); }
-}
-
-/* ========= CONTROLES DE CARRUSEL ========= */
-.scroller-controls{ display:flex; gap:12px; justify-content:center; padding:10px 0 0; }
-.scroller-btn{
-  width:42px; height:42px; border-radius:999px; border:1px solid var(--line); background:#fff; box-shadow:var(--shadow);
-  display:inline-flex; align-items:center; justify-content:center; font-size:20px; cursor:pointer;
-  transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
-}
-.scroller-btn:hover{ transform:translateY(-1px); }
-.scroller-btn:disabled{ opacity:.4; cursor:default; transform:none; }
-
-/* ========= PRODUCTOS (full-bleed + hover tarjeta + botones parejos) ========= */
+/* ========= PRODUCTOS ========= */
 .product-card{
-  background:#fff;
-  border:1px solid var(--line);
+  overflow:hidden;
   border-radius:22px;
-  overflow:hidden;               /* para que la imagen respete los bordes */
-  transition:transform .25s ease, border-color .25s ease;
-  /* en carrusel: width lo dicta .features.hscroll .card */
-  scroll-margin-top: 96px;       /* llega debajo del navbar al anclar */
-}
-@media (hover:hover){
-  .product-card:hover{ transform:scale(1.03); border-color:rgba(0,0,0,.06); }
+  background:#fff;
+  box-shadow:var(--shadow);
+  flex:0 0 clamp(260px, 28vw, 340px);
+  display:flex;
+  flex-direction:column;
 }
 
+/* Imagen llena la parte superior */
 .product-hero{
-  position:relative; width:100%; aspect-ratio:16/9; overflow:hidden;
-  border-top-left-radius:inherit; border-top-right-radius:inherit;
+  width:100%;
+  aspect-ratio:16/9;
+  border-radius:22px 22px 0 0;
+  overflow:hidden;
 }
-.product-hero img{ width:100%; height:100%; object-fit:cover; }
+.product-hero img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+}
 
-/* cuerpo y bloques */
 .product-body{ padding:16px; display:flex; flex-direction:column; gap:10px; }
 .product-title{ font-size:18px; font-weight:700; margin:0; color:var(--ink-900); }
 .product-short{ font-size:14px; color:var(--ink-700); margin:0; }
 .product-bullets{ margin:0; padding-left:18px; font-size:13px; color:var(--ink-700); }
 .product-variants{ margin-top:6px; }
 .variants-label{ font-size:12px; font-weight:600; margin-bottom:4px; color:var(--ink-700); }
-
 .brand-row{ display:flex; align-items:center; gap:8px; margin-bottom:6px; }
 .brand-logo{ max-height:26px; }
 .brand-lab{ font-size:13px; font-weight:600; color:var(--ink-500); }
 
-/* Acciones alineadas abajo y en columna (PDF sobre Cotizar) */
-.card-actions{
-  margin-top:auto;
+/* ========= CONTROLES INFERIORES ========= */
+.scroller-controls{
   display:flex;
-  flex-direction:column;
-  gap:10px;
+  gap:12px;
+  justify-content:center;
+  padding:10px 0 0;
 }
-
-/* ========= PULSE (cuando vienes desde el Hero) ========= */
-.product-card.pulse{ box-shadow:0 0 0 4px rgba(17,150,230,.35), var(--shadow); transition: box-shadow .2s ease; }
-
-/* ========= LAB INFO (sección debajo de Productos) ========= */
-.lab-section{ padding-top:24px; }
-.lab-card{
+.scroller-btn{
+  width:42px; height:42px;
+  border-radius:999px;
   border:1px solid var(--line);
-  border-radius:18px;
-  background:var(--card);
+  background:#fff;
   box-shadow:var(--shadow);
-  padding:clamp(16px,2.2vw,24px);
+  display:inline-flex; align-items:center; justify-content:center;
+  font-size:20px;
+  cursor:pointer;
+  transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
 }
-.lab-header{ display:grid; grid-template-columns:auto 1fr; align-items:center; gap:16px; margin-bottom:8px; }
-.lab-logo{ width:clamp(72px,10vw,120px); height:auto; object-fit:contain; display:block; }
-.lab-title{ margin:0 0 6px; font-size:clamp(18px,2.4vw,22px); color:var(--ink-900); }
-.lab-lead{ margin:0; color:var(--ink-700); font-size:clamp(14px,2vw,16px); }
-.lab-details{ margin-top:10px; }
-.lab-summary{
+.scroller-btn:hover{ transform:translateY(-1px); }
+.scroller-btn:disabled{ opacity:.4; cursor:default; transform:none; }
+
+/* ========= LAB INFO ========= */
+.lab-section { padding-top: 24px; }
+.lab-card {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  padding: clamp(16px, 2.2vw, 24px);
+}
+.lab-header { display:grid; grid-template-columns:auto 1fr; align-items:center; gap:16px; margin-bottom:8px; }
+.lab-logo { width:clamp(72px, 10vw, 120px); height:auto; object-fit:contain; display:block; }
+.lab-title { margin:0 0 6px; font-size:clamp(18px, 2.4vw, 22px); color: var(--ink-900); }
+.lab-lead { margin:0; color:var(--ink-700); font-size:clamp(14px, 2vw, 16px); }
+.lab-details { margin-top:10px; }
+.lab-summary {
   cursor:pointer; user-select:none; width:fit-content;
   background:#f5f9ff; border:1px solid var(--line); border-radius:999px;
-  padding:8px 12px; font-weight:700; color:var(--brand-600); transition:filter .15s ease;
+  padding:8px 12px; font-weight:700; color:var(--brand-600);
+  transition: filter .15s ease;
 }
-.lab-summary:hover{ filter:brightness(.98); }
-.lab-body{ margin-top:14px; color:var(--ink-700); font-size:15px; }
-.lab-h4{ margin:14px 0 6px; color:var(--ink-900); font-size:16px; }
-.lab-list{ margin:0 0 8px 0; padding-left:18px; }
-
-/* ========= TILES (si los usas como hscroll) ========= */
-.tiles{ display:flex; gap:18px; overflow-x:auto; padding:8px 12px 12px; margin:16px -20px 0; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; }
-.tiles::-webkit-scrollbar{ display:none; }
-.tile{
-  flex:0 0 clamp(280px,34vw,380px);
-  background:#fff; border:1px solid var(--line); border-radius:22px; overflow:hidden; scroll-snap-align:start;
-  background-size:cover; background-position:center; min-height:220px;
-}
-.tile-inner{ padding:16px; display:flex; flex-direction:column; gap:8px; color:var(--ink-900); }
-.tile-title{ margin:0; font-size:18px; font-weight:800; }
-.tile-body{ margin:0; color:var(--ink-700); }
-.tile-cta{ margin-top:auto; font-weight:700; color:var(--brand-600); }
-
-/* ========= REVEAL helper (si lo usas con IO) ========= */
-.reveal{ opacity:0; transform:translateY(18px); transition:opacity .45s ease, transform .45s ease; }
-.reveal.in{ opacity:1; transform:none; }
-/* ==== FIX reveal: visibles por defecto ==== */
-.reveal { 
-  opacity: 1; 
-  transform: none; 
-}
-
-.reveal.pending {                 /* solo oculto si explícitamente está 'pending' */
-  opacity: 0; 
-  transform: translateY(18px); 
-  transition: opacity .45s ease, transform .45s ease;
-}
-
-.reveal.in {                      /* cuando entre a viewport */
-  opacity: 1; 
-  transform: none; 
-}
-/* === UNIFICAR TARJETAS (Productos + Nosotros) === */
-.card,
-.image-card,
-.product-card {
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-
-/* Hover uniforme para todas las “cards” visuales */
-@media (hover:hover) {
-  .card:hover,
-  .image-card:hover,
-  .product-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 16px 36px rgba(9, 30, 66, .14);
-  }
-}
-
-/* === PRODUCT CARDS: full-bleed arriba + layout estable === */
-.product-card {
-  display: flex;
-  flex-direction: column;
-  border-radius: 22px;
-  overflow: hidden;                 /* recorta imagen con el mismo radio */
-  background: #fff;
-}
-
-/* Contenedor de imagen: full-bleed con bordes redondeados superiores */
-.product-hero{
-  height: clamp(180px, 28vw, 260px); /* alto consistente en todas */
-  margin: -16px -16px 12px;          /* “saca” la imagen a los bordes */
-  border-radius: 22px 22px 0 0;      /* respeta el radio superior */
-  overflow: hidden;
-}
-
-/* Imagen: ocupa todo y hace zoom sutil al hover de la tarjeta */
-.product-hero img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;                 /* se recorta para llenar */
-  display: block;
-  transform: translateZ(0);
-  transition: transform .30s ease;
-}
-@media (hover:hover){
-  .product-card:hover .product-hero img{ transform: scale(1.03); }
-}
-
-/* Cuerpo: columna y empuja acciones al fondo */
-.product-body{
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  flex: 1 1 auto;                   /* ocupa la altura disponible */
-  min-height: 0;
-}
-
-/* Acciones SIEMPRE al fondo, una debajo de la otra */
-.card-actions{
-  margin-top: auto;                 /* se va al fondo de la tarjeta */
-  display: flex;
-  flex-direction: column;           /* PDF arriba, Cotizar abajo */
-  gap: 10px;
-  align-items: stretch;
-}
-
-/* Botón secundario (PDF) – estilo limpio */
-.btn-secondary{
-  background: #fff;
-  color: var(--brand-600);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 12px 14px;
-  font-weight: 700;
-}
-.btn-secondary:hover{ filter: brightness(.98); }
-
-/* Botón primario (Cotización) ocupa todo el ancho */
-.card-actions .btn.btn-primary{
-  width: 100%;
-}
-
-/* Presentaciones (pills) – mismas distancias debajo de la lista */
-.product-variants{ margin-top: 6px; }
-
-/* === NOSOTROS: hacer que sus “image-card” coincidan en hover === */
-.image-card{
-  border-radius: 22px;
-  overflow: hidden;                 /* asegura recorte y bordes */
-}
-
-/* === REVEAL: visibles por defecto, solo ocúltalos si llevan .pending === */
-.reveal{ opacity: 1; transform: none; }
-.reveal.pending{
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity .45s ease, transform .45s ease;
-}
-.reveal.in{ opacity: 1; transform: none; }
-/* ===== Cortinilla (Splash) ===== */
-.no-scroll { overflow: hidden; }
-
-.splash{
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100dvh;             /* ✅ cubre todo en móviles modernos */
-  min-height: 100svh;         /* fallback para Safari iOS 15/16 */
-  background: #0a66c2;        /* tu azul de fondo */
-  display: grid;
-  place-items: center;
-  z-index: 9999;
-  opacity: 1;
-  transform: none;
-  transition: opacity .45s ease, transform .45s ease;
-  padding-bottom: env(safe-area-inset-bottom); /* evita “hoyo” en notch */
-}
-
-.splash--hide{
-  opacity: 0;
-  transform: scale(.98);
-}
-
-.splash__logo{
-  width: min(46vw, 220px);
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 6px 26px rgba(0,0,0,.25));
-}
+.lab-summary:hover { filter:brightness(0.98); }
+.lab-body { margin-top:14px; color:var(--ink-700); font-size:15px; }
+.lab-h4 { margin:14px 0 6px; color:var(--ink-900); font-size:16px; }
+.lab-list { margin:0 0 8px 0; padding-left:18px; }
