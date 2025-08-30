@@ -189,18 +189,21 @@ a{ color:inherit; text-decoration:none; }
 .scroller-btn:hover{ transform:translateY(-1px); }
 .scroller-btn:disabled{ opacity:.4; cursor:default; transform:none; }
 
-/* ========= PRODUCTOS (full-bleed + botones parejos) ========= */
+/* ========= PRODUCTOS (limpio, sin duplicados) ========= */
 .product-card{
   background:#fff;
   border:1px solid var(--line);
   border-radius:22px;
-  overflow:hidden;               /* para que la imagen respete los bordes */
+  overflow:hidden;                           /* respeta bordes redondeados */
   transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-  scroll-margin-top: 96px;       /* llega debajo del navbar al anclar */
+  scroll-margin-top: 96px;                   /* anclaje desde el hero */
+  padding: 0;                                /* NO heredar padding del .card base */
+  display:flex;
+  flex-direction:column;
 }
-@media (hover:hover){
-  .product-card:hover{ transform:translateY(-3px); box-shadow:0 16px 36px rgba(9, 30, 66, .14); border-color:rgba(0,0,0,.06); }
-}
+
+/* en carrusel, por si algún browser hereda padding */
+.features.hscroll .card.product-card{ padding:0; }
 
 /* Imagen full-bleed arriba y centrada */
 .product-hero{
@@ -219,245 +222,39 @@ a{ color:inherit; text-decoration:none; }
   transition: transform .30s ease;
 }
 @media (hover:hover){
-  .product-card:hover .product-hero img { transform: scale(1.03); }
+  .product-card:hover{ transform:translateY(-3px); box-shadow:0 16px 36px rgba(9,30,66,.14); border-color:rgba(0,0,0,.06); }
+  .product-card:hover .product-hero img{ transform:scale(1.03); }
 }
 
-/* cuerpo y bloques */
-.product-body{ padding:16px; display:flex; flex-direction:column; gap:10px; }
-.product-title{ font-size:18px; font-weight:700; margin:0; color:var(--ink-900); }
-.product-short{ font-size:14px; color:var(--ink-700); margin:0; }
-.product-bullets{ margin:0; padding-left:18px; font-size:13px; color:var(--ink-700); }
-.product-variants{ margin-top:6px; }
-.variants-label{ font-size:12px; font-weight:600; margin-bottom:4px; color:var(--ink-700); }
-.brand-row{ display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+/* Cuerpo: aire consistente y separación entre bloques */
+.product-body{
+  padding: 20px 22px 24px;   /* ← AQUI está el aire del texto */
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  flex:1 1 auto;
+  min-height:0;
+}
+
+/* Fila marca/laboratorio y tipografía */
+.brand-row{ display:flex; align-items:center; gap:8px; margin-bottom:14px; }
 .brand-logo{ max-height:26px; }
 .brand-lab{ font-size:13px; font-weight:600; color:var(--ink-500); }
 
-/* Acciones SIEMPRE al fondo, una debajo de la otra (PDF arriba, Cotizar abajo) */
+.product-title{ font-size:18px; font-weight:700; margin:0 0 8px; color:var(--ink-900); }
+.product-short{ font-size:14px; color:var(--ink-700); margin:0 0 10px; }
+.product-bullets{ margin:0 0 12px; padding-left:18px; font-size:13px; color:var(--ink-700); }
+.product-bullets li{ margin-bottom:6px; }
+
+.product-variants{ margin-top:10px; }
+.variants-label{ font-size:12px; font-weight:600; margin-bottom:4px; color:var(--ink-700); }
+
+/* Acciones SIEMPRE al fondo: PDF arriba, Cotizar abajo */
 .card-actions{
   margin-top:auto;
   display:flex;
   flex-direction:column;
-  gap:10px;
+  gap:12px;
   align-items:stretch;
 }
-
-/* ========= PULSE (cuando vienes desde el Hero) ========= */
-.product-card.pulse{ box-shadow:0 0 0 4px rgba(17,150,230,.35), var(--shadow); transition: box-shadow .2s ease; }
-
-/* ========= LAB INFO (sección debajo de Productos) ========= */
-.lab-section{ padding-top:24px; }
-.lab-card{
-  border:1px solid var(--line);
-  border-radius:18px;
-  background:var(--card);
-  box-shadow:var(--shadow);
-  padding:clamp(16px,2.2vw,24px);
-}
-.lab-header{ display:grid; grid-template-columns:auto 1fr; align-items:center; gap:16px; margin-bottom:8px; }
-.lab-logo{ width:clamp(72px,10vw,120px); height:auto; object-fit:contain; display:block; }
-.lab-title{ margin:0 0 6px; font-size:clamp(18px,2.4vw,22px); color:var(--ink-900); }
-.lab-lead{ margin:0; color:var(--ink-700); font-size:clamp(14px,2vw,16px); }
-.lab-details{ margin-top:10px; }
-.lab-summary{
-  cursor:pointer; user-select:none; width:fit-content;
-  background:#f5f9ff; border:1px solid var(--line); border-radius:999px;
-  padding:8px 12px; font-weight:700; color:var(--brand-600); transition:filter .15s ease;
-}
-.lab-summary:hover{ filter:brightness(.98); }
-.lab-body{ margin-top:14px; color:var(--ink-700); font-size:15px; }
-.lab-h4{ margin:14px 0 6px; color:var(--ink-900); font-size:16px; }
-.lab-list{ margin:0 0 8px 0; padding-left:18px; }
-
-/* ========= TILES (si los usas como hscroll) ========= */
-.tiles{ display:flex; gap:18px; overflow-x:auto; padding:8px 12px 12px; margin:16px -20px 0; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; }
-.tiles::-webkit-scrollbar{ display:none; }
-.tile{
-  flex:0 0 clamp(280px,34vw,380px);
-  background:#fff; border:1px solid var(--line); border-radius:22px; overflow:hidden; scroll-snap-align:start;
-  background-size:cover; background-position:center; min-height:220px;
-}
-.tile-inner{ padding:16px; display:flex; flex-direction:column; gap:8px; color:var(--ink-900); }
-.tile-title{ margin:0; font-size:18px; font-weight:800; }
-.tile-body{ margin:0; color:var(--ink-700); }
-.tile-cta{ margin-top:auto; font-weight:700; color:var(--brand-600); }
-
-/* ========= REVEAL (animación al hacer scroll) ========= */
-.reveal { opacity: 1; transform: none; }
-.reveal.pending { opacity: 0; transform: translateY(18px); transition: opacity .45s ease, transform .45s ease; }
-.reveal.in { opacity: 1; transform: none; }
-
-/* ========= UNIFICAR HOVER EN TARJETAS ========= */
-.card, .image-card, .product-card { transition: transform .25s ease, box-shadow .25s ease; }
-@media (hover:hover) {
-  .card:hover, .image-card:hover, .product-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 16px 36px rgba(9, 30, 66, .14);
-  }
-}
-
-/* ===== Cortinilla (Splash) ===== */
-.no-scroll { overflow: hidden; }
-
-.splash{
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100dvh;             /* ✅ cubre todo en móviles modernos */
-  min-height: 100svh;         /* fallback para Safari iOS 15/16 */
-  background: #0a66c2;        /* tu azul de fondo */
-  display: grid;
-  place-items: center;
-  z-index: 9999;
-  opacity: 1;
-  transform: none;
-  transition: opacity .45s ease, transform .45s ease;
-  padding-bottom: env(safe-area-inset-bottom); /* evita “hoyo” en notch */
-}
-.splash--hide{ opacity: 0; transform: scale(.98); }
-.splash__logo{
-  width: min(46vw, 220px);
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 6px 26px rgba(0,0,0,.25));
-}
-/* ==== FIX PRODUCT CARD LAYOUT (full-bleed + aire + acciones abajo) ==== */
-
-/* Quita el padding heredado de .card para las tarjetas de producto */
-.product-card { padding: 0; }
-
-/* En carrusel, por si el navegador mantiene el padding de la regla de hscroll */
-.features.hscroll .card.product-card { padding: 0; }
-
-/* Imagen de cabecera: llena el ancho y toca el borde redondeado superior */
-.product-hero{
-  width: 100%;
-  aspect-ratio: 16/9;
-  margin: 0;                              /* sin marco arriba */
-  border-radius: 22px 22px 0 0;           /* coincide con la tarjeta */
-  overflow: hidden;                       /* recorta a los bordes */
-}
-.product-hero img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-
-/* Cuerpo con más aire */
-.product-body{
-  padding: 18px 18px 16px;                /* separa texto de bordes */
-  display: flex;
-  flex-direction: column;
-  gap: 12px;                              /* más respiro entre bloques */
-}
-
-/* Bullets y detalles un poco más sueltos */
-.product-bullets li { margin-bottom: 6px; }
-.product-body details { margin-top: 6px; }
-
-/* Acciones al FONDO siempre, en columna: PDF arriba y Cotizar abajo */
-.card-actions{
-  margin-top: auto;                       /* empuja hasta el fondo */
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.card-actions .btn.btn-primary{ width: 100%; }
-/* === GUTTER para que la PRIMER tarjeta no quede pegada al borde === */
-#productos .features.hscroll{
-  margin: 16px 0 0;                /* quita el margen negativo full-bleed */
-  padding: 8px 12px 12px;          /* separa del borde de la pantalla */
-}
-
-/* === Product card: estructura para que acciones queden al fondo === */
-.product-card{
-  display: flex;
-  flex-direction: column;
-  padding: 0;                      /* sin padding del .card base */
-  border-radius: 22px;
-  overflow: hidden;
-}
-
-/* Imagen ya quedó OK: no la tocamos */
-
-/* Cuerpo con aire real (texto NO pegado al borde) */
-.product-body{
-  padding: 18px 18px 18px;         /* aire alrededor del contenido */
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  flex: 1 1 auto;                  /* ocupa el alto disponible del card */
-  min-height: 0;
-}
-
-/* Bullets un poco más sueltos */
-.product-bullets li{ margin-bottom: 6px; }
-
-/* Acciones pegadas al fondo del CARD siempre */
-.card-actions{
-  margin-top: auto;                /* se baja hasta el final del body */
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.card-actions .btn.btn-primary{ width: 100%; }
-/* === Ajuste de espaciado en cuerpo de productos === */
-.product-body {
-  padding: 22px 20px 20px;   /* más aire arriba y a los lados */
-  display: flex;
-  flex-direction: column;
-  gap: 14px;                 /* más espacio entre bloques */
-}
-
-/* Espacio extra debajo de la fila del logo + laboratorio */
-.brand-row {
-  margin-bottom: 12px;       /* separa logo de título */
-}
-/* === Ajuste final de espaciado en cuerpo de productos === */
-.product-body {
-  padding: 20px 22px 24px;   /* aire: arriba, laterales y abajo */
-  display: flex;
-  flex-direction: column;
-  gap: 16px;                 /* separa bloques internos */
-}
-
-/* Ajuste de la fila de marca/laboratorio */
-.brand-row {
-  margin-bottom: 14px;       /* separa logo del título */
-}
-
-/* Títulos y subtítulos con más aire */
-.product-title {
-  margin: 0 0 8px;           /* aire debajo del título */
-}
-
-.product-short {
-  margin-bottom: 10px;       /* aire debajo del subtítulo corto */
-}
-
-.product-bullets {
-  margin: 0 0 12px 0;        /* aire debajo de la lista */
-}
-/* === PATCH: aire interno en tarjetas de producto (solo spacing) === */
-.card.product-card .product-body{
-  /* aire: arriba | lados | abajo  */
-  padding: clamp(18px, 2.2vw, 24px) clamp(18px, 2.6vw, 26px) clamp(22px, 3vw, 28px) !important;
-  display: flex;
-  flex-direction: column;
-  gap: 16px !important;            /* separación entre bloques */
-}
-
-/* separa logo/laboratorio del título */
-.card.product-card .brand-row{
-  margin-bottom: 14px !important;
-}
-
-/* respirito extra en título/subtítulo/lista */
-.card.product-card .product-title{ margin: 0 0 8px !important; }
-.card.product-card .product-short{ margin: 0 0 10px !important; }
-.card.product-card .product-bullets{ margin: 0 0 12px 18px !important; }
-
-/* mantén “Presentaciones” con aire arriba */
-.card.product-card .product-variants{ margin-top: 10px !important; }
+.card-actions .btn.btn-primary{ width:100%; }
