@@ -289,3 +289,132 @@ a{ color:inherit; text-decoration:none; }
   opacity: 1; 
   transform: none; 
 }
+/* === UNIFICAR TARJETAS (Productos + Nosotros) === */
+.card,
+.image-card,
+.product-card {
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+/* Hover uniforme para todas las “cards” visuales */
+@media (hover:hover) {
+  .card:hover,
+  .image-card:hover,
+  .product-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 36px rgba(9, 30, 66, .14);
+  }
+}
+
+/* === PRODUCT CARDS: full-bleed arriba + layout estable === */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 22px;
+  overflow: hidden;                 /* recorta imagen con el mismo radio */
+  background: #fff;
+}
+
+/* Contenedor de imagen: full-bleed con bordes redondeados superiores */
+.product-hero{
+  height: clamp(180px, 28vw, 260px); /* alto consistente en todas */
+  margin: -16px -16px 12px;          /* “saca” la imagen a los bordes */
+  border-radius: 22px 22px 0 0;      /* respeta el radio superior */
+  overflow: hidden;
+}
+
+/* Imagen: ocupa todo y hace zoom sutil al hover de la tarjeta */
+.product-hero img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                 /* se recorta para llenar */
+  display: block;
+  transform: translateZ(0);
+  transition: transform .30s ease;
+}
+@media (hover:hover){
+  .product-card:hover .product-hero img{ transform: scale(1.03); }
+}
+
+/* Cuerpo: columna y empuja acciones al fondo */
+.product-body{
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1 1 auto;                   /* ocupa la altura disponible */
+  min-height: 0;
+}
+
+/* Acciones SIEMPRE al fondo, una debajo de la otra */
+.card-actions{
+  margin-top: auto;                 /* se va al fondo de la tarjeta */
+  display: flex;
+  flex-direction: column;           /* PDF arriba, Cotizar abajo */
+  gap: 10px;
+  align-items: stretch;
+}
+
+/* Botón secundario (PDF) – estilo limpio */
+.btn-secondary{
+  background: #fff;
+  color: var(--brand-600);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-weight: 700;
+}
+.btn-secondary:hover{ filter: brightness(.98); }
+
+/* Botón primario (Cotización) ocupa todo el ancho */
+.card-actions .btn.btn-primary{
+  width: 100%;
+}
+
+/* Presentaciones (pills) – mismas distancias debajo de la lista */
+.product-variants{ margin-top: 6px; }
+
+/* === NOSOTROS: hacer que sus “image-card” coincidan en hover === */
+.image-card{
+  border-radius: 22px;
+  overflow: hidden;                 /* asegura recorte y bordes */
+}
+
+/* === REVEAL: visibles por defecto, solo ocúltalos si llevan .pending === */
+.reveal{ opacity: 1; transform: none; }
+.reveal.pending{
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .45s ease, transform .45s ease;
+}
+.reveal.in{ opacity: 1; transform: none; }
+/* ===== Cortinilla (Splash) ===== */
+.no-scroll { overflow: hidden; }
+
+.splash{
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;             /* ✅ cubre todo en móviles modernos */
+  min-height: 100svh;         /* fallback para Safari iOS 15/16 */
+  background: #0a66c2;        /* tu azul de fondo */
+  display: grid;
+  place-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transform: none;
+  transition: opacity .45s ease, transform .45s ease;
+  padding-bottom: env(safe-area-inset-bottom); /* evita “hoyo” en notch */
+}
+
+.splash--hide{
+  opacity: 0;
+  transform: scale(.98);
+}
+
+.splash__logo{
+  width: min(46vw, 220px);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 6px 26px rgba(0,0,0,.25));
+}
