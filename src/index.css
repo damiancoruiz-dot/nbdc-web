@@ -258,3 +258,31 @@ a{ color:inherit; text-decoration:none; }
   align-items:stretch;
 }
 .card-actions .btn.btn-primary{ width:100%; }
+/* === FIX puntual: aire interno en producto + hover uniforme === */
+
+/* 1) Aire dentro del cuerpo de la tarjeta de producto */
+.card.product-card .product-body{
+  padding: 22px 24px 26px !important;  /* arriba | lados | abajo */
+  gap: 16px !important;                /* separación entre bloques */
+}
+
+/* 2) Separar logo/laboratorio del título */
+.card.product-card .brand-row{ margin-bottom: 14px !important; }
+
+/* 3) Asegurar que PDF quede encima de Cotizar y ambos abajo */
+.card.product-card .card-actions{
+  margin-top: auto !important;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 4) Hover UNIFORME para todas las “cards” visuales (Nosotros + Productos) */
+@media (hover:hover){
+  .image-card:hover,
+  .features.hscroll .card:hover,
+  .product-card:hover{
+    transform: translateY(-3px) !important;
+    box-shadow: 0 16px 36px rgba(9,30,66,.14) !important;
+  }
+}
