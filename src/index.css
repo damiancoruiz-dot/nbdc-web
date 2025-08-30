@@ -578,3 +578,32 @@ html { scroll-behavior: smooth; }
   box-shadow: 0 0 0 4px rgba(17,150,230,.35), var(--shadow);
   transition: box-shadow .2s ease;
 }
+/* Reveal base */
+.reveal{ opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease; }
+.reveal.is-in{ opacity:1; transform:none; }
+
+/* ⛔️ No hagas reveal tarjeta por tarjeta dentro de carruseles horizontales */
+.features.hscroll .reveal{
+  opacity:1 !important;
+  transform:none !important;
+  transition:none !important;
+}
+
+/* ✅ Mejor manejo de gestos en móvil: carrusel permite pan horizontal y cede el gesto vertical */
+.features.hscroll{
+  touch-action: pan-x pan-y;
+  overscroll-behavior-inline: contain; /* o overscroll-behavior-x: contain; */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Las tarjetas permiten pan vertical sin bloquear */
+.features.hscroll .card{
+  touch-action: pan-y;
+}
+
+/* (Opcional) Snap más suave para evitar “anclaje” agresivo */
+@media (max-width: 900px){
+  .features.hscroll{
+    scroll-snap-type: x proximity; /* antes era mandatory */
+  }
+}
