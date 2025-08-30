@@ -2,32 +2,28 @@
 import { useEffect, useState } from "react";
 
 export default function SplashIntro() {
-  const [hide, setHide] = useState(true);
+  const [phase, setPhase] = useState("show"); // show -> fade -> hidden
 
   useEffect(() => {
-    // Evitar mostrar en visitas repetidas dentro de la misma sesión
-    const seen = sessionStorage.getItem("splash_seen");
-    if (seen === "1") return;
-
-    setHide(false);
-    const onReady = () => {
-      // pequeño delay para que se note la animación
-      setTimeout(() => {
-        setHide(true);
-        sessionStorage.setItem("splash_seen", "1");
-      }, 1200);
-    };
-    if (document.readyState === "complete") onReady();
-    else window.addEventListener("load", onReady);
-    return () => window.removeEventListener("load", onReady);
+    // Mantén visible un momento, luego desvanece, luego desmonta
+    const t1 = setTimeout(() => setPhase("fade"), 1000);  // espera 1s y empieza fade
+    const t2 = setTimeout(() => setPhase("hidden"), 1700); // a los 1.7s desmonta
+    return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
-  // Si ya está oculto desde el inicio, no renders
-  if (hide) return null;
+  if (phase === "hidden") return null;
 
   return (
-    <div className={`splash ${hide ? "hide" : ""}`} aria-hidden="true">
-      <img className="splash-logo" src="/brand/nbdc-logo.svg" alt="NBDC" />
+    <div className={`splash ${phase === "fade" ? "fade" : ""}`}>
+      <div className="splash-logo-wrap">
+        <img
+          src="/brand/nbdc-logo-white.svg"
+          alt="NBDC"
+          className="splash-logo"
+          width={220}
+          height={80}
+        />
+      </div>
     </div>
   );
 }

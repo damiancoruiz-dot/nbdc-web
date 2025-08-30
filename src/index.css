@@ -555,3 +555,26 @@ html { scroll-behavior: smooth; }
 .reveal.visible > * {
   transition-delay: 0s; /* evitas cascadas raras */
 }
+/* ===== Splash (cortinilla) ===== */
+.splash{
+  position: fixed; inset: 0; z-index: 9999;
+  display: grid; place-items: center;
+  background: var(--brand-600);
+  opacity: 1; transform: scale(1);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.splash.fade{
+  opacity: 0; transform: scale(1.02);
+}
+.splash-logo{ display:block; width: clamp(160px, 22vw, 240px); height: auto; }
+
+/* ===== Reveal on scroll (aparecer hacia arriba) ===== */
+.reveal{ opacity: 0; transform: translateY(18px); }
+.reveal.is-in{ opacity: 1; transform: none; transition: opacity .6s ease, transform .6s ease; }
+
+/* Resalta la tarjeta cuando vienes del Hero */
+.product-card{ scroll-margin-top: 90px; }
+.product-card.pulse{
+  box-shadow: 0 0 0 4px rgba(17,150,230,.35), var(--shadow);
+  transition: box-shadow .2s ease;
+}
