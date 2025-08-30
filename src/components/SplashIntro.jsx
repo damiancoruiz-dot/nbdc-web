@@ -2,28 +2,44 @@
 import { useEffect, useState } from "react";
 
 export default function SplashIntro() {
-  const [phase, setPhase] = useState("show"); // show -> fade -> hidden
+  const [show, setShow] = useState(true);
 
   useEffect(() => {
-    // Mantén visible un momento, luego desvanece, luego desmonta
-    const t1 = setTimeout(() => setPhase("fade"), 1000);  // espera 1s y empieza fade
-    const t2 = setTimeout(() => setPhase("hidden"), 1700); // a los 1.7s desmonta
-    return () => { clearTimeout(t1); clearTimeout(t2); };
+    // da tiempo a que el logo cargue y luego desvanece
+    const t = setTimeout(() => setShow(false), 1200);
+    return () => clearTimeout(t);
   }, []);
 
-  if (phase === "hidden") return null;
-
   return (
-    <div className={`splash ${phase === "fade" ? "fade" : ""}`}>
-      <div className="splash-logo-wrap">
-        <img
-          src="/brand/nbdc-logo-white.svg"
-          alt="NBDC"
-          className="splash-logo"
-          width={220}
-          height={80}
-        />
-      </div>
+    <div
+      aria-hidden={!show}
+      style={{
+        position: "fixed",
+        inset: 0,
+        background: "#0c7fbf", // azul marca
+        display: "grid",
+        placeItems: "center",
+        zIndex: 9999,
+        transition: "opacity .5s ease, visibility .5s ease",
+        opacity: show ? 1 : 0,
+        visibility: show ? "visible" : "hidden",
+      }}
+    >
+      {/* Asegúrate que exista /brand/nbdc-logo.svg (o cambia la ruta a tu archivo real) */}
+      <img
+        src="/brand/nbdc-logo.svg"
+        alt="NBDC"
+        style={{
+          width: 160,
+          height: "auto",
+          objectFit: "contain",
+          filter: "drop-shadow(0 6px 16px rgba(0,0,0,.22))",
+        }}
+        onError={(e) => {
+          // fallback si el SVG no existe
+          e.currentTarget.style.display = "none";
+        }}
+      />
     </div>
   );
 }
