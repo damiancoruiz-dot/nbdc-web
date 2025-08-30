@@ -527,3 +527,79 @@ a{ color:inherit; text-decoration:none; }
   transform: scale(1.08);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
+/* ===== Botón flotante WhatsApp ===== */
+.wa-fab{
+  position: fixed;
+  right: clamp(14px, 2.4vw, 22px);
+  bottom: calc(clamp(14px, 2.4vw, 22px) + env(safe-area-inset-bottom));
+  z-index: 60;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 18px;
+  border: none;
+  border-radius: 999px;
+
+  background: #25d366;
+  color: #fff;
+  font-weight: 800;
+  font-size: 15px;
+  text-decoration: none;
+  line-height: 1;
+
+  box-shadow: 0 10px 26px rgba(37,211,102,.35),
+              0 2px 6px rgba(0,0,0,.18);
+  transform: translateZ(0);
+  transition:
+    padding .18s ease,
+    gap .18s ease,
+    transform .15s ease,
+    box-shadow .2s ease,
+    filter .2s ease,
+    opacity .2s ease;
+}
+
+.wa-fab:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 14px 32px rgba(37,211,102,.42),
+              0 3px 10px rgba(0,0,0,.20);
+  filter: saturate(1.02);
+}
+
+.wa-fab:active{ transform: translateY(0); }
+
+.wa-fab:focus-visible{
+  outline: 0;
+  box-shadow: 0 0 0 3px #fff, 0 0 0 6px rgba(37,211,102,.75);
+}
+
+.wa-ico{ display:inline-grid; place-items:center; }
+.wa-ico svg{ width:22px; height:22px; display:block; }
+
+/* ——— Modo mini (al hacer scroll hacia abajo) ——— */
+.wa-fab.is-mini{
+  padding: 12px;           /* se vuelve circular */
+  gap: 0;
+}
+.wa-fab.is-mini .wa-label{ 
+  width: 0;
+  opacity: 0;
+  overflow: hidden;
+  clip-path: inset(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Móvil: por defecto ya solo ícono */
+@media (max-width: 520px){
+  .wa-fab{ padding: 12px; }
+  .wa-fab .wa-label{ display:none; }
+}
+/* Oculta el FAB cuando se detecta el footer */
+.wa-fab.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}

@@ -1,25 +1,17 @@
-// src/App.jsx
-import SplashIntro from "./components/SplashIntro";
-
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Quote from "./components/Quote";
-import Nosotros from "./components/Nosotros";
-import Productos from "./pages/Productos";
-import Contacto from "./components/Contacto";
-import FabWhatsApp from "./components/FabWhatsApp";
+import WhatsAppFab from "./components/WhatsAppFab";
 
 export default function App() {
   return (
     <>
-      <SplashIntro />   {/* cortinilla al cargar */}
+      {/* Tu contenido habitual */}
       <Navbar />
       <Hero />
       <Quote />
       <Nosotros />
-      <Productos />     {/* LabInfo vive dentro de Productos.jsx */}
+      <Productos />
       <Contacto />
-      <FabWhatsApp />   {/* botón flotante */}
+
+      {/* Footer */}
       <footer
         style={{
           textAlign: "center",
@@ -31,6 +23,9 @@ export default function App() {
       >
         © {new Date().getFullYear()} NBDC | Nationwide Bio Distribution Center — Envíos a todo México
       </footer>
+
+      {/* Botón flotante */}
+      <WhatsAppFab />
     </>
   );
 }

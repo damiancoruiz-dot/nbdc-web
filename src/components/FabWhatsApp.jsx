@@ -1,57 +1,76 @@
-// src/components/FabWhatsApp.jsx
-const WA_NUMBER = "524428781486"; // sin "+" (México 52)
+import React, { useEffect, useRef, useState } from "react";
 
-export default function FabWhatsApp() {
-  const href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(
-    "Hola, me interesa su portafolio. ¿Me apoyas con información?"
-  )}`;
+const PHONE = "524428781486"; // <- cámbialo si lo necesitas
+const DEFAULT_MSG =
+  "Hola, me interesa información sobre los productos de NBDC.";
+
+function waHref(msg = DEFAULT_MSG) {
+  return `https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`;
+}
+
+export default function WhatsAppFab({
+  message = DEFAULT_MSG,
+  label = "WhatsApp",
+  threshold = 80,       // px de scroll antes de activar mini
+}) {
+  const [mini, setMini] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastY = useRef(window.scrollY);
+  const raf = useRef();
+
+  useEffect(() => {
+    const footer = document.querySelector("footer");
+
+    const onScroll = () => {
+      if (raf.current) return;
+      raf.current = requestAnimationFrame(() => {
+        const y = window.scrollY || 0;
+        const goingDown = y > lastY.current;
+        const beyond = y > threshold;
+        setMini(goingDown && beyond);
+        lastY.current = y;
+
+        // Detecta si el footer está visible en el viewport
+        if (footer) {
+          const footerRect = footer.getBoundingClientRect();
+          const footerVisible = footerRect.top < window.innerHeight;
+          setHidden(footerVisible);
+        }
+
+        raf.current = null;
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf.current) cancelAnimationFrame(raf.current);
+    };
+  }, [threshold]);
 
   return (
     <a
-      href={href}
+      href={waHref(message)}
       target="_blank"
       rel="noopener noreferrer"
+      className={`wa-fab ${mini ? "is-mini" : ""} ${hidden ? "is-hidden" : ""}`}
       aria-label="Contactar por WhatsApp"
-      style={{
-        position: "fixed",
-        right: "18px",
-        bottom: "18px",
-        zIndex: 9998,
-        display: "inline-flex",
-        alignItems: "center",
-        gap: "10px",
-        padding: "12px 16px",
-        borderRadius: "9999px",
-        background: "#25D366",
-        color: "#fff",
-        fontWeight: 800,
-        textDecoration: "none",
-        boxShadow: "0 10px 24px rgba(37,211,102,.35)",
-        WebkitTapHighlightColor: "transparent",
-        // evitar que se “recorte” dentro de contenedores con overflow hidden
-        transform: "translateZ(0)",
-      }}
     >
-      {/* Ícono WhatsApp en SVG (blanco) */}
-      <svg
-        width="22"
-        height="22"
-        viewBox="0 0 32 32"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
-        <path
-          d="M27.1 4.9A13.95 13.95 0 0 0 16.01 1C8.74 1 2.78 6.96 2.78 14.22c0 2.5.68 4.84 1.99 6.9L3 31l10.1-1.74a13.1 13.1 0 0 0 2.91.33c7.26 0 13.22-5.96 13.22-13.22 0-3.53-1.38-6.85-3.94-9.47Z"
-          fill="#fff"
-          fillOpacity=".35"
-        />
-        <path
-          d="M25.4 6.6A11.67 11.67 0 0 0 16 2.9c-6.45 0-11.7 5.25-11.7 11.7 0 2.18.6 4.3 1.75 6.15l-.94 5.47 5.6-1.01c1.75.94 3.72 1.44 5.73 1.44 6.45 0 11.7-5.25 11.7-11.7 0-3.12-1.21-6.07-3.35-8.25Zm-3.27 12.8c-.17.47-.98.9-1.37.96-.35.06-.79.09-1.28-.08-.3-.1-.68-.22-1.17-.43-2.06-.9-3.4-3-3.5-3.13-.1-.13-.84-1.11-.84-2.13 0-1.02.53-1.52.72-1.72.19-.2.42-.25.56-.25.14 0 .28 0 .4.01.13.01.3-.05.46.35.17.41.58 1.41.63 1.51.05.1.08.22.02.35-.06.13-.09.21-.17.32-.08.11-.17.25-.24.34-.08.11-.17.22-.07.42.1.2.45.74.96 1.2.66.59 1.22.77 1.41.86.19.1.31.08.43-.05.13-.13.5-.59.64-.8.14-.2.28-.17.46-.1.19.06 1.18.56 1.38.66.2.1.33.15.38.23.06.08.06.49-.11.96Z"
-          fill="#fff"
-        />
-      </svg>
-      <span style={{ lineHeight: 1 }}>WhatsApp</span>
+      <span className="wa-ico" aria-hidden="true">
+        <svg
+          viewBox="0 0 24 24"
+          width="22"
+          height="22"
+          xmlns="http://www.w3.org/2000/svg"
+          role="img"
+        >
+          <path
+            fill="#fff"
+            d="M20.52 3.48A11.87 11.87 0 0 0 12.01 0C5.4 0 .02 5.38.02 12c0 2.1.55 4.14 1.6 5.95L0 24l6.22-1.6A11.94 11.94 0 0 0 12.01 24C18.63 24 24 18.62 24 12c0-3.18-1.24-6.17-3.48-8.52ZM12 22.06c-1.94 0-3.77-.52-5.38-1.5l-.38-.22-3.68.95.98-3.59-.25-.39A10.07 10.07 0 0 1 1.94 12C1.94 6.46 6.46 1.94 12 1.94S22.06 6.46 22.06 12 17.54 22.06 12 22.06Zm5.69-7.53c-.31-.16-1.84-.91-2.12-1.01-.29-.11-.49-.16-.7.16-.2.31-.8 1.01-.98 1.22-.18.2-.36.23-.67.08-.31-.16-1.29-.48-2.46-1.53-.91-.8-1.53-1.78-1.72-2.08-.18-.31-.02-.48.13-.63.13-.13.31-.36.47-.54.16-.18.21-.31.31-.52.1-.2.05-.39-.03-.54-.08-.16-.7-1.68-.96-2.29-.25-.6-.5-.51-.7-.51h-.6c-.2 0-.52.08-.79.39-.27.31-1.05 1.02-1.05 2.49 0 1.47 1.08 2.89 1.23 3.09.16.2 2.12 3.23 5.14 4.52.72.31 1.27.49 1.71.63.72.23 1.38.2 1.9.12.58-.09 1.84-.75 2.1-1.48.26-.74.26-1.37.18-1.48-.08-.1-.28-.18-.59-.34Z"
+          />
+        </svg>
+      </span>
+      <span className="wa-label">{label}</span>
     </a>
   );
 }
