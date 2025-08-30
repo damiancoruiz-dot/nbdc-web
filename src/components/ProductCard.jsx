@@ -1,95 +1,94 @@
 // src/components/ProductCard.jsx
-import { useState } from "react";
+import React, { useState } from "react";
+
+const WA_NUMBER = "524428781486";
+
+function buildWaLink(p, variantLabel) {
+  const base = `Hola, me interesa *${p.name}*${variantLabel ? ` (${variantLabel})` : ""}. ¿Me compartes precio, disponibilidad y requisitos de compra?`;
+  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(base)}`;
+}
 
 export default function ProductCard({ p }) {
-  const waNumber = "524428781486"; // +52 442 878 1486 sin '+'
-  const [variant, setVariant] = useState(p?.variants?.[0] ?? "");
-  const [openIncludes, setOpenIncludes] = useState(false);
-
-  const buildWaLink = () => {
-    const base = `Hola, me interesa *${p.name}*`;
-    const v = variant ? ` (presentación: ${variant})` : "";
-    const extra = "\n¿Me compartes precio, disponibilidad y requisitos de compra?";
-    const text = encodeURIComponent(`${base}${v}.${extra}`);
-    return `https://wa.me/${waNumber}?text=${text}`;
-  };
+  const [activeVar, setActiveVar] = useState(p?.variants?.[0] || null);
 
   return (
-    <article className="card product-card reveal" data-id={p.id}>
-      {/* Imagen del producto full-bleed con máscara redondeada */}
+    <article
+      id={`prod-${p.id}`}
+      data-id={p.id}
+      className="card product-card"
+    >
+      {/* Imagen full-bleed arriba */}
       {p.image && (
         <div className="product-hero">
           <img src={p.image} alt={p.name} loading="lazy" />
         </div>
       )}
 
-      {/* Encabezado pequeño con logo + laboratorio */}
-      {(p.brandLogo || p.lab || p.brandName) && (
-        <div className="brand-row">
-          {p.brandLogo ? (
-            <img className="brand-logo" src={p.brandLogo} alt={p.lab || p.brandName || "Marca"} />
-          ) : null}
-          <span className="brand-lab">{p.lab || p.brandName}</span>
-        </div>
-      )}
+      {/* CUERPO con padding controlado por .product-body */}
+      <div className="product-body">
+        {(p.brandLogo || p.lab) && (
+          <div className="brand-row">
+            {p.brandLogo && (
+              <img
+                className="brand-logo"
+                src={p.brandLogo}
+                alt={`${p.lab || "Marca"} logo`}
+              />
+            )}
+            {p.lab && <span className="brand-lab">{p.lab}</span>}
+          </div>
+        )}
 
-      {/* Título + descripción */}
-      <h3 className="product-title">{p.name}</h3>
-      {(p.short || p.desc) && <p className="product-short">{p.short || p.desc}</p>}
+        <h3 className="product-title">{p.name}</h3>
+        {p.short && <p className="product-short">{p.short}</p>}
 
-      {/* Bullets */}
-      {p.bullets?.length ? (
-        <ul className="product-bullets">
-          {p.bullets.map((b) => <li key={b}>{b}</li>)}
-        </ul>
-      ) : null}
+        {Array.isArray(p.bullets) && p.bullets.length > 0 && (
+          <ul className="product-bullets">
+            {p.bullets.map((b) => (
+              <li key={b}>{b}</li>
+            ))}
+          </ul>
+        )}
 
-      {/* Presentaciones */}
-      {p.variants?.length ? (
-        <div className="product-variants">
-          <div className="variants-label">Presentaciones</div>
-          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-            {p.variants.map((v) => {
-              const active = variant === v;
-              return (
+        {Array.isArray(p.variants) && p.variants.length > 0 && (
+          <div className="product-variants">
+            <div className="variants-label">Presentaciones</div>
+            <div className="pills">
+              {p.variants.map((v) => (
                 <button
                   key={v}
                   type="button"
-                  onClick={() => setVariant(v)}
-                  className={`pill-btn ${active ? "is-active" : ""}`}
+                  className={`pill-btn ${activeVar === v ? "is-active" : ""}`}
+                  onClick={() => setActiveVar(v)}
                 >
                   {v}
                 </button>
-              );
-            })}
+              ))}
+            </div>
           </div>
-        </div>
-      ) : null}
-
-      {/* Acordeón: ¿Qué incluye? */}
-      {p.includes?.length ? (
-        <div style={{ marginTop: 6 }}>
-          <details>
-            <summary style={{ cursor: "pointer", fontSize: 16, color: "var(--ink-900)", fontWeight: 700 }}>
-              ¿Qué incluye?
-            </summary>
-            <ul style={{ margin: "8px 0 0 16px", color: "#556070", fontSize: 14 }}>
-              {p.includes.map((it) => <li key={it} style={{ marginBottom: 4 }}>{it}</li>)}
-            </ul>
-          </details>
-        </div>
-      ) : null}
-
-      {/* Acciones apiladas y pegadas al fondo */}
-      <div className="card-actions">
-        {p.datasheet && (
-          <a className="btn btn-secondary" href={p.datasheet} target="_blank" rel="noopener noreferrer">
-            Ficha técnica (PDF)
-          </a>
         )}
-        <a className="btn btn-primary" href={buildWaLink()} target="_blank" rel="noopener noreferrer">
-          Solicitar cotización
-        </a>
+
+        {/* Acciones SIEMPRE al fondo (PDF arriba, Cotizar abajo) */}
+        <div className="card-actions">
+          {p.datasheet && (
+            <a
+              className="btn btn-secondary"
+              href={p.datasheet}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ficha técnica (PDF)
+            </a>
+          )}
+          <a
+            href={buildWaLink(p, activeVar)}
+            className="btn btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Solicitar cotización
+          </a>
+        </div>
       </div>
     </article>
   );
