@@ -461,3 +461,58 @@ a{ color:inherit; text-decoration:none; }
 
 /* mantén “Presentaciones” con aire arriba */
 .card.product-card .product-variants{ margin-top: 10px !important; }
+/* ===== Splash (por si se perdió en ediciones) ===== */
+.no-scroll { overflow: hidden; }
+.splash{
+  position: fixed; inset: 0; width: 100%; height: 100dvh; min-height: 100svh;
+  background: #0a66c2; display: grid; place-items: center; z-index: 9999;
+  opacity: 1; transform: none; transition: opacity .6s ease, transform .6s ease;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.splash--hide{ opacity: 0; transform: scale(.98); }
+.splash__logo{ width: min(46vw, 220px); height: auto; display: block;
+  filter: drop-shadow(0 6px 26px rgba(0,0,0,.25)); }
+
+/* ===== FIX producto: sin padding heredado de .card y con aire interno ===== */
+.card.product-card{ padding: 0 !important; border-radius: 22px; overflow: hidden; }
+
+/* Imagen arriba: llena y respeta bordes */
+.card.product-card .product-hero{
+  width: 100%; aspect-ratio: 16/9; margin: 0;
+  border-radius: 22px 22px 0 0; overflow: hidden;
+}
+.card.product-card .product-hero img{
+  width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;
+}
+
+/* Cuerpo con aire REAL (evita texto pegado a borde) */
+.card.product-card .product-body{
+  padding: 22px 24px 26px !important;   /* arriba | lados | abajo */
+  display: flex; flex-direction: column; gap: 16px !important;
+}
+
+/* Separaciones internas */
+.card.product-card .brand-row{ margin-bottom: 14px !important; }
+.card.product-card .product-title{ margin: 0 0 8px !important; }
+.card.product-card .product-short{ margin: 0 0 10px !important; }
+.card.product-card .product-bullets{ margin: 0 0 12px 18px !important; }
+.card.product-card .product-variants{ margin-top: 10px !important; }
+
+/* Acciones SIEMPRE al fondo (PDF sobre Cotizar) */
+.card.product-card .card-actions{
+  margin-top: auto !important; display: flex; flex-direction: column; gap: 12px;
+}
+.card.product-card .card-actions .btn.btn-primary{ width: 100%; }
+
+/* Gutter del carrusel de productos para que la primera tarjeta no pegue a la pared */
+#productos .features.hscroll{ margin: 16px 0 0 !important; padding: 8px 12px 12px !important; }
+
+/* Hover uniforme para TODOS los “cards” visuales (Nosotros + Productos) */
+@media (hover:hover){
+  .image-card:hover,
+  .features.hscroll .card:hover,
+  .product-card:hover{
+    transform: translateY(-3px) !important;
+    box-shadow: 0 16px 36px rgba(9,30,66,.14) !important;
+  }
+}
