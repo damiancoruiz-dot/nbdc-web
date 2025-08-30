@@ -5,17 +5,19 @@
 
 html, body { height: 100%; }
 
+html { scroll-behavior: smooth; }             /* scroll suave global */
+
 body{
-  margin:0;
-  font-family: system-ui,-apple-system,"Segoe UI",Inter,Roboto,Arial,"Helvetica Neue",sans-serif;
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Inter, Roboto, Arial, "Helvetica Neue", sans-serif;
   color: var(--ink-900);
-  background:#fff;
-  line-height:1.5;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+  background: #fff;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-img,svg{ display:block; max-width:100%; height:auto; }
+img, svg{ display:block; max-width:100%; height:auto; }
 a{ color:inherit; text-decoration:none; }
 
 /* ========= THEME ========= */
@@ -26,17 +28,17 @@ a{ color:inherit; text-decoration:none; }
   --ink-900:#0b213a; --ink-700:#2f3e52; --ink-500:#556070; --ink-300:#7a8699;
   /* UI */
   --bg-50:#f7f9fc; --card:#ffffff; --line:#e8eef6;
-  /* Sombra */
+  /* Sombras suaves (solo si se necesitan en otras secciones) */
   --shadow:0 8px 18px rgba(0,0,0,.08);
 }
 
-/* ========= TIPOGRAFÍA / LAYOUT ========= */
+/* ========= UTILIDADES / TIPOGRAFÍA ========= */
 .section{ padding:56px 20px; }
 .container{ max-width:1200px; margin:0 auto; }
 .h2{ font-size:clamp(24px,3.2vw,36px); margin:0 0 12px; color:var(--ink-900); }
 .lead{ font-size:clamp(14px,1.7vw,18px); color:var(--ink-700); margin:0; }
 
-/* ========= GRID (fallback) ========= */
+/* ========= GRID BASE ========= */
 .features{
   display:grid;
   grid-template-columns:repeat(12,1fr);
@@ -48,7 +50,6 @@ a{ color:inherit; text-decoration:none; }
   background:var(--card);
   border:1px solid var(--line);
   border-radius:16px;
-  box-shadow:var(--shadow);
   padding:16px;
 }
 @media (max-width:960px){ .card{ grid-column:span 6; } }
@@ -62,17 +63,42 @@ a{ color:inherit; text-decoration:none; }
 .pills{ display:flex; gap:8px; flex-wrap:wrap; }
 .pill{ border:1px solid var(--line); border-radius:999px; background:var(--bg-50); padding:6px 10px; font-size:12px; color:var(--ink-900); }
 
+/* Pastillas clicables (presentaciones) */
+.pill-btn{
+  border:1px solid var(--line);
+  background:var(--bg-50);
+  color:var(--ink-900);
+  border-radius:999px;
+  padding:6px 12px;
+  font-size:12px;
+  cursor:pointer;
+  transition:all .15s ease;
+}
+.pill-btn.is-active{
+  border-color:#026fd0;
+  background:#e9f2ff;
+  color:#026fd0;
+}
+
 /* ========= BOTONES ========= */
-.btn{ display:inline-block; border-radius:12px; padding:12px 16px; font-weight:700; text-align:center; }
+.btn{ display:inline-block; border-radius:10px; padding:10px 14px; font-weight:700; }
 .btn-primary{ background:var(--brand-600); color:#fff; }
 .btn-primary:hover{ filter:brightness(1.05); }
-.btn-secondary{ background:#fff; color:var(--brand-600); border:1px solid var(--line); }
+
+.btn-outline{ border:1.5px solid #fff; color:#fff; background:transparent; }
+.btn-outline:hover{ background:rgba(255,255,255,.12); }
+
+.btn-secondary{
+  background:#fff;
+  color:var(--brand-600);
+  border:1px solid var(--line);
+}
 .btn-secondary:hover{ filter:brightness(.98); }
 
 /* ========= NOTA ========= */
 .footnote{ margin-top:18px; font-size:12px; color:var(--ink-300); }
 
-/* ========= HERO / CARRUSEL ========= */
+/* ========= HERO ========= */
 .hero{ padding:0; margin:0 0 clamp(16px,3vw,32px); width:100%; }
 .hero .hero-swiper{ width:100vw; height:clamp(420px,70vh,720px); }
 .hero-slide{ position:relative; width:100%; height:100%; overflow:hidden; }
@@ -80,11 +106,10 @@ a{ color:inherit; text-decoration:none; }
 .hero-overlay{ position:absolute; inset:0; background:rgba(0,0,0,.45); }
 .hero-content{ position:relative; z-index:1; height:100%; display:grid; align-content:center; gap:14px; text-align:center; color:#fff; padding:0; }
 .hero-actions{ display:flex; gap:12px; justify-content:center; margin-top:16px; flex-wrap:wrap; }
+
 .hero .swiper-button-prev,.hero .swiper-button-next{ color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.4); }
 .hero .swiper-pagination-bullet{ background:rgba(255,255,255,.7); opacity:1; }
 .hero .swiper-pagination-bullet-active{ background:#fff; }
-.btn-outline{ border:1.5px solid #fff; color:#fff; background:transparent; }
-.btn-outline:hover{ background:rgba(255,255,255,.12); }
 .hero .h2{ font-weight:900; text-shadow:0 2px 6px rgba(0,0,0,.4); }
 .hero .lead{ font-weight:600; text-shadow:0 1px 4px rgba(0,0,0,.35); }
 
@@ -107,669 +132,144 @@ a{ color:inherit; text-decoration:none; }
 .quote blockquote::before{ content:"“"; left:0; top:-6px; }
 .quote blockquote::after{ content:"”"; right:0; bottom:-6px; }
 
-/* ========= NOSOTROS: IMAGE CARDS ========= */
+/* ========= NOSOTROS (image-card) ========= */
 .image-card{
   position:relative;
   flex:0 0 clamp(280px,30vw,400px);
   min-height:clamp(320px,50vh,440px);
   border-radius:22px;
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
+  background-size:cover; background-position:center; background-repeat:no-repeat;
   box-shadow:var(--shadow);
   overflow:hidden;
 }
 .image-card::after{
-  content:""; position:absolute; inset:0; background:rgba(0,0,0,.55);
-  border-radius:inherit; pointer-events:none; z-index:0;
+  content:""; position:absolute; inset:0; background:rgba(0,0,0,.55); border-radius:inherit; pointer-events:none; z-index:0;
 }
 .card-overlay{ position:absolute; inset:0; padding:20px; display:flex; flex-direction:column; justify-content:flex-end; color:#fff; z-index:1; }
 .card-overlay h3{ margin:0 0 8px; font-size:20px; font-weight:700; color:#fff; }
 .card-overlay p{ margin:0; font-size:14px; color:#f0f0f0; }
 
-/* ========= MISIÓN/VISIÓN/VALORES COMPACT ========= */
+/* ========= Misión/Visión/Valores compact ========= */
 .features.hscroll.compact .card h3{ display:flex; align-items:center; gap:8px; font-size:18px; color:var(--brand-600); }
 .features.hscroll.compact .card h3 svg{ width:20px; height:20px; flex-shrink:0; color:var(--brand-600); }
 
-/* ========= PRODUCTOS ========= */
-
-/* —— tarjeta base con alturas consistentes —— */
-.product-card{
-  /* la tarjeta en el carrusel */
-  display:flex; flex-direction:column;
-  flex:0 0 clamp(300px,34vw,380px);         /* ancho de “slide” */
-  background:#fff; border:1px solid var(--line);
-  border-radius:22px; box-shadow:var(--shadow);
-  overflow:hidden;
-  /* misma altura entre tarjetas */
-  min-height: 640px;                         /* ajusta si lo quieres más alto/bajo */
-}
-
-/* imagen arriba, sin deformar y ocupando el ancho */
-.product-hero{ aspect-ratio:16/9; overflow:hidden; }
-.product-hero img{ width:100%; height:100%; object-fit:cover; }
-
-/* cuerpo: ocupa todo el espacio y empuja acciones al final */
-.product-body{
-  display:flex; flex-direction:column; gap:10px;
-  padding:16px;
-  flex:1 1 auto;                             /* toma todo el alto disponible */
-  min-height: 0;                             
-}
-
-.product-title{ font-size:22px; font-weight:800; margin:0; color:var(--ink-900); }
-.product-short{ font-size:14px; color:var(--ink-700); margin:0; }
-.product-bullets{ margin:0; padding-left:18px; font-size:14px; color:var(--ink-700); }
-.product-variants{ margin-top:6px; }
-.variants-label{ font-size:12px; font-weight:600; margin-bottom:4px; color:var(--ink-700); }
-.brand-row{ display:flex; align-items:center; gap:8px; margin-bottom:6px; }
-.brand-logo{ max-height:26px; width:auto; object-fit:contain; }
-.brand-lab{ font-size:13px; font-weight:600; color:var(--ink-500); }
-
-/* Pastillas clicables (para cuando las uses) */
-.pill-btn{
-  border:1px solid var(--line); background:var(--bg-50); color:var(--ink-900);
-  border-radius:999px; padding:6px 12px; font-size:12px; cursor:pointer;
-  transition:all .15s ease;
-}
-.pill-btn.is-active{ border-color:#026fd0; background:#e9f2ff; color:#026fd0; }
-
-/* —— acciones: SIEMPRE al fondo, full width y alineadas —— */
-.card-actions{
-  margin-top:auto;                 /* empuja al fondo */
-  display:flex; flex-direction:column;
-  gap:10px;
-  align-items:stretch;             /* full width */
-  padding-top:12px;                /* aire arriba para que no “pegue” */
-}
-.card-actions .btn{ width:100%; }
-
-/* margen de scroll para que no la tape el header al llegar desde el Hero */
-.product-card{ scroll-margin-top: 96px; }
-
-/* efecto de llegada desde el Hero */
-.product-card.pulse{
-  box-shadow:0 0 0 4px rgba(17,150,230,.35), var(--shadow);
-  transition: box-shadow .2s ease;
-}
-
-/* ========= CARRUSEL HORIZONTAL (Apple style) ========= */
+/* ========= HSCROLL (Apple-style) – Global ========= */
 .features.hscroll{
   display:flex !important;
   grid-template-columns:none !important;
   gap:18px;
   overflow-x:auto;
   padding:8px 12px 12px;
-  margin:16px -20px 0;             /* full-bleed */
+  margin:16px -20px 0;              /* full-bleed */
   scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch;
   scrollbar-width:none;
 }
 .features.hscroll::-webkit-scrollbar{ display:none; }
 .features.hscroll .card{
-  flex:0 0 clamp(300px,34vw,380px);
+  flex:0 0 clamp(280px,34vw,380px);
   scroll-snap-align:start;
   min-width:0;
-  transition:transform .25s ease, box-shadow .25s ease;
+  border-radius:22px;
 }
 @media (hover:hover){
-  .features.hscroll .card:hover{
-    transform:scale(1.03);
-    box-shadow:0 14px 28px rgba(0,0,0,.12);
-    z-index:1;
-  }
+  .features.hscroll .card:hover{ transform:scale(1.03); box-shadow:0 14px 28px rgba(0,0,0,.12); z-index:1; }
 }
 @media (max-width:900px){
   .features.hscroll{ gap:12px; padding:8px 10px 14px; }
-  .features.hscroll .card{ flex:0 0 clamp(260px,78vw,340px); }
+  .features.hscroll .card{ flex:0 0 clamp(240px,78vw,320px); }
 }
 
-/* ========= CONTROLES INFERIORES ========= */
-.scroller-controls{
-  display:flex; gap:12px; justify-content:center; padding:10px 0 0;
-}
+/* ========= CONTROLES DE CARRUSEL ========= */
+.scroller-controls{ display:flex; gap:12px; justify-content:center; padding:10px 0 0; }
 .scroller-btn{
-  width:42px; height:42px; border-radius:999px; border:1px solid var(--line);
-  background:#fff; box-shadow:var(--shadow);
-  display:inline-flex; align-items:center; justify-content:center;
-  font-size:20px; cursor:pointer;
+  width:42px; height:42px; border-radius:999px; border:1px solid var(--line); background:#fff; box-shadow:var(--shadow);
+  display:inline-flex; align-items:center; justify-content:center; font-size:20px; cursor:pointer;
   transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
 }
 .scroller-btn:hover{ transform:translateY(-1px); }
 .scroller-btn:disabled{ opacity:.4; cursor:default; transform:none; }
 
-/* ========= LAB INFO (si usas la sección del laboratorio) ========= */
+/* ========= PRODUCTOS (full-bleed + hover tarjeta + botones parejos) ========= */
+.product-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:22px;
+  overflow:hidden;               /* para que la imagen respete los bordes */
+  transition:transform .25s ease, border-color .25s ease;
+  /* en carrusel: width lo dicta .features.hscroll .card */
+  scroll-margin-top: 96px;       /* llega debajo del navbar al anclar */
+}
+@media (hover:hover){
+  .product-card:hover{ transform:scale(1.03); border-color:rgba(0,0,0,.06); }
+}
+
+.product-hero{
+  position:relative; width:100%; aspect-ratio:16/9; overflow:hidden;
+  border-top-left-radius:inherit; border-top-right-radius:inherit;
+}
+.product-hero img{ width:100%; height:100%; object-fit:cover; }
+
+/* cuerpo y bloques */
+.product-body{ padding:16px; display:flex; flex-direction:column; gap:10px; }
+.product-title{ font-size:18px; font-weight:700; margin:0; color:var(--ink-900); }
+.product-short{ font-size:14px; color:var(--ink-700); margin:0; }
+.product-bullets{ margin:0; padding-left:18px; font-size:13px; color:var(--ink-700); }
+.product-variants{ margin-top:6px; }
+.variants-label{ font-size:12px; font-weight:600; margin-bottom:4px; color:var(--ink-700); }
+
+.brand-row{ display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+.brand-logo{ max-height:26px; }
+.brand-lab{ font-size:13px; font-weight:600; color:var(--ink-500); }
+
+/* Acciones alineadas abajo y en columna (PDF sobre Cotizar) */
+.card-actions{
+  margin-top:auto;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+/* ========= PULSE (cuando vienes desde el Hero) ========= */
+.product-card.pulse{ box-shadow:0 0 0 4px rgba(17,150,230,.35), var(--shadow); transition: box-shadow .2s ease; }
+
+/* ========= LAB INFO (sección debajo de Productos) ========= */
 .lab-section{ padding-top:24px; }
-.lab-card{ border:1px solid var(--line); border-radius:18px; background:var(--card); box-shadow:var(--shadow); padding:clamp(16px,2.2vw,24px); }
+.lab-card{
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:var(--card);
+  box-shadow:var(--shadow);
+  padding:clamp(16px,2.2vw,24px);
+}
 .lab-header{ display:grid; grid-template-columns:auto 1fr; align-items:center; gap:16px; margin-bottom:8px; }
 .lab-logo{ width:clamp(72px,10vw,120px); height:auto; object-fit:contain; display:block; }
 .lab-title{ margin:0 0 6px; font-size:clamp(18px,2.4vw,22px); color:var(--ink-900); }
 .lab-lead{ margin:0; color:var(--ink-700); font-size:clamp(14px,2vw,16px); }
 .lab-details{ margin-top:10px; }
-.lab-summary{ cursor:pointer; user-select:none; width:fit-content; background:#f5f9ff; border:1px solid var(--line); border-radius:999px; padding:8px 12px; font-weight:700; color:var(--brand-600); transition:filter .15s ease; }
+.lab-summary{
+  cursor:pointer; user-select:none; width:fit-content;
+  background:#f5f9ff; border:1px solid var(--line); border-radius:999px;
+  padding:8px 12px; font-weight:700; color:var(--brand-600); transition:filter .15s ease;
+}
 .lab-summary:hover{ filter:brightness(.98); }
 .lab-body{ margin-top:14px; color:var(--ink-700); font-size:15px; }
 .lab-h4{ margin:14px 0 6px; color:var(--ink-900); font-size:16px; }
 .lab-list{ margin:0 0 8px 0; padding-left:18px; }
-/* El cuerpo ahora usa grid y empuja Acciones al fondo */
-.product-body{
-  display:grid;
-  grid-template-rows:
-    auto   /* brand row */
-    auto   /* título */
-    auto   /* short */
-    auto   /* bullets/variantes */
-    1fr    /* espacio flexible que uniforma alturas */
-    auto;  /* acciones (PDF / Cotizar) */
-  gap:10px;
-  padding:16px;
-  min-height: 0;
-}
 
-/* Marca (logo + lab) con altura compacta y sin saltos raros */
-.brand-row{ display:flex; align-items:center; gap:8px; margin-bottom:6px; }
-.brand-logo{ max-height:26px; width:auto; object-fit:contain; }
-.brand-lab{ font-size:13px; font-weight:600; color:var(--ink-500); }
+/* ========= TILES (si los usas como hscroll) ========= */
+.tiles{ display:flex; gap:18px; overflow-x:auto; padding:8px 12px 12px; margin:16px -20px 0; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; }
+.tiles::-webkit-scrollbar{ display:none; }
+.tile{
+  flex:0 0 clamp(280px,34vw,380px);
+  background:#fff; border:1px solid var(--line); border-radius:22px; overflow:hidden; scroll-snap-align:start;
+  background-size:cover; background-position:center; min-height:220px;
+}
+.tile-inner{ padding:16px; display:flex; flex-direction:column; gap:8px; color:var(--ink-900); }
+.tile-title{ margin:0; font-size:18px; font-weight:800; }
+.tile-body{ margin:0; color:var(--ink-700); }
+.tile-cta{ margin-top:auto; font-weight:700; color:var(--brand-600); }
 
-/* Título y descripción con “line clamp” para alturas coherentes */
-.product-title{
-  font-size:22px; font-weight:800; margin:0; color:var(--ink-900);
-  display:-webkit-box; -webkit-box-orient:vertical; overflow:hidden;
-  -webkit-line-clamp: 2; line-clamp: 2;       /* 2 líneas */
-}
-
-.product-short{
-  font-size:14px; color:var(--ink-700); margin:0;
-  display:-webkit-box; -webkit-box-orient:vertical; overflow:hidden;
-  -webkit-line-clamp: 3; line-clamp: 3;       /* 3 líneas */
-}
-
-/* Bullets y variantes mantienen estilo */
-.product-bullets{ margin:0; padding-left:18px; font-size:14px; color:var(--ink-700); }
-.product-variants{ margin-top:6px; }
-.variants-label{ font-size:12px; font-weight:600; margin-bottom:4px; color:var(--ink-700); }
-
-/* Acciones SIEMPRE al fondo, ancho completo y alineadas entre sí */
-.card-actions{
-  display:flex; flex-direction:column; gap:10px;
-  align-items:stretch;           /* full width */
-  padding-top:12px;
-}
-.card-actions .btn{ width:100%; }
-
-/* margen de scroll para que al venir del Hero no tape el header */
-.product-card{ scroll-margin-top: 96px; }
-
-/* Resaltado breve al llegar desde el Hero */
-.product-card.pulse{
-  box-shadow:0 0 0 4px rgba(17,150,230,.35), var(--shadow);
-  transition: box-shadow .2s ease;
-}
-/* ==== Producto: imagen full-bleed dentro de la tarjeta ==== */
-/* Asegura recorte limpio con el radio de la tarjeta */
-.product-card{
-  position: relative;
-  overflow: hidden;              /* importante para clippear la imagen */
-  border-radius: 22px;           /* ya lo tienes, aquí lo reafirmamos */
-}
-
-/* La imagen “tira” el padding de la card con márgenes negativos
-   para tocar los bordes superior y laterales */
-.product-card .product-hero{
-  aspect-ratio: 16 / 9;
-  margin: -16px -16px 12px -16px; /* 👈 este -16px DEBE igualar el padding real de .card */
-  border-top-left-radius: inherit;
-  border-top-right-radius: inherit;
-  overflow: hidden;              /* por si el navegador redondea mal */
-  background: #eef5fb;           /* color de fondo por si carga lento */
-}
-
-/* La imagen ocupa todo el contenedor y se recorta de forma agradable */
-.product-card .product-hero img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;             /* puede “cortar” para cubrir, justo lo que quieres */
-  display: block;
-}
-
-/* Evita que el contenedor de carrusel “corte” sombras o bordes al hacer zoom */
-.features.hscroll{
-  overflow-y: visible;           /* deja ver la parte superior aun con zoom */
-}
-
-/* (Opcional) Si ves que se sigue cortando con mucho zoom,
-   da un pequeño respiro arriba al riel del carrusel */
-@media (min-width: 0px){
-  .features.hscroll{ padding-top: 12px; }
-}
-/* ====== LABORATORIO (Xentra Pharma) ====== */
-.lab-section{
-  padding: clamp(32px,4vw,48px) 20px 0;
-}
-
-.lab-card{
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  background: var(--card);
-  box-shadow: var(--shadow);
-  padding: clamp(16px,2.2vw,24px);
-}
-
-.lab-header{
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 16px;
-  align-items: center;
-  margin-bottom: 6px;
-}
-
-.lab-logo{
-  width: clamp(84px,12vw,128px);
-  height: auto;
-  object-fit: contain;
-  display: block;
-}
-
-.lab-title{
-  margin: 0 0 4px;
-  font-size: clamp(18px,2.3vw,22px);
-  color: var(--ink-900);
-}
-
-.lab-lead{
-  margin: 0;
-  color: var(--ink-700);
-  font-size: clamp(14px,1.8vw,16px);
-}
-
-.lab-details{ margin-top: 10px; }
-
-/* Botón/summary “Acerca de…” */
-.lab-summary{
-  cursor: pointer;
-  user-select: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: #f5f9ff;
-  color: var(--brand-600);
-  font-weight: 700;
-  transition: filter .15s ease;
-}
-.lab-summary:hover{ filter: brightness(.98); }
-.lab-summary::after{
-  content: "";
-  width: 10px; height: 10px;
-  border-right: 2px solid currentColor;
-  border-bottom: 2px solid currentColor;
-  transform: rotate(-45deg);
-  margin-left: 4px;
-  transition: transform .2s ease;
-}
-details[open] > .lab-summary::after{ transform: rotate(45deg); }
-
-.lab-body{
-  margin-top: 12px;
-  color: var(--ink-700);
-  font-size: 15px;
-}
-
-.lab-h4{
-  margin: 14px 0 6px;
-  color: var(--ink-900);
-  font-size: 16px;
-}
-
-.lab-list{
-  margin: 0 0 8px 0;
-  padding-left: 18px;
-}
-/* --- Overrides de producto (apilar acciones y borde-a-borde) --- */
-
-/* Asegura que las acciones queden apiladas en todas las vistas */
-.card-actions{
-  display:flex;
-  flex-direction:column;
-  align-items:stretch;
-  gap:12px;
-  margin-top:auto;
-}
-
-/* Botones sin romper línea (evita saltos raros) */
-.btn{ white-space:nowrap; }
-
-/* Imagen de producto: cubrir y respetar bordes superiores redondeados */
-.product-hero{ aspect-ratio: 16 / 9; }
-.product-hero img{ width:100%; height:100%; object-fit:cover; }
-
-/* Por si vienes desde el Hero, resalta la tarjeta brevemente */
-.product-card { scroll-margin-top: 90px; }
-.product-card.pulse {
-  box-shadow: 0 0 0 4px rgba(17,150,230,.35), var(--shadow);
-  transition: box-shadow .2s ease;
-}
-/* ==== scroll suave global (para #contacto, #productos, etc.) ==== */
-html { scroll-behavior: smooth; }
-
-/* ==== Reveal on scroll (aplícalo con la clase .reveal) ==== */
-.reveal{
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity .6s ease, transform .6s ease;
-  will-change: opacity, transform;
-}
-.reveal.is-visible{
-  opacity: 1;
-  transform: none;
-}
-
-/* ==== Mantener botones alineados al fondo de la tarjeta ==== */
-.product-card{
-  display: flex;
-  flex-direction: column;
-}
-.card-actions{
-  margin-top: auto;
-  display: grid;
-  gap: 10px;             /* PDF arriba, WhatsApp abajo */
-  grid-auto-flow: row;
-}
-@media (min-width: 700px){
-  /* Si algún día quisieras ponerlos lado a lado en desktop,
-     cambia grid-auto-flow a column y agrega grid-auto-columns. */
-}
-
-/* ==== Hero de producto full-bleed con esquinas redondeadas ==== */
-.product-hero{
-  position: relative;
-  isolation: isolate;
-  margin: -16px -16px 12px -16px;       /* sangra hasta los bordes de la card */
-  height: clamp(220px, 30vw, 300px);
-  overflow: hidden;
-}
-.product-hero::after{
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-bottom-left-radius: 22px;
-  border-bottom-right-radius: 22px;
-  border-top-left-radius: 22px;
-  border-top-right-radius: 22px;
-  box-shadow: inset 0 0 0 1px var(--line);
-  pointer-events: none;
-  z-index: 2;
-}
-.product-hero img{
-  position: absolute; inset:0;
-  width: 100%; height: 100%;
-  object-fit: cover;                     /* llena y recorta como Apple */
-  transform: translateZ(0);
-}
-/* ==== Splash / cortinilla del logo ==== */
-@media (prefers-reduced-motion: no-preference){
-  .splash{
-    position: fixed; inset: 0;
-    background: var(--brand-600);
-    display: grid; place-items: center;
-    z-index: 9999;
-    opacity: 1;
-    transition: opacity .6s ease .4s; /* se queda un instante y luego desvanece */
-  }
-  .splash.hide{
-    opacity: 0;
-    pointer-events: none;
-  }
-  .splash-logo{
-    width: clamp(140px, 22vw, 280px);
-    transform: translate(0, 0) scale(1);
-    transition: transform .8s ease;
-  }
-  /* "vuela" hacia la esquina sup. izq. simulando el logo del navbar */
-  .splash.hide .splash-logo{
-    transform: translate(calc(-50vw + 36px), calc(-50vh + 22px)) scale(.36);
-  }
-}
-/* Si el usuario prefiere menos animaciones, simplemente ocultamos rápido */
-@media (prefers-reduced-motion: reduce){
-  .splash{ display: none; }
-}
-/* === Aparición al hacer scroll === */
-.reveal{
-  opacity: 0;
-  transform: translateY(28px);
-  will-change: opacity, transform;
-  transition: opacity .6s ease, transform .6s ease;
-}
-.reveal.visible{
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* pequeño “stagger”: hijos se animan con un pelín de retraso */
-.reveal > * {
-  transition-delay: .05s;
-}
-.reveal.visible > * {
-  transition-delay: 0s; /* evitas cascadas raras */
-}
-/* ===== Splash (cortinilla) ===== */
-.splash{
-  position: fixed; inset: 0; z-index: 9999;
-  display: grid; place-items: center;
-  background: var(--brand-600);
-  opacity: 1; transform: scale(1);
-  transition: opacity .6s ease, transform .6s ease;
-}
-.splash.fade{
-  opacity: 0; transform: scale(1.02);
-}
-.splash-logo{ display:block; width: clamp(160px, 22vw, 240px); height: auto; }
-
-/* ===== Reveal on scroll (aparecer hacia arriba) ===== */
-.reveal{ opacity: 0; transform: translateY(18px); }
-.reveal.is-in{ opacity: 1; transform: none; transition: opacity .6s ease, transform .6s ease; }
-
-/* Resalta la tarjeta cuando vienes del Hero */
-.product-card{ scroll-margin-top: 90px; }
-.product-card.pulse{
-  box-shadow: 0 0 0 4px rgba(17,150,230,.35), var(--shadow);
-  transition: box-shadow .2s ease;
-}
-/* Reveal base */
-.reveal{ opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease; }
-.reveal.is-in{ opacity:1; transform:none; }
-
-/* ⛔️ No hagas reveal tarjeta por tarjeta dentro de carruseles horizontales */
-.features.hscroll .reveal{
-  opacity:1 !important;
-  transform:none !important;
-  transition:none !important;
-}
-
-/* ✅ Mejor manejo de gestos en móvil: carrusel permite pan horizontal y cede el gesto vertical */
-.features.hscroll{
-  touch-action: pan-x pan-y;
-  overscroll-behavior-inline: contain; /* o overscroll-behavior-x: contain; */
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Las tarjetas permiten pan vertical sin bloquear */
-.features.hscroll .card{
-  touch-action: pan-y;
-}
-
-/* (Opcional) Snap más suave para evitar “anclaje” agresivo */
-@media (max-width: 900px){
-  .features.hscroll{
-    scroll-snap-type: x proximity; /* antes era mandatory */
-  }
-}
-/* ===== Hover “elevado” + zoom imagen en productos ===== */
-.product-card{
-  transition: transform .25s ease, box-shadow .25s ease;
-  will-change: transform;
-}
-@media (hover:hover){
-  .product-card:hover{
-    transform: translateY(-2px);
-    box-shadow: 0 18px 36px rgba(0,0,0,.12);
-  }
-  .product-hero img{
-    transition: transform .35s ease;
-  }
-  .product-card:hover .product-hero img{
-    transform: scale(1.05);
-  }
-}
-
-/* Imagen superior a sangre con mismo radio que la tarjeta */
-.product-hero{
-  overflow: hidden;              /* máscara con el borde redondeado */
-  border-radius: 22px 22px 0 0;  /* mismo radio en arriba */
-}
-.product-hero img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;             /* que se “estire” y recorte como Apple */
-}
-
-/* Reveal global (suave). Evita reveal tarjeta por tarjeta en carrusel horizontal */
-.reveal{ opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease; }
-.reveal.is-in{ opacity:1; transform:none; }
-.features.hscroll .reveal{ opacity:1!important; transform:none!important; transition:none!important; }
-
-/* Carruseles horizontales: mejor gesto en móvil y snap suave */
-.features.hscroll{
-  touch-action: pan-x pan-y;
-  overscroll-behavior-inline: contain;
-}
-@media (max-width: 900px){
-  .features.hscroll{ scroll-snap-type: x proximity; }
-}
-
-/* Alineación uniforme: empuja acciones al fondo para que los botones queden nivelados */
-.product-body{
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.card-actions{
-  margin-top: auto;              /* mantiene los botones a misma altura */
-  display: flex;
-  flex-direction: column;        /* PDF arriba, Cotización abajo (vertical) */
-  gap: 8px;
-}
-@media (min-width: 680px){
-  /* Si algún día quieres ponerlos en fila en desktop, cambia a row aquí */
-  .card-actions{ flex-direction: column; }
-}
-
-/* Botón PDF secundario (no tocar primario) */
-.btn-secondary{
-  background: #fff;
-  color: var(--brand-600);
-  border: 1px solid var(--line);
-}
-.btn-secondary:hover{ filter: brightness(0.98); }
-/* ======= Productos: fondo suave para toda la sección ======= */
-.section-products {
-  background: var(--bg-50);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-
-/* ======= Tarjeta de producto: sin sombras, hover en toda la tarjeta ======= */
-.product-card {
-  /* ya tenías flex y contenidos; mantenemos eso */
-  background: #fff;
-  border: 1px solid var(--line);
-  box-shadow: none !important;          /* 👈 sin sombras */
-  border-radius: 22px;
-  overflow: hidden;                      /* 👈 necesario para full-bleed con bordes */
-  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-}
-
-/* Hover en desktop: escala toda la tarjeta (Apple-like) */
-@media (hover:hover) {
-  .product-card:hover {
-    transform: translateZ(0) scale(1.03);
-    border-color: rgba(0,0,0,.06);
-  }
-}
-
-/* ======= Imagen full-bleed con los mismos bordes de la tarjeta ======= */
-.product-hero {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  /* hace que los bordes superiores de la imagen respeten el redondeo de la tarjeta */
-  border-top-left-radius: inherit;
-  border-top-right-radius: inherit;
-}
-
-.product-hero img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;    /* 👈 llena el contenedor; se recorta bonito como en Apple */
-  display: block;
-}
-
-/* Quita el zoom en la IMAGEN (lo hacemos en la tarjeta) */
-.product-card:hover .prod-thumb img,
-.product-card:hover .product-hero img {
-  transform: none !important;
-}
-
-/* ======= Cuerpo de la tarjeta y alineación uniforme ======= */
-.product-body {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 16px;
-  min-height: 220px;             /* margen de seguridad para que no “baile” el layout */
-}
-
-.card-actions {
-  margin-top: auto;              /* 👈 empuja los botones al fondo, todos parejos */
-  display: flex;
-  flex-direction: column;        /* uno arriba del otro en móvil */
-  gap: 8px;
-}
-
-/* En pantallas grandes, puedes volverlos fila si lo prefieres */
-@media (min-width: 800px) {
-  .card-actions {
-    flex-direction: column;      /* déjalo en columna si te gustó así en desktop */
-  }
-}
-
-/* Botones: mantenemos primario y secundario tal cual; sin tocar tus clases base */
-
-/* ======= Carrusel hscroll: mantenemos tu comportamiento y “peek” ======= */
-.features.hscroll {
-  display: flex !important;
-  gap: 18px;
-  overflow-x: auto;
-  padding: 8px 12px 12px;
-  margin: 16px -20px 0;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.features.hscroll::-webkit-scrollbar{ display: none; }
-
-.features.hscroll .card {
-  flex: 0 0 clamp(280px, 34vw, 380px);
-  scroll-snap-align: start;
-  min-width: 0;
-  border-radius: 22px;         /* para que el full-bleed se vea perfecto */
-}
-
-@media (max-width: 900px){
-  .features.hscroll { gap: 12px; padding: 8px 10px 14px; }
-  .features.hscroll .card { flex: 0 0 clamp(240px, 78vw, 320px); }
-}
+/* ========= REVEAL helper (si lo usas con IO) ========= */
+.reveal{ opacity:0; transform:translateY(18px); transition:opacity .45s ease, transform .45s ease; }
+.reveal.in{ opacity:1; transform:none; }
