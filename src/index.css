@@ -365,3 +365,41 @@ a{ color:inherit; text-decoration:none; }
   gap: 12px;
 }
 .card-actions .btn.btn-primary{ width: 100%; }
+/* === GUTTER para que la PRIMER tarjeta no quede pegada al borde === */
+#productos .features.hscroll{
+  margin: 16px 0 0;                /* quita el margen negativo full-bleed */
+  padding: 8px 12px 12px;          /* separa del borde de la pantalla */
+}
+
+/* === Product card: estructura para que acciones queden al fondo === */
+.product-card{
+  display: flex;
+  flex-direction: column;
+  padding: 0;                      /* sin padding del .card base */
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+/* Imagen ya quedó OK: no la tocamos */
+
+/* Cuerpo con aire real (texto NO pegado al borde) */
+.product-body{
+  padding: 18px 18px 18px;         /* aire alrededor del contenido */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1 1 auto;                  /* ocupa el alto disponible del card */
+  min-height: 0;
+}
+
+/* Bullets un poco más sueltos */
+.product-bullets li{ margin-bottom: 6px; }
+
+/* Acciones pegadas al fondo del CARD siempre */
+.card-actions{
+  margin-top: auto;                /* se baja hasta el final del body */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.card-actions .btn.btn-primary{ width: 100%; }
