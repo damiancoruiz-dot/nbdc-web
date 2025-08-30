@@ -403,3 +403,15 @@ a{ color:inherit; text-decoration:none; }
   gap: 12px;
 }
 .card-actions .btn.btn-primary{ width: 100%; }
+/* === Ajuste de espaciado en cuerpo de productos === */
+.product-body {
+  padding: 22px 20px 20px;   /* más aire arriba y a los lados */
+  display: flex;
+  flex-direction: column;
+  gap: 14px;                 /* más espacio entre bloques */
+}
+
+/* Espacio extra debajo de la fila del logo + laboratorio */
+.brand-row {
+  margin-bottom: 12px;       /* separa logo de título */
+}
