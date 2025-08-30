@@ -1,22 +1,25 @@
 // src/App.jsx
+import SplashIntro from "./components/SplashIntro";
+
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Quote from "./components/Quote";
 import Nosotros from "./components/Nosotros";
 import Productos from "./pages/Productos";
 import Contacto from "./components/Contacto";
-import FabWhatsApp from "./components/FabWhatsApp"; // opcional
+import FabWhatsApp from "./components/FabWhatsApp";
 
 export default function App() {
   return (
     <>
+      <SplashIntro />   {/* cortinilla al cargar */}
       <Navbar />
       <Hero />
       <Quote />
       <Nosotros />
-      <Productos />   {/* LabInfo se renderiza DENTRO de Productos.jsx */}
+      <Productos />     {/* LabInfo vive dentro de Productos.jsx */}
       <Contacto />
-      <FabWhatsApp /> {/* opcional */}
+      <FabWhatsApp />   {/* botón flotante */}
       <footer
         style={{
           textAlign: "center",

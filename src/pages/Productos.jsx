@@ -2,7 +2,7 @@
 import { useRef } from "react";
 import { products } from "../data/products";
 import ProductCard from "../components/ProductCard";
-import LabInfo from "../components/LabInfo";   // 👈 aquí
+import LabInfo from "../components/LabInfo";
 
 export default function Productos() {
   const railRef = useRef(null);
@@ -23,7 +23,7 @@ export default function Productos() {
           <p className="lead">Portafolio disponible a través de NBDC como distribuidor.</p>
 
           <div ref={railRef} className="features hscroll">
-            {products.map(p => (
+            {products.map((p) => (
               <ProductCard key={p.id} p={p} />
             ))}
           </div>
@@ -40,7 +40,7 @@ export default function Productos() {
         </div>
       </section>
 
-      {/* 👇 Solo UNA VEZ, fuera del carrusel */}
+      {/* 👇 SOLO UNA VEZ */}
       <LabInfo />
     </>
   );
