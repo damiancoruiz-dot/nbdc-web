@@ -2,7 +2,7 @@
 import { useRef } from "react";
 import { products } from "../data/products";
 import ProductCard from "../components/ProductCard";
-import LabInfo from "../components/LabInfo"; // 👈 vuelve a estar presente
+import LabInfo from "../components/LabInfo";   // 👈 aquí
 
 export default function Productos() {
   const railRef = useRef(null);
@@ -17,46 +17,30 @@ export default function Productos() {
 
   return (
     <>
-      {/* Fondo suave + sin sombras (lo haremos en CSS) */}
-      <section id="productos" className="section section-products">
+      <section id="productos" className="section">
         <div className="container">
-          <h2 className="h2" style={{ marginBottom: 8 }}>
-            Encuentra el producto ideal para ti
-          </h2>
+          <h2 className="h2" style={{ marginBottom: 8 }}>Productos</h2>
           <p className="lead">Portafolio disponible a través de NBDC como distribuidor.</p>
 
-          {/* Carrusel horizontal */}
-          <div ref={railRef} className="features hscroll reveal">
-            {products.map((p) => (
+          <div ref={railRef} className="features hscroll">
+            {products.map(p => (
               <ProductCard key={p.id} p={p} />
             ))}
           </div>
 
-          {/* Flechas debajo */}
           <div className="scroller-controls">
-            <button
-              className="scroller-btn"
-              onClick={() => scrollByCards(-1)}
-              aria-label="Anterior"
-            >
-              ‹
-            </button>
-            <button
-              className="scroller-btn"
-              onClick={() => scrollByCards(1)}
-              aria-label="Siguiente"
-            >
-              ›
-            </button>
+            <button className="scroller-btn" onClick={() => scrollByCards(-1)} aria-label="Anterior">‹</button>
+            <button className="scroller-btn" onClick={() => scrollByCards(1)} aria-label="Siguiente">›</button>
           </div>
 
           <p className="footnote">
-            * Información de presentaciones basada en materiales del fabricante. Venta responsable y sujeta a validación. No constituye consejo médico.
+            * Información de presentaciones basada en materiales del fabricante. Venta responsable y sujeta a validación.
+            No constituye consejo médico; consultar a un profesional de la salud.
           </p>
         </div>
       </section>
 
-      {/* 👇 Sección de laboratorio (Xentra Pharma) vuelve a aparecer aquí */}
+      {/* 👇 Solo UNA VEZ, fuera del carrusel */}
       <LabInfo />
     </>
   );
