@@ -4,7 +4,6 @@
 *::after { box-sizing: border-box; }
 
 html, body { height: 100%; }
-
 html { scroll-behavior: smooth; }             /* scroll suave global */
 
 body{
@@ -190,25 +189,38 @@ a{ color:inherit; text-decoration:none; }
 .scroller-btn:hover{ transform:translateY(-1px); }
 .scroller-btn:disabled{ opacity:.4; cursor:default; transform:none; }
 
-/* ========= PRODUCTOS (full-bleed + hover tarjeta + botones parejos) ========= */
+/* ========= PRODUCTOS (full-bleed + botones parejos) ========= */
 .product-card{
   background:#fff;
   border:1px solid var(--line);
   border-radius:22px;
   overflow:hidden;               /* para que la imagen respete los bordes */
-  transition:transform .25s ease, border-color .25s ease;
-  /* en carrusel: width lo dicta .features.hscroll .card */
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
   scroll-margin-top: 96px;       /* llega debajo del navbar al anclar */
 }
 @media (hover:hover){
-  .product-card:hover{ transform:scale(1.03); border-color:rgba(0,0,0,.06); }
+  .product-card:hover{ transform:translateY(-3px); box-shadow:0 16px 36px rgba(9, 30, 66, .14); border-color:rgba(0,0,0,.06); }
 }
 
+/* Imagen full-bleed arriba y centrada */
 .product-hero{
-  position:relative; width:100%; aspect-ratio:16/9; overflow:hidden;
-  border-top-left-radius:inherit; border-top-right-radius:inherit;
+  width:100%;
+  aspect-ratio:16/9;
+  border-radius:22px 22px 0 0;
+  overflow:hidden;
 }
-.product-hero img{ width:100%; height:100%; object-fit:cover; }
+.product-hero img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  transform:translateZ(0);
+  transition: transform .30s ease;
+}
+@media (hover:hover){
+  .product-card:hover .product-hero img { transform: scale(1.03); }
+}
 
 /* cuerpo y bloques */
 .product-body{ padding:16px; display:flex; flex-direction:column; gap:10px; }
@@ -217,17 +229,17 @@ a{ color:inherit; text-decoration:none; }
 .product-bullets{ margin:0; padding-left:18px; font-size:13px; color:var(--ink-700); }
 .product-variants{ margin-top:6px; }
 .variants-label{ font-size:12px; font-weight:600; margin-bottom:4px; color:var(--ink-700); }
-
 .brand-row{ display:flex; align-items:center; gap:8px; margin-bottom:6px; }
 .brand-logo{ max-height:26px; }
 .brand-lab{ font-size:13px; font-weight:600; color:var(--ink-500); }
 
-/* Acciones alineadas abajo y en columna (PDF sobre Cotizar) */
+/* Acciones SIEMPRE al fondo, una debajo de la otra (PDF arriba, Cotizar abajo) */
 .card-actions{
   margin-top:auto;
   display:flex;
   flex-direction:column;
   gap:10px;
+  align-items:stretch;
 }
 
 /* ========= PULSE (cuando vienes desde el Hero) ========= */
@@ -270,124 +282,20 @@ a{ color:inherit; text-decoration:none; }
 .tile-body{ margin:0; color:var(--ink-700); }
 .tile-cta{ margin-top:auto; font-weight:700; color:var(--brand-600); }
 
-/* ========= REVEAL helper (si lo usas con IO) ========= */
-.reveal{ opacity:0; transform:translateY(18px); transition:opacity .45s ease, transform .45s ease; }
-.reveal.in{ opacity:1; transform:none; }
-/* ==== FIX reveal: visibles por defecto ==== */
-.reveal { 
-  opacity: 1; 
-  transform: none; 
-}
+/* ========= REVEAL (animación al hacer scroll) ========= */
+.reveal { opacity: 1; transform: none; }
+.reveal.pending { opacity: 0; transform: translateY(18px); transition: opacity .45s ease, transform .45s ease; }
+.reveal.in { opacity: 1; transform: none; }
 
-.reveal.pending {                 /* solo oculto si explícitamente está 'pending' */
-  opacity: 0; 
-  transform: translateY(18px); 
-  transition: opacity .45s ease, transform .45s ease;
-}
-
-.reveal.in {                      /* cuando entre a viewport */
-  opacity: 1; 
-  transform: none; 
-}
-/* === UNIFICAR TARJETAS (Productos + Nosotros) === */
-.card,
-.image-card,
-.product-card {
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-
-/* Hover uniforme para todas las “cards” visuales */
+/* ========= UNIFICAR HOVER EN TARJETAS ========= */
+.card, .image-card, .product-card { transition: transform .25s ease, box-shadow .25s ease; }
 @media (hover:hover) {
-  .card:hover,
-  .image-card:hover,
-  .product-card:hover {
+  .card:hover, .image-card:hover, .product-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 16px 36px rgba(9, 30, 66, .14);
   }
 }
 
-/* === PRODUCT CARDS: full-bleed arriba + layout estable === */
-.product-card {
-  display: flex;
-  flex-direction: column;
-  border-radius: 22px;
-  overflow: hidden;                 /* recorta imagen con el mismo radio */
-  background: #fff;
-}
-
-/* Contenedor de imagen: full-bleed con bordes redondeados superiores */
-.product-hero{
-  height: clamp(180px, 28vw, 260px); /* alto consistente en todas */
-  margin: -16px -16px 12px;          /* “saca” la imagen a los bordes */
-  border-radius: 22px 22px 0 0;      /* respeta el radio superior */
-  overflow: hidden;
-}
-
-/* Imagen: ocupa todo y hace zoom sutil al hover de la tarjeta */
-.product-hero img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;                 /* se recorta para llenar */
-  display: block;
-  transform: translateZ(0);
-  transition: transform .30s ease;
-}
-@media (hover:hover){
-  .product-card:hover .product-hero img{ transform: scale(1.03); }
-}
-
-/* Cuerpo: columna y empuja acciones al fondo */
-.product-body{
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  flex: 1 1 auto;                   /* ocupa la altura disponible */
-  min-height: 0;
-}
-
-/* Acciones SIEMPRE al fondo, una debajo de la otra */
-.card-actions{
-  margin-top: auto;                 /* se va al fondo de la tarjeta */
-  display: flex;
-  flex-direction: column;           /* PDF arriba, Cotizar abajo */
-  gap: 10px;
-  align-items: stretch;
-}
-
-/* Botón secundario (PDF) – estilo limpio */
-.btn-secondary{
-  background: #fff;
-  color: var(--brand-600);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 12px 14px;
-  font-weight: 700;
-}
-.btn-secondary:hover{ filter: brightness(.98); }
-
-/* Botón primario (Cotización) ocupa todo el ancho */
-.card-actions .btn.btn-primary{
-  width: 100%;
-}
-
-/* Presentaciones (pills) – mismas distancias debajo de la lista */
-.product-variants{ margin-top: 6px; }
-
-/* === NOSOTROS: hacer que sus “image-card” coincidan en hover === */
-.image-card{
-  border-radius: 22px;
-  overflow: hidden;                 /* asegura recorte y bordes */
-}
-
-/* === REVEAL: visibles por defecto, solo ocúltalos si llevan .pending === */
-.reveal{ opacity: 1; transform: none; }
-.reveal.pending{
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity .45s ease, transform .45s ease;
-}
-.reveal.in{ opacity: 1; transform: none; }
 /* ===== Cortinilla (Splash) ===== */
 .no-scroll { overflow: hidden; }
 
@@ -406,30 +314,10 @@ a{ color:inherit; text-decoration:none; }
   transition: opacity .45s ease, transform .45s ease;
   padding-bottom: env(safe-area-inset-bottom); /* evita “hoyo” en notch */
 }
-
-.splash--hide{
-  opacity: 0;
-  transform: scale(.98);
-}
-
+.splash--hide{ opacity: 0; transform: scale(.98); }
 .splash__logo{
   width: min(46vw, 220px);
   height: auto;
   display: block;
   filter: drop-shadow(0 6px 26px rgba(0,0,0,.25));
-}
-/* Imagen de producto llena la parte superior de la tarjeta */
-.product-hero {
-  width: 100%;
-  aspect-ratio: 16/9;
-  border-radius: 22px 22px 0 0; /* mismo radio que el card arriba */
-  overflow: hidden;             /* recorta fuera de bordes */
-}
-
-.product-hero img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;            /* llena el cuadro */
-  object-position: center;      /* siempre centrada */
-  display: block;
 }
