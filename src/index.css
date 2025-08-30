@@ -536,3 +536,22 @@ html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce){
   .splash{ display: none; }
 }
+/* === Aparición al hacer scroll === */
+.reveal{
+  opacity: 0;
+  transform: translateY(28px);
+  will-change: opacity, transform;
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal.visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* pequeño “stagger”: hijos se animan con un pelín de retraso */
+.reveal > * {
+  transition-delay: .05s;
+}
+.reveal.visible > * {
+  transition-delay: 0s; /* evitas cascadas raras */
+}

@@ -1,30 +1,38 @@
+// src/App.jsx
+import "./index.css";
+
+// Intro (cortinilla del logo)
 import SplashIntro from "./components/SplashIntro";
 
-export default function App() {
-  return (
-    <>
-      <SplashIntro />
-      {/* ...lo que ya tienes (Navbar, Hero, etc.) */}
-    </>
-  );
-}
-
+// Secciones
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import Quote from "./components/Quote";         // 👈 nuevo
+import Quote from "./components/Quote";
 import Nosotros from "./components/Nosotros";
 import Productos from "./pages/Productos";
 import Contacto from "./components/Contacto";
 
+// Animación de aparición al hacer scroll
+import useReveal from "./hooks/useReveal";
+
 export default function App() {
+  // Activa animación para cualquier elemento con className="reveal"
+  useReveal(); // usa el selector por defecto ".reveal"
+
   return (
     <>
+      <SplashIntro />
+
       <Navbar />
       <Hero />
-      <Quote />                                  {/* 👈 aquí va el bloque destacado */}
-      <Nosotros />
-      <Productos />
-      <Contacto />
+
+      <main>
+        <Quote />
+        <Nosotros />
+        <Productos />
+        <Contacto />
+      </main>
+
       <footer
         style={{
           textAlign: "center",

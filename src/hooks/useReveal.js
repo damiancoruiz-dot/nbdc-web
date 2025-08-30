@@ -1,30 +1,44 @@
 // src/hooks/useReveal.js
 import { useEffect } from "react";
 
-export default function useReveal(selector = ".reveal", rootMargin = "0px 0px -10% 0px") {
+/**
+ * Observa elementos con la clase .reveal y les añade .visible
+ * cuando entran al viewport, disparando la animación CSS.
+ *
+ * @param {string} selector - Qué observar (default: ".reveal")
+ * @param {IntersectionObserverInit} opts - opciones del IO
+ */
+export default function useReveal(
+  selector = ".reveal",
+  opts = { root: null, rootMargin: "0px 0px -10% 0px", threshold: 0.15 }
+) {
   useEffect(() => {
-    const nodes = Array.from(document.querySelectorAll(selector));
-    if (!nodes.length) return;
+    if (typeof window === "undefined") return;
 
-    // Pequeño "stagger" para que entren escalonadas
-    nodes.forEach((el, i) => {
-      el.style.transitionDelay = `${(i % 6) * 60}ms`;
-    });
+    const els = Array.from(document.querySelectorAll(selector));
+    if (!els.length) return;
 
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("is-visible");
-            // Una vez visible, ya no la observamos (mejor perf)
-            obs.unobserve(e.target);
-          }
-        });
-      },
-      { rootMargin, threshold: 0.08 }
-    );
+    // Ya visibles si están en escena al cargar (evita parpadeo)
+    const prime = () => {
+      els.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        if (rect.top < vh * 0.9) el.classList.add("visible");
+      });
+    };
+    requestAnimationFrame(prime);
 
-    nodes.forEach((el) => obs.observe(el));
-    return () => obs.disconnect();
-  }, [selector, rootMargin]);
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          io.unobserve(entry.target);
+        }
+      });
+    }, opts);
+
+    els.forEach((el) => io.observe(el));
+
+    return () => io.disconnect();
+  }, [selector, opts]);
 }
