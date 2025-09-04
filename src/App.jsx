@@ -3,7 +3,6 @@ import WhatsAppFab from "./components/WhatsAppFab";
 export default function App() {
   return (
     <>
-      {/* Tu contenido habitual */}
       <Navbar />
       <Hero />
       <Quote />
@@ -11,7 +10,6 @@ export default function App() {
       <Productos />
       <Contacto />
 
-      {/* Footer */}
       <footer
         style={{
           textAlign: "center",
@@ -24,7 +22,6 @@ export default function App() {
         © {new Date().getFullYear()} NBDC | Nationwide Bio Distribution Center — Envíos a todo México
       </footer>
 
-      {/* Botón flotante */}
       <WhatsAppFab />
     </>
   );

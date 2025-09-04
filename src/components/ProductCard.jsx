@@ -1,4 +1,3 @@
-// src/components/ProductCard.jsx
 import React, { useState } from "react";
 
 const WA_NUMBER = "524428781486";
@@ -12,28 +11,18 @@ export default function ProductCard({ p }) {
   const [activeVar, setActiveVar] = useState(p?.variants?.[0] || null);
 
   return (
-    <article
-      id={`prod-${p.id}`}
-      data-id={p.id}
-      className="card product-card"
-    >
-      {/* Imagen full-bleed arriba */}
+    <article id={`prod-${p.id}`} data-id={p.id} className="card product-card">
       {p.image && (
         <div className="product-hero">
           <img src={p.image} alt={p.name} loading="lazy" />
         </div>
       )}
 
-      {/* CUERPO con padding controlado por .product-body */}
       <div className="product-body">
         {(p.brandLogo || p.lab) && (
           <div className="brand-row">
             {p.brandLogo && (
-              <img
-                className="brand-logo"
-                src={p.brandLogo}
-                alt={`${p.lab || "Marca"} logo`}
-              />
+              <img className="brand-logo" src={p.brandLogo} alt={`${p.lab || "Marca"} logo`} />
             )}
             {p.lab && <span className="brand-lab">{p.lab}</span>}
           </div>
@@ -44,9 +33,7 @@ export default function ProductCard({ p }) {
 
         {Array.isArray(p.bullets) && p.bullets.length > 0 && (
           <ul className="product-bullets">
-            {p.bullets.map((b) => (
-              <li key={b}>{b}</li>
-            ))}
+            {p.bullets.map((b) => <li key={b}>{b}</li>)}
           </ul>
         )}
 
@@ -68,24 +55,13 @@ export default function ProductCard({ p }) {
           </div>
         )}
 
-        {/* Acciones SIEMPRE al fondo (PDF arriba, Cotizar abajo) */}
         <div className="card-actions">
           {p.datasheet && (
-            <a
-              className="btn btn-secondary"
-              href={p.datasheet}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a className="btn btn-secondary" href={p.datasheet} target="_blank" rel="noopener noreferrer">
               Ficha técnica (PDF)
             </a>
           )}
-          <a
-            href={buildWaLink(p, activeVar)}
-            className="btn btn-primary"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={buildWaLink(p, activeVar)} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
             Solicitar cotización
           </a>
         </div>

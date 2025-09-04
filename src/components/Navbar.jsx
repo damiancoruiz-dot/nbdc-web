@@ -1,4 +1,3 @@
-// src/components/Navbar.jsx
 import { useEffect, useState } from "react";
 
 export default function Navbar() {
@@ -17,19 +16,16 @@ export default function Navbar() {
     <>
       <header className="nbdc-header">
         <div className="nbdc-wrap">
-          {/* Logo */}
           <a href="#inicio" className="nbdc-brand" aria-label="Ir al inicio">
             <img src="/brand/nbdc-logo.svg" alt="NBDC" className="nbdc-logo" />
           </a>
 
-          {/* Links (desktop) */}
           <nav className="nbdc-links" aria-label="Principal">
             <a href="#nosotros">Nosotros</a>
             <a href="#productos">Productos</a>
             <a href="#contacto">Contacto</a>
           </nav>
 
-          {/* Burger (móvil) */}
           <button
             className="nbdc-burger"
             aria-label={open ? "Cerrar menú" : "Abrir menú"}
@@ -52,7 +48,6 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Overlay + Drawer */}
       <div className={`nbdc-overlay ${open ? "show" : ""}`} onClick={close} />
       <aside
         id="nbdc-drawer"
@@ -73,7 +68,6 @@ export default function Navbar() {
         </nav>
       </aside>
 
-      {/* Estilos: grid en desktop (links centrados), flex en móvil (burger derecha) */}
       <style>{`
         .nbdc-header {
           position: sticky; top: 0; z-index: 50;
@@ -102,7 +96,6 @@ export default function Navbar() {
           border-radius: 10px; padding: 0; margin: 0; cursor: pointer;
         }
 
-        /* Overlay / Drawer */
         .nbdc-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.45); opacity: 0; pointer-events: none; transition: opacity .25s ease; z-index: 109; }
         .nbdc-overlay.show { opacity: 1; pointer-events: all; }
         .nbdc-drawer {
@@ -117,15 +110,12 @@ export default function Navbar() {
         .nbdc-drawer-links a { display: block; padding: 14px 12px; border-radius: 10px; color: #0b213a; font-weight: 600; text-decoration: none; }
         .nbdc-drawer-links a:hover { background: #f3f6fb; }
 
-        /* 📱 Móvil: cambiamos el layout de la barra a FLEX para empujar el burger a la derecha */
         @media (max-width: 900px) {
           .nbdc-wrap { display: flex; align-items: center; justify-content: space-between; }
-          .nbdc-links { display: none; }         /* ocultamos los links */
-          .nbdc-burger { display: inline-flex; } /* mostramos el burger a la derecha */
+          .nbdc-links { display: none; }
+          .nbdc-burger { display: inline-flex; }
         }
-        @media (min-width: 901px) {
-          .nbdc-burger { display: none; }
-        }
+        @media (min-width: 901px) { .nbdc-burger { display: none; } }
       `}</style>
     </>
   );
