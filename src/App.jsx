@@ -1,4 +1,11 @@
-import WhatsAppFab from "./components/WhatsAppFab";
+import Navbar from "./components/Navbar.jsx";
+import Hero from "./components/Hero.jsx";
+import Quote from "./components/Quote.jsx";
+import Nosotros from "./components/Nosotros.jsx";
+import Productos from "./components/Productos.jsx";
+import Contacto from "./components/Contacto.jsx";
+import WhatsAppFab from "./components/WhatsAppFab.jsx"; // <— nombre y ruta exactos
+import "./index.css";
 
 export default function App() {
   return (
