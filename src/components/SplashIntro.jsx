@@ -2,8 +2,6 @@
 import { useEffect, useState } from "react";
 
 export default function SplashIntro() {
-  // hide => empieza el fade-out
-  // gone => se desmonta por completo (no se renderiza)
   const [hide, setHide] = useState(false);
   const [gone, setGone] = useState(false);
 
@@ -11,14 +9,14 @@ export default function SplashIntro() {
     const body = document.body;
     body.classList.add("no-scroll");
 
-    // Tiempo visible antes de desaparecer
-    const t1 = setTimeout(() => setHide(true), 900);
+    // ⏱ Mantiene visible antes del fade-out
+    const t1 = setTimeout(() => setHide(true), 1100);
 
-    // Quita el bloqueo de scroll y desmonta el overlay
+    // ⏱ Tiempo suficiente para completar fade + zoom antes de desmontar
     const t2 = setTimeout(() => {
       body.classList.remove("no-scroll");
       setGone(true);
-    }, 1400); // un poco después del inicio del fade
+    }, 1900);
 
     return () => {
       clearTimeout(t1);
@@ -31,23 +29,29 @@ export default function SplashIntro() {
 
   return (
     <div
-      // todo inline para no depender del CSS externo
       style={{
         position: "fixed",
         inset: 0,
         width: "100%",
         height: "100dvh",
         minHeight: "100svh",
-        background: "#0a66c2",
+        // Fondo azul con alpha para que el blur sea visible
+        background: "rgba(10, 102, 194, 0.85)",
         display: "grid",
         placeItems: "center",
         zIndex: 9999,
-        // transición y estados
+
+        // Estado/animación
         opacity: hide ? 0 : 1,
-        transform: hide ? "scale(.98)" : "none",
-        transition: "opacity .45s ease, transform .45s ease",
+        transform: hide ? "scale(1.06)" : "scale(1)",
+
+        // 💫 Blur del contenido subyacente (Safari + otros)
+        backdropFilter: "blur(6px) saturate(120%)",
+        WebkitBackdropFilter: "blur(6px) saturate(120%)",
+
+        // Transición más cinematográfica
+        transition: "opacity .7s ease, transform .7s ease, backdrop-filter .7s ease",
         paddingBottom: "env(safe-area-inset-bottom)",
-        // importante: mientras se desvanece, que no bloquee clics
         pointerEvents: hide ? "none" : "auto",
       }}
       aria-hidden={hide}
@@ -59,6 +63,9 @@ export default function SplashIntro() {
           width: "min(46vw, 220px)",
           height: "auto",
           filter: "drop-shadow(0 6px 26px rgba(0,0,0,.25))",
+          // Zoom-out sutil del logo
+          transition: "transform .7s ease",
+          transform: hide ? "scale(1.1)" : "scale(1)",
         }}
       />
     </div>
