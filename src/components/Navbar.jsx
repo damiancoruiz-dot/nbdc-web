@@ -8,7 +8,9 @@ export default function Navbar() {
     if (open) {
       const prev = document.body.style.overflow;
       document.body.style.overflow = "hidden";
-      return () => { document.body.style.overflow = prev; };
+      return () => {
+        document.body.style.overflow = prev;
+      };
     }
   }, [open]);
 
@@ -34,14 +36,29 @@ export default function Navbar() {
             onClick={() => setOpen(!open)}
           >
             {open ? (
-              <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M6 6 L18 18 M18 6 L6 18" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
+              <svg
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M6 6 L18 18 M18 6 L6 18"
+                  stroke="#fff"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                />
               </svg>
             ) : (
-              <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="6" width="18" height="2" rx="1" fill="#fff" />
-                <rect x="3" y="11" width="18" height="2" rx="1" fill="#fff" />
-                <rect x="3" y="16" width="18" height="2" rx="1" fill="#fff" />
+              <svg
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <rect x="3" y="6" width="18" height="2.5" rx="1" fill="#fff" />
+                <rect x="3" y="11" width="18" height="2.5" rx="1" fill="#fff" />
+                <rect x="3" y="16" width="18" height="2.5" rx="1" fill="#fff" />
               </svg>
             )}
           </button>
@@ -58,7 +75,9 @@ export default function Navbar() {
       >
         <div className="nbdc-drawer-head">
           <strong>Menú</strong>
-          <button className="nbdc-close" aria-label="Cerrar" onClick={close}>×</button>
+          <button className="nbdc-close" aria-label="Cerrar" onClick={close}>
+            ×
+          </button>
         </div>
         <nav className="nbdc-drawer-links" onClick={close}>
           <a href="#inicio">Inicio</a>
@@ -92,8 +111,11 @@ export default function Navbar() {
         .nbdc-links a:hover { color: #fff; background: rgba(255,255,255,.07); }
 
         .nbdc-burger {
-          display: none; width: 48px; height: 48px; border: 0; background: transparent;
-          border-radius: 10px; padding: 0; margin: 0; cursor: pointer;
+          display: none;
+          width: 60px; height: 60px;
+          border: 0; background: transparent;
+          border-radius: 12px; padding: 0; margin: 0;
+          cursor: pointer;
         }
 
         .nbdc-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.45); opacity: 0; pointer-events: none; transition: opacity .25s ease; z-index: 109; }
