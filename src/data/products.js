@@ -10,7 +10,11 @@ export const products = [
     variants: ["1.5 mg", "3.5 mg", "5.5 mg", "7.5 mg", "9.5 mg"],
     image: "/images/products/xentra-s3-pen.webp",
     variantImages: {
-      // "1.5 mg": "/images/products/xentra-s3-pen-1_5.webp",
+      "1.5 mg": "/images/products/xentra-s3-pen-1_5.webp",
+      "3.5 mg": "/images/products/xentra-s3-pen-3_5.webp",
+      "5.5 mg": "/images/products/xentra-s3-pen-5_5.webp",
+      "7.5 mg": "/images/products/xentra-s3-pen-7_5.webp",
+      "9.5 mg": "/images/products/xentra-s3-pen-9_5.webp"
     },
     includes: [
       "Pluma/jeringa multidosis",
@@ -18,7 +22,7 @@ export const products = [
       "Torundas con alcohol",
       "Guía rápida"
     ],
-    datasheet: "/docs/xentra-s3-pen.pdf", // ✅ ahora ya apunta al PDF
+    datasheet: "/docs/xentra-s3-pen.pdf",
     cta: {
       label: "Solicitar cotización",
       href: "https://wa.me/524428781486?text=Hola%2C%20me%20interesa%20Xentra%20S3%20Pluma%20multidosis"
@@ -33,8 +37,9 @@ export const products = [
     bullets: ["Esterilidad garantizada", "Uso SUB-C"],
     variants: ["5 mg/1 mL"],
     image: "/images/products/xentra-s3-vial.webp",
+    // Si llegas a tener variantes en vial, puedes agregar variantImages aquí también
     includes: ["Frasco vial 10 mL", "Guía de uso"],
-    datasheet: "/docs/xentra-s3-vial.pdf", // ✅
+    datasheet: "/docs/xentra-s3-vial.pdf",
     cta: {
       label: "Solicitar cotización",
       href: "https://wa.me/524428781486?text=Hola%2C%20me%20interesa%20Xentra%20S3%20Vial%2010mL"
@@ -49,8 +54,16 @@ export const products = [
     bullets: ["Uso SUB-C", "Guía de dosificación"],
     variants: ["10 mg", "20 mg", "30 mg", "40 mg", "50 mg", "60 mg"],
     image: "/images/products/xentra-t3-pen.webp",
+    variantImages: {
+      "10 mg": "/images/products/xentra-t3-pen-10.webp",
+      "20 mg": "/images/products/xentra-t3-pen-20.webp",
+      "30 mg": "/images/products/xentra-t3-pen-30.webp",
+      "40 mg": "/images/products/xentra-t3-pen-40.webp",
+      "50 mg": "/images/products/xentra-t3-pen-50.webp",
+      "60 mg": "/images/products/xentra-t3-pen-60.webp"
+    },
     includes: ["Pluma/jeringa multidosis", "Guía rápida"],
-    datasheet: "/docs/xentra-t3-pen.pdf", // ✅
+    datasheet: "/docs/xentra-t3-pen.pdf",
     cta: {
       label: "Solicitar cotización",
       href: "https://wa.me/524428781486?text=Hola%2C%20me%20interesa%20Xentra%20T3%20Pluma%20multidosis"
@@ -66,7 +79,7 @@ export const products = [
     variants: ["20 mg/1 mL"],
     image: "/images/products/xentra-t3-vial.webp",
     includes: ["Frasco vial 10 mL", "Guía de uso"],
-    datasheet: "/docs/xentra-t3-inyeccion.pdf", // ✅
+    datasheet: "/docs/xentra-t3-inyeccion.pdf",
     cta: {
       label: "Solicitar cotización",
       href: "https://wa.me/524428781486?text=Hola%2C%20me%20interesa%20Xentra%20T3%20Vial%2010mL"

@@ -10,11 +10,15 @@ function buildWaLink(p, variantLabel) {
 export default function ProductCard({ p }) {
   const [activeVar, setActiveVar] = useState(p?.variants?.[0] || null);
 
+  // 🔥 si hay imagen para la variante seleccionada, la usamos, si no la genérica
+  const activeImage =
+    (p.variantImages && activeVar && p.variantImages[activeVar]) || p.image;
+
   return (
     <article id={`prod-${p.id}`} data-id={p.id} className="card product-card">
-      {p.image && (
+      {activeImage && (
         <div className="product-hero">
-          <img src={p.image} alt={p.name} loading="lazy" />
+          <img src={activeImage} alt={`${p.name} ${activeVar || ""}`} loading="lazy" />
         </div>
       )}
 
