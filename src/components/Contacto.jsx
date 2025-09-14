@@ -13,6 +13,24 @@ export default function Contacto() {
   });
   const [fade, setFade] = useState(false);
 
+  const [iframeHeight, setIframeHeight] = useState(450);
+
+  // Ajusta altura del iframe según ancho de pantalla
+  useEffect(() => {
+    function updateHeight() {
+      if (window.innerWidth <= 600) {
+        setIframeHeight(300);
+      } else if (window.innerWidth <= 1024) {
+        setIframeHeight(350);
+      } else {
+        setIframeHeight(450);
+      }
+    }
+    updateHeight();
+    window.addEventListener("resize", updateHeight);
+    return () => window.removeEventListener("resize", updateHeight);
+  }, []);
+
   async function onSubmit(e) {
     e.preventDefault();
     setStatus({ ok: false, error: "", sending: true });
@@ -33,11 +51,7 @@ export default function Contacto() {
       if (res.ok) {
         setStatus({ ok: true, error: "", sending: false });
         form.reset();
-
-        // Activa fade out después de 3s
         setTimeout(() => setFade(true), 3000);
-
-        // Oculta mensaje tras 5s
         setTimeout(() => {
           setStatus((prev) => ({ ...prev, ok: false }));
           setFade(false);
@@ -126,11 +140,46 @@ export default function Contacto() {
           WhatsApp ventas
         </a>
       </div>
+
+      {/* --- Mapa de Google Maps responsive dinámico --- */}
+      <div
+        style={{
+          maxWidth: 800,
+          margin: "48px auto 0 auto",
+          borderRadius: 12,
+          overflow: "hidden",
+          boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+        }}
+      >
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!4v1757876570883!6m8!1m7!1syWDSHXROGUdli7XC-E3Tjw!2m2!1d20.58163908974502!2d-100.3788123817937!3f289.32!4f-9.430000000000007!5f0.4000000000000002"
+          width="100%"
+          height={iframeHeight}
+          style={{ border: 0 }}
+          allowFullScreen=""
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
+        <div style={{ textAlign: "center", padding: 12, background: "#f9fbfc" }}>
+          <a
+            href="https://maps.google.com/?q=20.5816391,-100.3788124"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              textDecoration: "none",
+              color: "#0b6aa1",
+              fontWeight: "bold",
+            }}
+          >
+            Abrir en Google Maps
+          </a>
+        </div>
+      </div>
     </section>
   );
 }
 
-// --- estilos simples inline ---
+// --- estilos inline ---
 const inputStyle = {
   width: "100%",
   padding: "12px 14px",
