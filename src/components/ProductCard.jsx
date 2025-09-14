@@ -1,3 +1,4 @@
+// src/components/ProductCard.jsx
 import React, { useState } from "react";
 
 const WA_NUMBER = "524428781486";
@@ -10,15 +11,15 @@ function buildWaLink(p, variantLabel) {
 export default function ProductCard({ p }) {
   const [activeVar, setActiveVar] = useState(p?.variants?.[0] || null);
 
-  // 🔥 si hay imagen para la variante seleccionada, la usamos, si no la genérica
-  const activeImage =
-    (p.variantImages && activeVar && p.variantImages[activeVar]) || p.image;
+  // Cambia la imagen si existe variante específica
+  const currentImage =
+    (activeVar && p.variantImages?.[activeVar]) || p.image;
 
   return (
     <article id={`prod-${p.id}`} data-id={p.id} className="card product-card">
-      {activeImage && (
+      {currentImage && (
         <div className="product-hero">
-          <img src={activeImage} alt={`${p.name} ${activeVar || ""}`} loading="lazy" />
+          <img src={currentImage} alt={p.name} loading="lazy" />
         </div>
       )}
 
@@ -26,7 +27,11 @@ export default function ProductCard({ p }) {
         {(p.brandLogo || p.lab) && (
           <div className="brand-row">
             {p.brandLogo && (
-              <img className="brand-logo" src={p.brandLogo} alt={`${p.lab || "Marca"} logo`} />
+              <img
+                className="brand-logo"
+                src={p.brandLogo}
+                alt={`${p.lab || "Marca"} logo`}
+              />
             )}
             {p.lab && <span className="brand-lab">{p.lab}</span>}
           </div>
@@ -37,7 +42,9 @@ export default function ProductCard({ p }) {
 
         {Array.isArray(p.bullets) && p.bullets.length > 0 && (
           <ul className="product-bullets">
-            {p.bullets.map((b) => <li key={b}>{b}</li>)}
+            {p.bullets.map((b) => (
+              <li key={b}>{b}</li>
+            ))}
           </ul>
         )}
 
@@ -61,11 +68,21 @@ export default function ProductCard({ p }) {
 
         <div className="card-actions">
           {p.datasheet && (
-            <a className="btn btn-secondary" href={p.datasheet} target="_blank" rel="noopener noreferrer">
+            <a
+              className="btn btn-secondary"
+              href={p.datasheet}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Ficha técnica (PDF)
             </a>
           )}
-          <a href={buildWaLink(p, activeVar)} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
+          <a
+            href={buildWaLink(p, activeVar)}
+            className="btn btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Solicitar cotización
           </a>
         </div>
