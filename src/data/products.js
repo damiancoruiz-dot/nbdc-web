@@ -8,7 +8,7 @@ export const products = [
     short: "Pluma con dosificación semanal y micro-unidades.",
     bullets: ["Uso SUB-C", "Trazabilidad y guía de uso"],
     variants: ["1.5 mg", "3.5 mg", "5.5 mg", "7.5 mg", "9.5 mg"],
-    image: "/images/products/xentra-s3-pen.webp", // imagen genérica
+    image: "/images/products/xentra-s3-pen.webp",
     variantImages: {
       "1.5 mg": "/images/products/xentra-s3-pen-1_5.webp",
       "3.5 mg": "/images/products/xentra-s3-pen-3_5.webp",
@@ -52,7 +52,7 @@ export const products = [
     short: "Presentaciones escalables para dosificación semanal.",
     bullets: ["Uso SUB-C", "Guía de dosificación"],
     variants: ["10 mg", "20 mg", "30 mg", "40 mg", "50 mg", "60 mg"],
-    image: "/images/products/xentra-t3-pen.webp", // imagen genérica
+    image: "/images/products/xentra-t3-pen.webp",
     variantImages: {
       "10 mg": "/images/products/xentra-t3-pen-10.webp",
       "20 mg": "/images/products/xentra-t3-pen-20.webp",
@@ -78,7 +78,7 @@ export const products = [
     variants: ["20 mg/1 mL"],
     image: "/images/products/xentra-t3-vial.webp",
     includes: ["Frasco vial 10 mL", "Guía de uso"],
-    datasheet: "/docs/xentra-t3-inyeccion.pdf",
+    datasheet: "/docs/xentra-t3-vial.pdf",
     cta: {
       label: "Solicitar cotización",
       href: "https://wa.me/524428781486?text=Hola%2C%20me%20interesa%20Xentra%20T3%20Vial%2010mL"
