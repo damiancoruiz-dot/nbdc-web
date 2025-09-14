@@ -29,39 +29,25 @@ export default function Navbar() {
           </nav>
 
           <button
-            className="nbdc-burger"
-            aria-label={open ? "Cerrar menú" : "Abrir menú"}
-            aria-expanded={open}
-            aria-controls="nbdc-drawer"
-            onClick={() => setOpen(!open)}
-          >
-            {open ? (
-              <svg
-                width="36"
-                height="36"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  d="M6 6 L18 18 M18 6 L6 18"
-                  stroke="#fff"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                />
-              </svg>
-            ) : (
-              <svg
-                width="36"
-                height="36"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <rect x="3" y="6" width="18" height="2.5" rx="1" fill="#fff" />
-                <rect x="3" y="11" width="18" height="2.5" rx="1" fill="#fff" />
-                <rect x="3" y="16" width="18" height="2.5" rx="1" fill="#fff" />
-              </svg>
-            )}
-          </button>
+  className="nbdc-burger"
+  aria-label={open ? "Cerrar menú" : "Abrir menú"}
+  aria-expanded={open}
+  aria-controls="nbdc-drawer"
+  onClick={() => setOpen(!open)}
+>
+  {open ? (
+    <svg width="38" height="38" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M6 6 L18 18 M18 6 L6 18" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" />
+    </svg>
+  ) : (
+    <svg width="38" height="38" viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="3" y="6" width="18" height="2.5" rx="1" fill="#fff" />
+      <rect x="3" y="11" width="18" height="2.5" rx="1" fill="#fff" />
+      <rect x="3" y="16" width="18" height="2.5" rx="1" fill="#fff" />
+    </svg>
+  )}
+</button>
+
         </div>
       </header>
 
