@@ -1,5 +1,8 @@
 // src/data/products.js
 export const products = [
+  // ────────────────────────────────────────────────────────────────────────────
+  // EXISTENTES (con categoría añadida, sin cambiar nada más)
+  // ────────────────────────────────────────────────────────────────────────────
   {
     id: "xentra-s3-pen",
     lab: "Xentra Pharma",
@@ -26,7 +29,8 @@ export const products = [
     cta: {
       label: "Solicitar cotización",
       href: "https://wa.me/524428781486?text=Hola%2C%20me%20interesa%20Xentra%20S3%20Pluma%20multidosis"
-    }
+    },
+    category: "Control de peso"
   },
   {
     id: "xentra-s3-vial",
@@ -42,7 +46,8 @@ export const products = [
     cta: {
       label: "Solicitar cotización",
       href: "https://wa.me/524428781486?text=Hola%2C%20me%20interesa%20Xentra%20S3%20Vial%2010mL"
-    }
+    },
+    category: "Control de peso"
   },
   {
     id: "xentra-t3-pen",
@@ -66,7 +71,8 @@ export const products = [
     cta: {
       label: "Solicitar cotización",
       href: "https://wa.me/524428781486?text=Hola%2C%20me%20interesa%20Xentra%20T3%20Pluma%20multidosis"
-    }
+    },
+    category: "Control de peso"
   },
   {
     id: "xentra-t3-vial",
@@ -82,6 +88,126 @@ export const products = [
     cta: {
       label: "Solicitar cotización",
       href: "https://wa.me/524428781486?text=Hola%2C%20me%20interesa%20Xentra%20T3%20Vial%2010mL"
-    }
+    },
+    category: "Control de peso"
+  },
+
+  // ────────────────────────────────────────────────────────────────────────────
+  // NUEVOS (placeholders de imágenes/datasheets; ajusta cuando tengas assets)
+  // ────────────────────────────────────────────────────────────────────────────
+  {
+    id: "vestria",
+    lab: "—",
+    brandLogo: null,
+    name: "Vestria",
+    short:
+      "Acelera la curación de tejidos, reduce la inflamación y aporta organoprotección.",
+    bullets: [
+      "Soporte a reparación tisular",
+      "Modulación inflamatoria",
+      "Aplicaciones multidisciplinarias"
+    ],
+    variants: [],
+    image: "/images/products/vestria.jpg",
+    includes: [],
+    datasheet: "/docs/vestria.pdf",
+    cta: {
+      label: "Solicitar cotización",
+      href:
+        "https://wa.me/524428781486?text=Hola%2C%20me%20interesa%20Vestria"
+    },
+    category: "Regeneración y reparación"
+  },
+  {
+    id: "defendra",
+    lab: "—",
+    brandLogo: null,
+    name: "Defendra",
+    short:
+      "Péptido asociado con la reparación de tejidos y la cicatrización de heridas.",
+    bullets: [
+      "Cicatrización y reparación",
+      "Potencial uso dermatológico",
+      "Apoyo en protocolos regenerativos"
+    ],
+    variants: [],
+    image: "/images/products/defendra.jpg",
+    includes: [],
+    datasheet: "/docs/defendra.pdf",
+    cta: {
+      label: "Solicitar cotización",
+      href:
+        "https://wa.me/524428781486?text=Hola%2C%20me%20interesa%20Defendra"
+    },
+    category: "Regeneración y reparación"
+  },
+  {
+    id: "edadnad",
+    lab: "—",
+    brandLogo: null,
+    name: "EdadNAD",
+    short:
+      "Soporte a energía celular y reducción de estrés oxidativo vinculado al envejecimiento.",
+    bullets: [
+      "Cofactores celulares clave",
+      "Enfoque antioxidante",
+      "Bienestar y vitalidad"
+    ],
+    variants: [],
+    image: "/images/products/edadnad.jpg",
+    includes: [],
+    datasheet: "/docs/edadnad.pdf",
+    cta: {
+      label: "Solicitar cotización",
+      href:
+        "https://wa.me/524428781486?text=Hola%2C%20me%20interesa%20EdadNAD"
+    },
+    category: "Antienvejecimiento"
+  },
+  {
+    id: "slimyra",
+    lab: "—",
+    brandLogo: null,
+    name: "Slimyra",
+    short:
+      "Apoyo al metabolismo de grasas y control del apetito dentro de planes integrales.",
+    bullets: [
+      "Metabolismo y saciedad",
+      "Soporte a control de peso",
+      "Complemento a hábitos saludables"
+    ],
+    variants: [],
+    image: "/images/products/slimyra.jpg",
+    includes: [],
+    datasheet: "/docs/slimyra.pdf",
+    cta: {
+      label: "Solicitar cotización",
+      href:
+        "https://wa.me/524428781486?text=Hola%2C%20me%20interesa%20Slimyra"
+    },
+    category: "Control de peso"
+  },
+  {
+    id: "vidaboost",
+    lab: "—",
+    brandLogo: null,
+    name: "VidaBoost",
+    short:
+      "Complejo para energía diaria y bienestar general con micronutrientes clave.",
+    bullets: [
+      "Energía sostenida",
+      "Micronutrición esencial",
+      "Uso cotidiano"
+    ],
+    variants: [],
+    image: "/images/products/vidaboost.jpg",
+    includes: [],
+    datasheet: "/docs/vidaboost.pdf",
+    cta: {
+      label: "Solicitar cotización",
+      href:
+        "https://wa.me/524428781486?text=Hola%2C%20me%20interesa%20VidaBoost"
+    },
+    category: "Energía y bienestar"
   }
 ];
