@@ -63,3 +63,57 @@ body {
   padding: 15px 0;
   margin-top: 40px;
 }
+.product-grid {
+  display: grid;
+  gap: 18px;
+}
+
+@media (max-width: 767px) {
+  .product-grid { grid-template-columns: 1fr; }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .product-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.product-card { max-width: 360px; margin: 0 auto; }
+.product-grid {
+  display: grid;
+  gap: 18px;
+}
+
+@media (max-width: 767px) {
+  .product-grid { grid-template-columns: 1fr; }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .product-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.product-card {
+  max-width: 360px;
+  margin: 0 auto;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* Botones de categoría tipo chips */
+.chip.active {
+  background: var(--accent, #0ea5e9);
+  color: white !important;
+  border-color: transparent;
+}
+.chip:hover:not(.active) {
+  background: rgba(0,0,0,0.05);
+}
