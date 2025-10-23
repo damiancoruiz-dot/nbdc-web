@@ -117,3 +117,36 @@ body {
 .chip:hover:not(.active) {
   background: rgba(0,0,0,0.05);
 }
+.product-grid {
+  display: grid;
+  gap: 24px;
+  justify-items: stretch;
+  align-items: stretch;
+  margin-top: 24px;
+}
+
+@media (max-width: 767px) {
+  .product-grid { grid-template-columns: 1fr; }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .product-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Cada tarjeta ocupa su celda completa */
+.product-card {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  border: 1px solid #e5e5e5;
+  border-radius: 16px;
+  background: #fff;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+}
