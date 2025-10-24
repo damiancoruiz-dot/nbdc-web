@@ -496,23 +496,7 @@ a{ color:inherit; text-decoration:none; }
     grid-template-columns: 1fr !important;
   }
 }
-/* 🧩 Mejora visual: margen y proporción de imágenes */
-.product-hero {
-  padding: 12px;
-  background: #fff;
-  border-bottom: 1px solid var(--line);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-.product-hero img {
-  border-radius: 12px;
-  object-fit: contain;
-  width: 100%;
-  height: auto;
-  max-height: 220px;
-}
 /* 🧭 Centrar texto dentro de las tarjetas */
 .product-body {
   text-align: center;
