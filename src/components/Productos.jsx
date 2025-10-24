@@ -1,12 +1,12 @@
 // src/pages/Productos.jsx
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { products } from "../data/products";
 import ProductCard from "../components/ProductCard";
 import LabInfo from "../components/LabInfo";
 
 export default function Productos() {
-  const railRef = useRef(null);
   const [activeCat, setActiveCat] = useState("todos");
+  const [fade, setFade] = useState(false);
 
   const categories = [
     "todos",
@@ -23,12 +23,12 @@ export default function Productos() {
       ? products
       : products.filter((p) => p.category === activeCat);
 
-  const scrollByCards = (dir = 1) => {
-    const rail = railRef.current;
-    if (!rail) return;
-    const card = rail.querySelector(".card");
-    const w = card ? card.getBoundingClientRect().width : 320;
-    rail.scrollBy({ left: dir * (w + 18), behavior: "smooth" });
+  const handleCategory = (cat) => {
+    setFade(true);
+    setTimeout(() => {
+      setActiveCat(cat);
+      setFade(false);
+    }, 250); // duracion del fade
   };
 
   return (
@@ -49,39 +49,25 @@ export default function Productos() {
               <button
                 key={cat}
                 type="button"
-                onClick={() => setActiveCat(cat)}
-                className={`pill-btn ${
-                  activeCat === cat ? "is-active" : ""
-                }`}
+                onClick={() => handleCategory(cat)}
+                className={`pill-btn ${activeCat === cat ? "is-active" : ""}`}
               >
                 {cat}
               </button>
             ))}
           </div>
 
-          {/* LISTA DE PRODUCTOS */}
-          <div ref={railRef} className="features hscroll">
+          {/* GRID DE PRODUCTOS */}
+          <div
+            className={`product-grid ${fade ? "fade-out" : "fade-in"}`}
+            style={{
+              transition: "opacity 0.25s ease",
+              opacity: fade ? 0 : 1,
+            }}
+          >
             {filtered.map((p) => (
               <ProductCard key={p.id} p={p} />
             ))}
-          </div>
-
-          {/* CONTROLES DE SCROLL */}
-          <div className="scroller-controls">
-            <button
-              className="scroller-btn"
-              onClick={() => scrollByCards(-1)}
-              aria-label="Anterior"
-            >
-              ‹
-            </button>
-            <button
-              className="scroller-btn"
-              onClick={() => scrollByCards(1)}
-              aria-label="Siguiente"
-            >
-              ›
-            </button>
           </div>
 
           <p className="footnote">
