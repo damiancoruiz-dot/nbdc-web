@@ -15,7 +15,7 @@ export default function ProductCard({ p }) {
     (activeVar && p.variantImages?.[activeVar]) || p.image;
 
   return (
-    <article id={`prod-${p.id}`} data-id={p.id} className="card product-card">
+    <article id={`prod-${p.id}`} data-id={p.id} className="product-card">
       {currentImage && (
         <div className="product-hero">
           <img src={currentImage} alt={p.name} loading="lazy" />
