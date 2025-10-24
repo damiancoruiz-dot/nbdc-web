@@ -130,17 +130,6 @@ export default function Contacto() {
         </form>
       </div>
 
-      <div style={{ textAlign: "center", marginTop: 24 }}>
-        <a
-          href={waLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={btnWhatsApp}
-        >
-          WhatsApp ventas
-        </a>
-      </div>
-
       {/* --- Mapa de Google Maps responsive dinámico --- */}
       <div
         style={{

@@ -55,6 +55,8 @@ export const products = [
   },
   {
     id: "slimyra",
+    lab: "Xentra Pharma",
+    brandLogo: "/brand/xentra-logo.png",
     name: "Slimyra",
     short: "Promueve la pérdida de grasa estimulando la lipólisis y aumentando el metabolismo.",
     image: "/images/products/slimyra.webp",
@@ -62,6 +64,8 @@ export const products = [
   },
   {
     id: "motzvida",
+    lab: "Xentra Pharma",
+    brandLogo: "/brand/xentra-logo.png",
     name: "Motzvida",
     short: "Hormona peptídica que regula el metabolismo y mejora la sensibilidad a la insulina.",
     image: "/images/products/motzvida.webp",
@@ -69,6 +73,8 @@ export const products = [
   },
   {
     id: "tesavida",
+    lab: "Xentra Pharma",
+    brandLogo: "/brand/xentra-logo.png",
     name: "Tesavida",
     short: "Análogo de la hormona liberadora de GH para reducir grasa abdominal.",
     image: "/images/products/tesavida.webp",
@@ -78,6 +84,8 @@ export const products = [
   // REGENERACIÓN Y REPARACIÓN
   {
     id: "vestria",
+    lab: "Xentra Pharma",
+    brandLogo: "/brand/xentra-logo.png",
     name: "Vestria",
     short: "Acelera la curación de tejidos, reduce la inflamación y proporciona organoprotección.",
     image: "/images/products/vestria.webp",
@@ -85,6 +93,8 @@ export const products = [
   },
   {
     id: "vestria-defendra",
+    lab: "Xentra Pharma",
+    brandLogo: "/brand/xentra-logo.png",
     name: "Vestria + Defendra",
     short: "Combinación sinérgica para reparación avanzada de tejidos.",
     image: "/images/products/vestria-defendra.webp",
@@ -92,6 +102,8 @@ export const products = [
   },
   {
     id: "defendra",
+    lab: "Xentra Pharma",
+    brandLogo: "/brand/xentra-logo.png",
     name: "Defendra",
     short: "Péptido involucrado en la reparación de tejidos y la cicatrización de heridas.",
     image: "/images/products/defendra.webp",
@@ -99,6 +111,8 @@ export const products = [
   },
   {
     id: "hexava",
+    lab: "Xentra Pharma",
+    brandLogo: "/brand/xentra-logo.png",
     name: "Hexava",
     short: "Aumenta fuerza, crecimiento de fibras musculares y rejuvenece articulaciones.",
     image: "/images/products/hexava.webp",
@@ -108,6 +122,8 @@ export const products = [
   // ANTIENVEJECIMIENTO / VITALIDAD CELULAR
   {
     id: "edadnad",
+    lab: "Xentra Pharma",
+    brandLogo: "/brand/xentra-logo.png",
     name: "EdadNAD",
     short: "Apoya el envejecimiento saludable, función cognitiva y sistema inmunológico.",
     image: "/images/products/edadnad.webp",
@@ -115,6 +131,8 @@ export const products = [
   },
   {
     id: "cuvenix",
+    lab: "Xentra Pharma",
+    brandLogo: "/brand/xentra-logo.png",
     name: "Cuvenix",
     short: "Mejora la salud de la piel estimulando colágeno y elastina.",
     image: "/images/products/cuvenix.webp",
@@ -122,6 +140,8 @@ export const products = [
   },
   {
     id: "endurorex",
+    lab: "Xentra Pharma",
+    brandLogo: "/brand/xentra-logo.png",
     name: "Endurorex",
     short: "Secretagogo de la hormona del crecimiento (GH) para fuerza y rejuvenecimiento.",
     image: "/images/products/endurorex.webp",
@@ -129,6 +149,8 @@ export const products = [
   },
   {
     id: "ipavaxen",
+    lab: "Xentra Pharma",
+    brandLogo: "/brand/xentra-logo.png",
     name: "Ipavaxen",
     short: "Secretagogo selectivo de GH para crecimiento muscular y antienvejecimiento.",
     image: "/images/products/ipavaxen.webp",
@@ -136,6 +158,8 @@ export const products = [
   },
   {
     id: "endurorex-ipavaxen",
+    lab: "Xentra Pharma",
+    brandLogo: "/brand/xentra-logo.png",
     name: "Endurorex + Ipavaxen",
     short: "Combinación enfocada en crecimiento muscular y rejuvenecimiento.",
     image: "/images/products/endurorex-ipavaxen.webp",
@@ -143,6 +167,8 @@ export const products = [
   },
   {
     id: "sermovida",
+    lab: "Xentra Pharma",
+    brandLogo: "/brand/xentra-logo.png",
     name: "Sermovida",
     short: "Estimula la producción natural de GH mejorando energía y vitalidad.",
     image: "/images/products/sermovida.webp",
@@ -152,6 +178,8 @@ export const products = [
   // ENERGÍA Y BIENESTAR
   {
     id: "vidaboost",
+    lab: "Xentra Pharma",
+    brandLogo: "/brand/xentra-logo.png",
     name: "VidaBoost",
     short: "Inyección lipotrópica con vitaminas y aminoácidos para energía y metabolismo.",
     image: "/images/products/vidaboost.webp",
@@ -159,6 +187,8 @@ export const products = [
   },
   {
     id: "restora-x",
+    lab: "Xentra Pharma",
+    brandLogo: "/brand/xentra-logo.png",
     name: "Restora X",
     short: "Mejora la calidad del sueño, reduce el estrés y apoya la función cognitiva.",
     image: "/images/products/restora-x.webp",
@@ -166,6 +196,8 @@ export const products = [
   },
   {
     id: "glutiva",
+    lab: "Xentra Pharma",
+    brandLogo: "/brand/xentra-logo.png",
     name: "Glutiva",
     short: "Antioxidante maestro que neutraliza radicales libres y ayuda a desintoxicar el cuerpo.",
     image: "/images/products/glutiva.webp",
@@ -175,6 +207,8 @@ export const products = [
   // VITALIDAD SEXUAL Y HORMONAL
   {
     id: "pigmentra",
+    lab: "Xentra Pharma",
+    brandLogo: "/brand/xentra-logo.png",
     name: "Pigmentra",
     short: "Péptido para el bronceado y la estimulación sexual.",
     image: "/images/products/pigmentra.webp",
@@ -182,6 +216,8 @@ export const products = [
   },
   {
     id: "amoriva",
+    lab: "Xentra Pharma",
+    brandLogo: "/brand/xentra-logo.png",
     name: "Amoriva",
     short: "Tratamiento del trastorno del deseo sexual hipoactivo en mujeres.",
     image: "/images/products/amoriva.webp",
@@ -191,6 +227,8 @@ export const products = [
   // SALUD AVANZADA / INVESTIGACIÓN
   {
     id: "ivercura",
+    lab: "Xentra Pharma",
+    brandLogo: "/brand/xentra-logo.png",
     name: "Ivercura",
     short: "Puede inhibir metástasis y provocar apoptosis de células cancerosas.",
     image: "/images/products/ivercura.webp",
