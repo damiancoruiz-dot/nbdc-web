@@ -1,87 +1,51 @@
-/* =============================
-   App.css — Estilos globales base
-   ============================= */
+/* App.css — versión unificada */
 
-/* ===== NAVBAR ===== */
+/* NAVBAR */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
-  background-color: var(--ink-900);
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  background-color: #24292e;
+  color: white;
 }
 
 .navbar .logo {
   font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  font-weight: bold;
 }
 
 .navbar .nav-links {
   list-style: none;
   display: flex;
-  gap: 24px;
-  margin: 0;
-  padding: 0;
+  gap: 20px;
 }
 
 .navbar .nav-links a {
-  color: #fff;
+  color: white;
   text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: color 0.2s ease;
+  font-weight: 500;
 }
 
 .navbar .nav-links a:hover {
-  color: var(--brand-500);
+  color: #61dafb;
 }
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 .footer {
-  background: var(--ink-900);
-  color: #fff;
+  background: #24292e;
+  color: white;
   text-align: center;
-  padding: 20px 0;
-  font-size: 0.9rem;
-  margin-top: 60px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 15px 0;
+  margin-top: 40px;
 }
 
-/* ===== BOTONES TIPO CHIP ===== */
-.chip {
-  border: 1px solid var(--line);
-  background: var(--bg-50);
-  color: var(--ink-900);
-  border-radius: 999px;
-  padding: 6px 14px;
-  font-size: 13px;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
+/* Botones tipo chip (si los usas para categorías) */
 .chip.active {
   background: var(--brand-600);
-  color: #fff !important;
+  color: white !important;
   border-color: transparent;
 }
-
 .chip:hover:not(.active) {
   background: rgba(0, 0, 0, 0.05);
-}
-
-/* ===== MEDIA QUERIES ===== */
-@media (max-width: 768px) {
-  .navbar {
-    padding: 12px 20px;
-  }
-
-  .navbar .nav-links {
-    gap: 14px;
-  }
 }
