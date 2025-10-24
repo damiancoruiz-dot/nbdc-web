@@ -1,12 +1,4 @@
-/* App.css */
-
-/* Reset básico */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f4f9;
-  color: #333;
-}
+/* App.css — versión unificada */
 
 /* NAVBAR */
 .navbar {
@@ -39,22 +31,6 @@ body {
   color: #61dafb;
 }
 
-/* SECCIONES */
-.section {
-  padding: 60px 20px;
-  text-align: center;
-}
-
-.section h2 {
-  font-size: 2rem;
-  margin-bottom: 15px;
-  color: #24292e;
-}
-
-.section p, .section ul {
-  font-size: 1.1rem;
-}
-
 /* FOOTER */
 .footer {
   background: #24292e;
@@ -63,57 +39,13 @@ body {
   padding: 15px 0;
   margin-top: 40px;
 }
-.product-grid {
-  display: grid;
-  gap: 18px;
-}
 
-@media (max-width: 767px) {
-  .product-grid { grid-template-columns: 1fr; }
-}
-@media (min-width: 768px) and (max-width: 1023px) {
-  .product-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (min-width: 1024px) {
-  .product-grid { grid-template-columns: repeat(3, 1fr); }
-}
-
-.product-card { max-width: 360px; margin: 0 auto; }
-.product-grid {
-  display: grid;
-  gap: 18px;
-}
-
-@media (max-width: 767px) {
-  .product-grid { grid-template-columns: 1fr; }
-}
-@media (min-width: 768px) and (max-width: 1023px) {
-  .product-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (min-width: 1024px) {
-  .product-grid { grid-template-columns: repeat(3, 1fr); }
-}
-
-.product-card {
-  max-width: 360px;
-  margin: 0 auto;
-  border: 1px solid #e5e5e5;
-  border-radius: 12px;
-  overflow: hidden;
-  background: #fff;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-}
-
-/* Botones de categoría tipo chips */
+/* Botones tipo chip (si los usas para categorías) */
 .chip.active {
-  background: var(--accent, #0ea5e9);
+  background: var(--brand-600);
   color: white !important;
   border-color: transparent;
 }
 .chip:hover:not(.active) {
-  background: rgba(0,0,0,0.05);
+  background: rgba(0, 0, 0, 0.05);
 }

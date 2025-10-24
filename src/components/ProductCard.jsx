@@ -11,7 +11,6 @@ function buildWaLink(p, variantLabel) {
 export default function ProductCard({ p }) {
   const [activeVar, setActiveVar] = useState(p?.variants?.[0] || null);
 
-  // Cambia la imagen si existe variante específica
   const currentImage =
     (activeVar && p.variantImages?.[activeVar]) || p.image;
 
