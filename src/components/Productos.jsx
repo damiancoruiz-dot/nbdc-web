@@ -1,11 +1,27 @@
 // src/pages/Productos.jsx
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { products } from "../data/products";
 import ProductCard from "../components/ProductCard";
 import LabInfo from "../components/LabInfo";
 
 export default function Productos() {
   const railRef = useRef(null);
+  const [activeCat, setActiveCat] = useState("todos");
+
+  const categories = [
+    "todos",
+    "Control de peso / metabolismo",
+    "Regeneración y reparación",
+    "Antienvejecimiento / Vitalidad celular",
+    "Energía y bienestar general",
+    "Vitalidad sexual y hormonal",
+    "Salud avanzada / investigación",
+  ];
+
+  const filtered =
+    activeCat === "todos"
+      ? products
+      : products.filter((p) => p.category === activeCat);
 
   const scrollByCards = (dir = 1) => {
     const rail = railRef.current;
@@ -20,18 +36,37 @@ export default function Productos() {
       <section id="productos" className="section">
         <div className="container">
           <h2 className="h2" style={{ marginBottom: 8 }}>
-            Productos
+            Encuentra el producto ideal para ti
           </h2>
           <p className="lead">
-            Portafolio disponible a través de NBDC como distribuidor.
+            Portafolio disponible a través de NBDC Trading Group como
+            distribuidor autorizado.
           </p>
 
+          {/* FILTROS DE CATEGORÍA */}
+          <div className="pills" style={{ marginTop: 24, marginBottom: 24 }}>
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                type="button"
+                onClick={() => setActiveCat(cat)}
+                className={`pill-btn ${
+                  activeCat === cat ? "is-active" : ""
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
+          {/* LISTA DE PRODUCTOS */}
           <div ref={railRef} className="features hscroll">
-            {products.map((p) => (
+            {filtered.map((p) => (
               <ProductCard key={p.id} p={p} />
             ))}
           </div>
 
+          {/* CONTROLES DE SCROLL */}
           <div className="scroller-controls">
             <button
               className="scroller-btn"
@@ -57,6 +92,7 @@ export default function Productos() {
         </div>
       </section>
 
+      {/* 👇 SOLO UNA VEZ */}
       <LabInfo />
     </>
   );
