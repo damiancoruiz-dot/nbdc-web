@@ -40,9 +40,9 @@ export default function ProductCard({ p }) {
         {p.short && <p className="product-short">{p.short}</p>}
 
         {Array.isArray(p.bullets) && p.bullets.length > 0 && (
-          <ul className="product-bullets">
-            {p.bullets.map((b) => (
-              <li key={b}>{b}</li>
+          <ul className="list-disc list-inside text-left ml-2">
+            {p.bullets.map((b, i) => (
+              <li key={i}>{b}</li>
             ))}
           </ul>
         )}
