@@ -28,6 +28,25 @@ export const products = [
     category: "Control de peso / metabolismo"
   },
   {
+  id: "xentra-s3-liofilizado",
+  lab: "Xentra Pharma",
+  brandLogo: "/brand/xentra-logo.png",
+  name: "Xentra S3 — Liofilizado 10 mL",
+  description: "Polvo liofilizado estéril con Semaglutida y Niacinamida (B3) para reconstitución subcutánea. GLP-1 compuesto para uso específico del paciente. Rx requerido.",
+  lab: "Xentra Pharma",
+  category: "Control de peso / metabolismo",
+  image: "/images/xentra-s3-liofilizado.jpg",
+  brandLogo: "/images/xentra-logo.png",
+  bullets: [
+    "Uso SUB-C",
+    "Esterilidad garantizada",
+    "Mantener refrigerado (2 °C – 8 °C)",
+    "No congelar"
+  ],
+  variants: ["2 mg/mL", "5 mg/mL", "10 mg/mL"],
+  datasheet: "/docs/Xentra_Lifolizado_SPANISH.pdf"
+},
+  {
     id: "xentra-t3-pen",
     lab: "Xentra Pharma",
     brandLogo: "/brand/xentra-logo.png",
@@ -53,6 +72,25 @@ export const products = [
     cta: { label: "Solicitar cotización", href: "https://wa.me/524428781486?text=Hola,%20me%20interesa%20Xentra%20T3%20Vial%2010mL" },
     category: "Control de peso / metabolismo"
   },
+  {
+  id: "xentra-t3-liofilizado",
+  lab: "Xentra Pharma",
+  brandLogo: "/brand/xentra-logo.png",
+  name: "Xentra T3 — Liofilizado 10 mL",
+  description: "Polvo liofilizado estéril con Tirzepatida y Niacinamida (B3) para reconstitución subcutánea. GLP-1 compuesto para uso específico del paciente. Rx requerido.",
+  lab: "Xentra Pharma",
+  category: "Control de peso / metabolismo",
+  image: "/images/xentra-t3-liofilizado.jpg",
+  brandLogo: "/images/xentra-logo.png",
+  bullets: [
+    "Uso SUB-C",
+    "Esterilidad garantizada",
+    "Mantener refrigerado (2 °C – 8 °C)",
+    "No congelar"
+  ],
+  variants: ["2.5 mg/mL", "7.5 mg/mL", "15 mg/mL"],
+  datasheet: "/docs/Xentra_Lifolizado_SPANISH.pdf"
+}
   {
     id: "slimyra",
     lab: "Xentra Pharma",
