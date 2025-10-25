@@ -32,11 +32,7 @@ export const products = [
   lab: "Xentra Pharma",
   brandLogo: "/brand/xentra-logo.png",
   name: "Xentra S3 — Liofilizado 10 mL",
-  description: "Polvo liofilizado estéril con Semaglutida y Niacinamida (B3) para reconstitución subcutánea. GLP-1 compuesto para uso específico del paciente. Rx requerido.",
-  lab: "Xentra Pharma",
-  category: "Control de peso / metabolismo",
-  image: "/images/xentra-s3-liofilizado.jpg",
-  brandLogo: "/images/xentra-logo.png",
+  short: "Polvo liofilizado estéril con Semaglutida y Niacinamida (B3) para reconstitución subcutánea.",
   bullets: [
     "Uso SUB-C",
     "Esterilidad garantizada",
@@ -44,7 +40,13 @@ export const products = [
     "No congelar"
   ],
   variants: ["2 mg/mL", "5 mg/mL", "10 mg/mL"],
-  datasheet: "/docs/Xentra_Lifolizado_SPANISH.pdf"
+  image: "/images/products/xentra-s3-liofilizado.webp",
+  datasheet: "/docs/Xentra_Lifolizado_SPANISH.pdf",
+  cta: { 
+    label: "Solicitar cotización", 
+    href: "https://wa.me/524428781486?text=Hola,%20me%20interesa%20Xentra%20S3%20Liofilizado%2010mL" 
+  },
+  category: "Control de peso / metabolismo"
 },
   {
     id: "xentra-t3-pen",
@@ -77,11 +79,7 @@ export const products = [
   lab: "Xentra Pharma",
   brandLogo: "/brand/xentra-logo.png",
   name: "Xentra T3 — Liofilizado 10 mL",
-  description: "Polvo liofilizado estéril con Tirzepatida y Niacinamida (B3) para reconstitución subcutánea. GLP-1 compuesto para uso específico del paciente. Rx requerido.",
-  lab: "Xentra Pharma",
-  category: "Control de peso / metabolismo",
-  image: "/images/xentra-t3-liofilizado.jpg",
-  brandLogo: "/images/xentra-logo.png",
+  short: "Polvo liofilizado estéril con Tirzepatida y Niacinamida (B3) para reconstitución subcutánea.",
   bullets: [
     "Uso SUB-C",
     "Esterilidad garantizada",
@@ -89,8 +87,14 @@ export const products = [
     "No congelar"
   ],
   variants: ["2.5 mg/mL", "7.5 mg/mL", "15 mg/mL"],
-  datasheet: "/docs/Xentra_Lifolizado_SPANISH.pdf"
-}
+  image: "/images/products/xentra-t3-liofilizado.webp",
+  datasheet: "/docs/Xentra_Lifolizado_SPANISH.pdf",
+  cta: { 
+    label: "Solicitar cotización", 
+    href: "https://wa.me/524428781486?text=Hola,%20me%20interesa%20Xentra%20T3%20Liofilizado%2010mL" 
+  },
+  category: "Control de peso / metabolismo"
+},
   {
     id: "slimyra",
     lab: "Xentra Pharma",
