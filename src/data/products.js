@@ -33,19 +33,11 @@ export const products = [
   brandLogo: "/brand/xentra-logo.png",
   name: "Xentra S3 — Liofilizado 10 mL",
   short: "Polvo liofilizado estéril con Semaglutida y Niacinamida (B3) para reconstitución subcutánea.",
-  bullets: [
-    "Uso SUB-C",
-    "Esterilidad garantizada",
-    "Mantener refrigerado (2 °C – 8 °C)",
-    "No congelar"
-  ],
+  bullets: ["Uso SUB-C","Esterilidad garantizada", "Mantener refrigerado (2 °C – 8 °C)", "No congelar"],
   variants: ["2 mg/mL", "5 mg/mL", "10 mg/mL"],
   image: "/images/products/xentra-s3-liofilizado.webp",
   datasheet: "/docs/Xentra_Lifolizado_SPANISH.pdf",
-  cta: { 
-    label: "Solicitar cotización", 
-    href: "https://wa.me/524428781486?text=Hola,%20me%20interesa%20Xentra%20S3%20Liofilizado%2010mL" 
-  },
+  cta: { label: "Solicitar cotización", href: "https://wa.me/524428781486?text=Hola,%20me%20interesa%20Xentra%20S3%20Liofilizado%2010mL" },
   category: "Control de peso / metabolismo"
 },
   {
@@ -80,19 +72,11 @@ export const products = [
   brandLogo: "/brand/xentra-logo.png",
   name: "Xentra T3 — Liofilizado 10 mL",
   short: "Polvo liofilizado estéril con Tirzepatida y Niacinamida (B3) para reconstitución subcutánea.",
-  bullets: [
-    "Uso SUB-C",
-    "Esterilidad garantizada",
-    "Mantener refrigerado (2 °C – 8 °C)",
-    "No congelar"
-  ],
+  bullets: ["Uso SUB-C", "Esterilidad garantizada", "Mantener refrigerado (2 °C – 8 °C)", "No congelar"],
   variants: ["2.5 mg/mL", "7.5 mg/mL", "15 mg/mL"],
   image: "/images/products/xentra-t3-liofilizado.webp",
   datasheet: "/docs/Xentra_Lifolizado_SPANISH.pdf",
-  cta: { 
-    label: "Solicitar cotización", 
-    href: "https://wa.me/524428781486?text=Hola,%20me%20interesa%20Xentra%20T3%20Liofilizado%2010mL" 
-  },
+  cta: { label: "Solicitar cotización", href: "https://wa.me/524428781486?text=Hola,%20me%20interesa%20Xentra%20T3%20Liofilizado%2010mL" },
   category: "Control de peso / metabolismo"
 },
   {
