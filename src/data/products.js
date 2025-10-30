@@ -11,11 +11,11 @@ export const products = [
     variants: ["1.5 mg", "3.5 mg", "5.5 mg", "7.5 mg", "9.5 mg"],
     image: "/images/products/xentra-s3-pen.webp",
     imageVariants: {
-    "1.5 mg": "/images/products/xentra-t3-pen-1_5.webp",
-    "3.5 mg": "/images/products/xentra-t3-pen-3_5.webp",
-    "5.5 mg": "/images/products/xentra-t3-pen-5_5.webp",
-    "7.5 mg": "/images/products/xentra-t3-pen-7_5.webp",
-    "9.5 mg": "/images/products/xentra-t3-pen-9_5.webp"
+    "1.5 mg": "/images/products/xentra-s3-pen-1_5.webp",
+    "3.5 mg": "/images/products/xentra-s3-pen-3_5.webp",
+    "5.5 mg": "/images/products/xentra-s3-pen-5_5.webp",
+    "7.5 mg": "/images/products/xentra-s3-pen-7_5.webp",
+    "9.5 mg": "/images/products/xentra-s3-pen-9_5.webp"
   },
     datasheet: "/docs/xentra-s3-pen.pdf",
     cta: { label: "Solicitar cotización", href: "https://wa.me/524428781486?text=Hola,%20me%20interesa%20Xentra%20S3%20Pluma%20multidosis" },
@@ -43,6 +43,11 @@ export const products = [
   bullets: ["Uso SUB-C","Esterilidad garantizada", "Mantener refrigerado (2 °C – 8 °C)", "No congelar"],
   variants: ["2 mg/mL", "5 mg/mL", "10 mg/mL"],
   image: "/images/products/xentra-s3-liofilizado.webp",
+  imageVariants: {
+    "2 mg": "/images/products/xentra-s3-liofilizado-2.webp",
+    "5 mg": "/images/products/xentra-s3-liofilizado-5.webp",
+    "10 mg": "/images/products/xentra-s3-liofilizado-10.webp"
+  },
   datasheet: "/docs/Xentra_Lifolizado_SPANISH.pdf",
   cta: { label: "Solicitar cotización", href: "https://wa.me/524428781486?text=Hola,%20me%20interesa%20Xentra%20S3%20Liofilizado%2010mL" },
   category: "Control de peso / metabolismo"
@@ -56,6 +61,14 @@ export const products = [
     bullets: ["Uso SUB-C", "Guía de dosificación"],
     variants: ["10 mg", "20 mg", "30 mg", "40 mg", "50 mg", "60 mg"],
     image: "/images/products/xentra-t3-pen.webp",
+    imageVariants: {
+    "10 mg": "/images/products/xentra-t3-pen-10.webp",
+    "20 mg": "/images/products/xentra-t3-pen-20.webp",
+    "30 mg": "/images/products/xentra-t3-pen-30.webp",
+    "40 mg": "/images/products/xentra-t3-pen-40.webp",
+    "50 mg": "/images/products/xentra-t3-pen-50.webp",
+    "60 mg": "/images/products/xentra-t3-pen-60.webp"
+  },
     datasheet: "/docs/xentra-t3-pen.pdf",
     cta: { label: "Solicitar cotización", href: "https://wa.me/524428781486?text=Hola,%20me%20interesa%20Xentra%20T3%20Pluma%20multidosis" },
     category: "Control de peso / metabolismo"
@@ -82,6 +95,11 @@ export const products = [
   bullets: ["Uso SUB-C", "Esterilidad garantizada", "Mantener refrigerado (2 °C – 8 °C)", "No congelar"],
   variants: ["2.5 mg/mL", "7.5 mg/mL", "15 mg/mL"],
   image: "/images/products/xentra-t3-liofilizado.webp",
+  imageVariants: {
+    "2.5 mg": "/images/products/xentra-t3-liofilizado-2_5.webp",
+    "7.5 mg": "/images/products/xentra-t3-liofilizado-7_5.webp",
+    "15 mg": "/images/products/xentra-t3-liofilizado-15.webp"
+  },
   datasheet: "/docs/Xentra_Lifolizado_SPANISH.pdf",
   cta: { label: "Solicitar cotización", href: "https://wa.me/524428781486?text=Hola,%20me%20interesa%20Xentra%20T3%20Liofilizado%2010mL" },
   category: "Control de peso / metabolismo"
