@@ -51,16 +51,19 @@ export default function ProductCard({ p }) {
           <div className="product-variants">
             <div className="variants-label">Presentaciones</div>
             <div className="pills">
-              {p.variants.map((v) => (
-                <button
-                  key={v}
-                  type="button"
-                  className={`pill-btn ${activeVar === v ? "is-active" : ""}`}
-                  onClick={() => setActiveVar(v)}
-                >
-                  {v}
-                </button>
-              ))}
+              {p.variants?.map((variant) => (
+              <button
+                key={variant}
+                onClick={() => setActiveVar(variant)}
+                className={`px-3 py-1 text-sm rounded-full border transition-all ${
+                  activeVar === variant
+                    ? "bg-blue-50 border-blue-500 text-blue-600"
+                    : "bg-gray-50 border-gray-300 text-gray-600 hover:bg-gray-100"
+                }`}
+              >
+                {variant}
+              </button>
+            ))}
             </div>
           </div>
         )}
