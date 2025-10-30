@@ -10,6 +10,13 @@ export const products = [
     bullets: ["Uso SUB-C", "Trazabilidad y guía de uso"],
     variants: ["1.5 mg", "3.5 mg", "5.5 mg", "7.5 mg", "9.5 mg"],
     image: "/images/products/xentra-s3-pen.webp",
+    imageVariants: {
+    "1.5 mg": "/images/products/xentra-t3-pen-1_5.webp",
+    "3.5 mg": "/images/products/xentra-t3-pen-3_5.webp",
+    "5.5 mg": "/images/products/xentra-t3-pen-5_5.webp",
+    "7.5 mg": "/images/products/xentra-t3-pen-7_5.webp",
+    "9.5 mg": "/images/products/xentra-t3-pen-9_5.webp"
+  },
     datasheet: "/docs/xentra-s3-pen.pdf",
     cta: { label: "Solicitar cotización", href: "https://wa.me/524428781486?text=Hola,%20me%20interesa%20Xentra%20S3%20Pluma%20multidosis" },
     category: "Control de peso / metabolismo"
