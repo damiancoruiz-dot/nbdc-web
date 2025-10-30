@@ -12,7 +12,7 @@ export default function ProductCard({ p }) {
   const [activeVar, setActiveVar] = useState(p?.variants?.[0] || null);
 
   const currentImage =
-    (activeVar && p.variantImages?.[activeVar]) || p.image;
+    (activeVar && p.imageVariants?.[activeVar]) || p.image;
 
   return (
     <article id={`prod-${p.id}`} data-id={p.id} className="product-card">
