@@ -43,7 +43,7 @@ export default function Contacto() {
   const body = Object.fromEntries(data.entries());
 
   try {
-    const res = await fetch("/api/sendMail", {
+    const res = await fetch(`${window.location.origin}/api/sendMail`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
