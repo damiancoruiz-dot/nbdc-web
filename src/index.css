@@ -688,3 +688,10 @@ a{ color:inherit; text-decoration:none; }
     justify-content: center;
   }
 }
+.product-card {
+  min-height: 280px;
+}
+
+.product-hero img {
+  max-height: 200px;
+}
