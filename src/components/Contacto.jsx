@@ -32,43 +32,49 @@ export default function Contacto() {
   }, []);
 
   async function onSubmit(e) {
-    e.preventDefault();
-    setStatus({ ok: false, error: "", sending: true });
-    setFade(false);
+  e.preventDefault();
+  setStatus({ ok: false, error: "", sending: true });
+  setFade(false);
 
-    const form = e.currentTarget;
-    const data = new FormData(form);
+  const form = e.currentTarget;
+  const data = new FormData(form);
 
-    try {
-      const res = await fetch("/api/sendMail", {
-        method: "POST",
-        headers: { Accept: "application/json" },
-        body: data,
-      });
+  // Convertimos el FormData a un objeto normal
+  const body = Object.fromEntries(data.entries());
 
-      const json = await res.json();
+  try {
+    const res = await fetch("/api/sendMail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
 
-      if (res.ok) {
-        setStatus({ ok: true, error: "", sending: false });
-        form.reset();
-        setTimeout(() => setFade(true), 3000);
-        setTimeout(() => {
-          setStatus((prev) => ({ ...prev, ok: false }));
-          setFade(false);
-        }, 5000);
-      } else {
-        const msg =
-          json?.errors?.[0]?.message || "No se pudo enviar. Intenta de nuevo.";
-        setStatus({ ok: false, error: msg, sending: false });
-      }
-    } catch (err) {
-      setStatus({
-        ok: false,
-        error: "Error de red. Revisa tu conexión.",
-        sending: false,
-      });
+    const json = await res.json();
+
+    if (res.ok) {
+      setStatus({ ok: true, error: "", sending: false });
+      form.reset();
+      setTimeout(() => setFade(true), 3000);
+      setTimeout(() => {
+        setStatus((prev) => ({ ...prev, ok: false }));
+        setFade(false);
+      }, 5000);
+    } else {
+      const msg =
+        json?.error || "No se pudo enviar. Intenta de nuevo.";
+      setStatus({ ok: false, error: msg, sending: false });
     }
+  } catch (err) {
+    console.error("Error de red:", err);
+    setStatus({
+      ok: false,
+      error: "Error de red. Revisa tu conexión.",
+      sending: false,
+    });
   }
+}
 
   return (
     <section
