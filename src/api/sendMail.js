@@ -1,4 +1,4 @@
-// /api/sendMail.js
+// /pages/api/sendMail.js
 import nodemailer from "nodemailer";
 
 export default async function handler(req, res) {
@@ -8,22 +8,20 @@ export default async function handler(req, res) {
 
   const { name, email, phone, company, message } = req.body;
 
-  // --- Transportador SMTP (HostGator) ---
   const transporter = nodemailer.createTransport({
-    host: "mail.nbdctradinggroup.com", // Servidor SMTP del dominio
-    port: 465, // SSL (si da error, probar 587 con secure:false)
-    secure: true, // true = SSL / false = STARTTLS
+    host: "mail.nbdctradinggroup.com", // servidor SMTP de HostGator
+    port: 465, // o usa 587 si tu cPanel indica STARTTLS
+    secure: true, // true = SSL (465)
     auth: {
-      user: process.env.SMTP_USER, // latam@nbdctradinggroup.com
+      user: process.env.SMTP_USER, // ejemplo: web@nbdctradinggroup.com
       pass: process.env.SMTP_PASS, // contraseña del correo
     },
   });
 
   try {
-    // --- Correo saliente ---
     await transporter.sendMail({
-      from: `"Xentra Pharma LATAM" <${process.env.SMTP_USER}>`,
-      to: process.env.MAIL_TO, // latam@nbdctradinggroup.com
+      from: `"Sitio Web NBDC Trading Group" <${process.env.SMTP_USER}>`,
+      to: process.env.MAIL_TO || "latam@nbdctradinggroup.com", // destinatario principal
       subject: `Nuevo mensaje de ${name}`,
       html: `
         <h2>Nuevo mensaje desde el formulario de contacto</h2>
@@ -41,8 +39,7 @@ export default async function handler(req, res) {
     console.error("❌ Error al enviar correo:", error);
     res.status(500).json({
       ok: false,
-      error:
-        "No se pudo enviar el mensaje. Intenta más tarde o contacta vía WhatsApp.",
+      error: "No se pudo enviar el mensaje. Intenta más tarde.",
     });
   }
 }
