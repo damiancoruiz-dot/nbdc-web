@@ -5,13 +5,17 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Método no permitido" });
   }
 
-  const { name, email, phone, company, message } = Object.fromEntries(
-    await req.formData()
-  );
-
   try {
+    // Parsear el cuerpo manualmente
+    let body = "";
+    for await (const chunk of req) {
+      body += chunk;
+    }
+    const data = JSON.parse(body);
+    const { name, email, phone, company, message } = data;
+
     const transporter = nodemailer.createTransport({
-      host: "mail.nbdctradinggroup.com",
+      host: "smtp.hostgator.com",
       port: 465,
       secure: true,
       auth: {
