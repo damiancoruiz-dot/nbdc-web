@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     const { name, email, phone, company, message } = data;
 
     const transporter = nodemailer.createTransport({
-      host: "smtp.hostgator.com",
+      host: "mail.nbdctradinggroup.com",
       port: 465,
       secure: true,
       auth: {
