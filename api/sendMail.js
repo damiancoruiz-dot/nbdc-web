@@ -1,4 +1,3 @@
-// /pages/api/sendMail.js
 import nodemailer from "nodemailer";
 
 export default async function handler(req, res) {
@@ -6,22 +5,24 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Método no permitido" });
   }
 
-  const { name, email, phone, company, message } = req.body;
-
-  const transporter = nodemailer.createTransport({
-    host: "mail.nbdctradinggroup.com", // servidor SMTP de HostGator
-    port: 465, // o usa 587 si tu cPanel indica STARTTLS
-    secure: true, // true = SSL (465)
-    auth: {
-      user: process.env.SMTP_USER, // ejemplo: web@nbdctradinggroup.com
-      pass: process.env.SMTP_PASS, // contraseña del correo
-    },
-  });
+  const { name, email, phone, company, message } = Object.fromEntries(
+    await req.formData()
+  );
 
   try {
+    const transporter = nodemailer.createTransport({
+      host: "mail.nbdctradinggroup.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
+
     await transporter.sendMail({
-      from: `"Sitio Web NBDC Trading Group" <${process.env.SMTP_USER}>`,
-      to: process.env.MAIL_TO || "latam@nbdctradinggroup.com", // destinatario principal
+      from: `"Formulario Web NBDC" <${process.env.SMTP_USER}>`,
+      to: process.env.MAIL_TO,
       subject: `Nuevo mensaje de ${name}`,
       html: `
         <h2>Nuevo mensaje desde el formulario de contacto</h2>
@@ -34,12 +35,12 @@ export default async function handler(req, res) {
       `,
     });
 
-    res.status(200).json({ ok: true });
+    return res.status(200).json({ ok: true });
   } catch (error) {
-    console.error("❌ Error al enviar correo:", error);
-    res.status(500).json({
+    console.error("❌ Error al enviar correo:", error.message || error);
+    return res.status(500).json({
       ok: false,
-      error: "No se pudo enviar el mensaje. Intenta más tarde.",
+      error: error.message || "Error interno al enviar correo.",
     });
   }
 }
