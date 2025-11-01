@@ -37,18 +37,14 @@ export default function Contacto() {
   setFade(false);
 
   const form = e.currentTarget;
-  const data = new FormData(form);
-
-  // Convertimos el FormData a un objeto normal
-  const body = Object.fromEntries(data.entries());
+  const formData = new FormData(form);
+  const payload = Object.fromEntries(formData.entries()); // convierte FormData a objeto
 
   try {
-    const res = await fetch(`${window.location.origin}/api/sendMail`, {
+    const res = await fetch("/api/sendMail", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload), // envía JSON, no FormData
     });
 
     const json = await res.json();
@@ -62,12 +58,10 @@ export default function Contacto() {
         setFade(false);
       }, 5000);
     } else {
-      const msg =
-        json?.error || "No se pudo enviar. Intenta de nuevo.";
+      const msg = json?.error || "No se pudo enviar. Intenta de nuevo.";
       setStatus({ ok: false, error: msg, sending: false });
     }
   } catch (err) {
-    console.error("Error de red:", err);
     setStatus({
       ok: false,
       error: "Error de red. Revisa tu conexión.",
