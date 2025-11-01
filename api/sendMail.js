@@ -13,9 +13,6 @@ export default async function handler(req, res) {
     }
     const data = JSON.parse(body);
     const { name, email, phone, company, message } = data;
-console.log("📦 SMTP_USER:", process.env.SMTP_USER);
-console.log("📦 SMTP_PASS:", process.env.SMTP_PASS ? "****" : "MISSING");
-
     const transporter = nodemailer.createTransport({
       host: "mail.nbdctradinggroup.com",
       port: 465,
