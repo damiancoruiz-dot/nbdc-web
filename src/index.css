@@ -514,223 +514,22 @@ a{ color:inherit; text-decoration:none; }
   list-style-type: disc;
   padding-left: 1rem;
 }
-/* ========= MODAL DE IMAGEN CON NAVEGACIÓN ========= */
-.image-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  padding: 20px;
-  backdrop-filter: blur(3px);
-}
-
-
-.image-modal-content {
-  position: relative;
-  max-width: 90%;
-  max-height: 85vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.image-modal-content img {
-  width: auto;
-  max-width: 90vw;
-  max-height: 80vh;
-  border-radius: 14px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-}
-
-/* Botones navegación */
-.image-nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 38px;
-  color: #fff;
-  background: rgba(255,255,255,0.15);
-  border: none;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background 0.2s;
-  z-index: 10;
-}
-.image-nav-btn:hover {
-  background: rgba(255,255,255,0.3);
-}
-.image-nav-btn.prev { left: -60px; }
-.image-nav-btn.next { right: -60px; }
-
-/* Botón de cierre */
-.image-modal-close {
-  position: absolute;
-  top: -12px;
-  right: -12px;
-  background: #fff;
-  border: none;
-  color: #333;
-  font-size: 28px;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  transition: background 0.2s;
-  z-index: 11;
-}
-.image-modal-close:hover {
-  background: #f0f0f0;
-}
-
-/* Etiqueta con nombre/variante */
-.image-variant-label {
-  position: absolute;
-  bottom: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #fff;
-  background: rgba(0,0,0,0.6);
-  padding: 8px 16px;
-  border-radius: 999px;
-  font-size: 14px;
-  white-space: nowrap;
-}
-
-/* Animación */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-/* ========= MODAL DE IMAGEN AMPLIADA ========= */
-.image-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  padding: 20px;
-  backdrop-filter: blur(3px);
-}
-
-.image-modal-content {
-  position: relative;
-  background: #fff;
-  border-radius: 18px;
-  max-width: 90vw;
-  max-height: 85vh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-  animation: fadeInModal 0.25s ease;
-}
-
-@keyframes fadeInModal {
-  from { opacity: 0; transform: scale(0.97); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-.image-modal-content img {
-  max-width: 100%;
-  max-height: 75vh;
-  object-fit: contain;
-  display: block;
-}
-
-/* Botón de cerrar */
-.image-modal-close {
-  position: absolute;
-  top: 10px;
-  right: 14px;
-  font-size: 26px;
-  font-weight: bold;
-  color: #333;
-  background: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 34px;
-  height: 34px;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.image-modal-close:hover {
-  background: #f2f2f2;
-  transform: scale(1.05);
-}
-
-/* Etiqueta del producto */
-.image-variant-label {
-  padding: 10px 14px;
-  text-align: center;
-  font-weight: 600;
-  color: #0b213a;
-  background: #fff;
-  border-top: 1px solid #eee;
-  width: 100%;
-}
-
-/* Botones de navegación */
-.image-nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.8);
-  border: none;
-  font-size: 32px;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.image-nav-btn:hover {
-  background: #fff;
-  transform: translateY(-50%) scale(1.05);
-}
-
-.image-nav-btn.prev { left: 12px; }
-.image-nav-btn.next { right: 12px; }
-
-@media (max-width: 768px) {
-  .image-modal-content {
-    max-width: 95vw;
-    max-height: 80vh;
-  }
-
-  .image-nav-btn {
-    width: 38px;
-    height: 38px;
-    font-size: 26px;
-  }
-}
 /* ===============================
-   MODAL A PANTALLA COMPLETA FINAL
+   MODAL DE IMAGEN A PANTALLA COMPLETA (versión definitiva)
    =============================== */
 
 .no-scroll {
-  overflow: hidden;
+  overflow: hidden !important;
 }
 
 .image-modal {
   position: fixed;
   inset: 0;
+  z-index: 99999;
   background: rgba(0, 0, 0, 0.9);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
   padding: 20px;
   backdrop-filter: blur(6px);
   animation: fadeInModal 0.3s ease forwards;
@@ -758,6 +557,7 @@ a{ color:inherit; text-decoration:none; }
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   animation: popIn 0.25s ease;
 }
 
@@ -778,117 +578,10 @@ a{ color:inherit; text-decoration:none; }
   max-height: 75vh;
   object-fit: contain;
   display: block;
+  border-radius: 12px;
 }
 
-.image-modal-close {
-  position: absolute;
-  top: 10px;
-  right: 12px;
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  background: rgba(255, 255, 255, 0.9);
-  border: none;
-  border-radius: 50%;
-  width: 38px;
-  height: 38px;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.image-modal-close:hover {
-  background: #fff;
-  transform: scale(1.1);
-}
-
-.image-nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.9);
-  border: none;
-  font-size: 32px;
-  font-weight: bold;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.image-nav-btn:hover {
-  background: #fff;
-  transform: translateY(-50%) scale(1.1);
-}
-
-.image-nav-btn.prev {
-  left: 16px;
-}
-
-.image-nav-btn.next {
-  right: 16px;
-}
-
-.image-variant-label {
-  padding: 10px;
-  font-weight: 600;
-  color: var(--ink-900);
-  background: #fff;
-  text-align: center;
-  width: 100%;
-  font-size: 14px;
-  border-top: 1px solid #eee;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .image-modal-content {
-    max-width: 95%;
-  }
-
-  .image-nav-btn {
-    font-size: 28px;
-    width: 40px;
-    height: 40px;
-  }
-}
-/* ===============================
-   MODAL A PANTALLA COMPLETA FINAL
-   =============================== */
-.image-modal {
-  position: fixed !important;
-  inset: 0 !important;
-  z-index: 99999 !important;
-  background: rgba(0, 0, 0, 0.92) !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  padding: 20px;
-  backdrop-filter: blur(8px);
-  overflow-y: auto;
-}
-
-.image-modal-content {
-  position: relative;
-  background: #fff;
-  border-radius: 18px;
-  max-width: 90vw;
-  max-height: 85vh;
-  overflow: hidden;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.image-modal-content img {
-  width: 100%;
-  height: auto;
-  max-height: 75vh;
-  object-fit: contain;
-  display: block;
-}
-
+/* Cierre (X) */
 .image-modal-close {
   position: absolute;
   top: 10px;
@@ -903,12 +596,15 @@ a{ color:inherit; text-decoration:none; }
   height: 38px;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;
+  z-index: 1000;
 }
+
 .image-modal-close:hover {
   background: #fff;
   transform: scale(1.1);
 }
 
+/* Navegación */
 .image-nav-btn {
   position: absolute;
   top: 50%;
@@ -922,18 +618,23 @@ a{ color:inherit; text-decoration:none; }
   border-radius: 50%;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;
+  z-index: 1000;
 }
+
 .image-nav-btn:hover {
   background: #fff;
   transform: translateY(-50%) scale(1.1);
 }
+
 .image-nav-btn.prev {
   left: 16px;
 }
+
 .image-nav-btn.next {
   right: 16px;
 }
 
+/* Etiqueta variante */
 .image-variant-label {
   padding: 10px;
   font-weight: 600;
@@ -945,6 +646,14 @@ a{ color:inherit; text-decoration:none; }
   border-top: 1px solid #eee;
 }
 
-.no-scroll {
-  overflow: hidden;
+@media (max-width: 768px) {
+  .image-modal-content {
+    max-width: 95%;
+  }
+
+  .image-nav-btn {
+    font-size: 28px;
+    width: 40px;
+    height: 40px;
+  }
 }
