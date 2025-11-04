@@ -44,9 +44,9 @@ export const products = [
   variants: ["2 mg/mL", "5 mg/mL", "10 mg/mL"],
   image: "/images/products/xentra-s3-liofilizado.webp",
   imageVariants: {
-    "2 mg": "/images/products/xentra-s3-liofilizado-2.webp",
-    "5 mg": "/images/products/xentra-s3-liofilizado-5.webp",
-    "10 mg": "/images/products/xentra-s3-liofilizado-10.webp"
+    "2 mg/mL": "/images/products/xentra-s3-liofilizado-2.webp",
+    "5 mg/mL": "/images/products/xentra-s3-liofilizado-5.webp",
+    "10 mg/mL": "/images/products/xentra-s3-liofilizado-10.webp"
   },
   datasheet: "/docs/Xentra_Lifolizado_SPANISH.pdf",
   cta: { label: "Solicitar cotización", href: "https://wa.me/524428781486?text=Hola,%20me%20interesa%20Xentra%20S3%20Liofilizado%2010mL" },
@@ -96,9 +96,9 @@ export const products = [
   variants: ["2.5 mg/mL", "7.5 mg/mL", "15 mg/mL"],
   image: "/images/products/xentra-t3-liofilizado.webp",
   imageVariants: {
-    "2.5 mg": "/images/products/xentra-t3-liofilizado-2_5.webp",
-    "7.5 mg": "/images/products/xentra-t3-liofilizado-7_5.webp",
-    "15 mg": "/images/products/xentra-t3-liofilizado-15.webp"
+    "2.5 mg/mL": "/images/products/xentra-t3-liofilizado-2_5.webp",
+    "7.5 mg/mL": "/images/products/xentra-t3-liofilizado-7_5.webp",
+    "15 mg/mL": "/images/products/xentra-t3-liofilizado-15.webp"
   },
   datasheet: "/docs/Xentra_Lifolizado_SPANISH.pdf",
   cta: { label: "Solicitar cotización", href: "https://wa.me/524428781486?text=Hola,%20me%20interesa%20Xentra%20T3%20Liofilizado%2010mL" },
