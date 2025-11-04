@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const WA_NUMBER = "524428781486";
 
@@ -10,6 +10,15 @@ function buildWaLink(p, variantLabel) {
 export default function ProductCard({ p }) {
   const [activeVar, setActiveVar] = useState(p?.variants?.[0] || null);
   const [showModal, setShowModal] = useState(false);
+
+  // 🔒 Bloquea el scroll cuando el modal está abierto
+  useEffect(() => {
+    if (showModal) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+  }, [showModal]);
 
   const currentImage =
     (activeVar && p.imageVariants?.[activeVar]) || p.image;
@@ -91,7 +100,7 @@ export default function ProductCard({ p }) {
         </div>
       </article>
 
-      {/* ========= MODAL IMAGEN CON NAVEGACIÓN ========= */}
+      {/* ========= MODAL IMAGEN A PANTALLA COMPLETA ========= */}
       {showModal && (
         <div className="image-modal" onClick={() => setShowModal(false)}>
           <div
@@ -100,7 +109,7 @@ export default function ProductCard({ p }) {
           >
             <img src={currentImage} alt={p.name} />
 
-            {/* Botones de navegación solo si hay variantes */}
+            {/* Navegación solo si hay variantes */}
             {Array.isArray(p.variants) && p.variants.length > 1 && (
               <>
                 <button
@@ -131,6 +140,7 @@ export default function ProductCard({ p }) {
               </>
             )}
 
+            {/* Cierre */}
             <button
               className="image-modal-close"
               onClick={() => setShowModal(false)}
@@ -138,6 +148,7 @@ export default function ProductCard({ p }) {
               ×
             </button>
 
+            {/* Etiqueta de variante */}
             {activeVar && (
               <div className="image-variant-label">
                 {p.name} — {activeVar}
