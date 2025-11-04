@@ -605,3 +605,111 @@ a{ color:inherit; text-decoration:none; }
   from { opacity: 0; }
   to { opacity: 1; }
 }
+/* ========= MODAL DE IMAGEN AMPLIADA ========= */
+.image-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+  backdrop-filter: blur(3px);
+}
+
+.image-modal-content {
+  position: relative;
+  background: #fff;
+  border-radius: 18px;
+  max-width: 90vw;
+  max-height: 85vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  animation: fadeInModal 0.25s ease;
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.image-modal-content img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  display: block;
+}
+
+/* Botón de cerrar */
+.image-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 26px;
+  font-weight: bold;
+  color: #333;
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.image-modal-close:hover {
+  background: #f2f2f2;
+  transform: scale(1.05);
+}
+
+/* Etiqueta del producto */
+.image-variant-label {
+  padding: 10px 14px;
+  text-align: center;
+  font-weight: 600;
+  color: #0b213a;
+  background: #fff;
+  border-top: 1px solid #eee;
+  width: 100%;
+}
+
+/* Botones de navegación */
+.image-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  font-size: 32px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.image-nav-btn:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.image-nav-btn.prev { left: 12px; }
+.image-nav-btn.next { right: 12px; }
+
+@media (max-width: 768px) {
+  .image-modal-content {
+    max-width: 95vw;
+    max-height: 80vh;
+  }
+
+  .image-nav-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 26px;
+  }
+}
