@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
 
 const WA_NUMBER = "524428781486";
 
@@ -101,62 +102,63 @@ export default function ProductCard({ p }) {
       </article>
 
       {/* ========= MODAL IMAGEN A PANTALLA COMPLETA ========= */}
-      {showModal && (
-        <div className="image-modal" onClick={() => setShowModal(false)}>
-          <div
-            className="image-modal-content"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <img src={currentImage} alt={p.name} />
+      {showModal &&
+  ReactDOM.createPortal(
+    <div className="image-modal" onClick={() => setShowModal(false)}>
+      <div
+        className="image-modal-content"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <img src={currentImage} alt={p.name} />
 
-            {/* Navegación solo si hay variantes */}
-            {Array.isArray(p.variants) && p.variants.length > 1 && (
-              <>
-                <button
-                  className="image-nav-btn prev"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    const index = p.variants.indexOf(activeVar);
-                    const newIndex =
-                      index <= 0 ? p.variants.length - 1 : index - 1;
-                    setActiveVar(p.variants[newIndex]);
-                  }}
-                >
-                  ‹
-                </button>
-
-                <button
-                  className="image-nav-btn next"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    const index = p.variants.indexOf(activeVar);
-                    const newIndex =
-                      index >= p.variants.length - 1 ? 0 : index + 1;
-                    setActiveVar(p.variants[newIndex]);
-                  }}
-                >
-                  ›
-                </button>
-              </>
-            )}
-
-            {/* Cierre */}
+        {/* Botones de navegación */}
+        {Array.isArray(p.variants) && p.variants.length > 1 && (
+          <>
             <button
-              className="image-modal-close"
-              onClick={() => setShowModal(false)}
+              className="image-nav-btn prev"
+              onClick={(e) => {
+                e.stopPropagation();
+                const index = p.variants.indexOf(activeVar);
+                const newIndex =
+                  index <= 0 ? p.variants.length - 1 : index - 1;
+                setActiveVar(p.variants[newIndex]);
+              }}
             >
-              ×
+              ‹
             </button>
 
-            {/* Etiqueta de variante */}
-            {activeVar && (
-              <div className="image-variant-label">
-                {p.name} — {activeVar}
-              </div>
-            )}
+            <button
+              className="image-nav-btn next"
+              onClick={(e) => {
+                e.stopPropagation();
+                const index = p.variants.indexOf(activeVar);
+                const newIndex =
+                  index >= p.variants.length - 1 ? 0 : index + 1;
+                setActiveVar(p.variants[newIndex]);
+              }}
+            >
+              ›
+            </button>
+          </>
+        )}
+
+        <button
+          className="image-modal-close"
+          onClick={() => setShowModal(false)}
+        >
+          ×
+        </button>
+
+        {activeVar && (
+          <div className="image-variant-label">
+            {p.name} — {activeVar}
           </div>
-        </div>
-      )}
+        )}
+      </div>
+    </div>,
+    document.body
+  )}
+
     </>
   );
 }
