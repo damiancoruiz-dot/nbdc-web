@@ -3,7 +3,7 @@ export const products = [
   // CONTROL DE PESO / METABOLISMO
   {
     id: "xentra-s3-pen",
-    lab: "Xentra Pharma",
+    lab: "Xentra Labs",
     brandLogo: "/brand/xentra-logo.png",
     name: "Xentra S3 — Pluma multidosis",
     short: "Pluma con dosificación semanal y micro-unidades.",
@@ -23,7 +23,7 @@ export const products = [
   },
   {
     id: "xentra-s3-vial",
-    lab: "Xentra Pharma",
+    lab: "Xentra Labs",
     brandLogo: "/brand/xentra-logo.png",
     name: "Xentra S3 — Vial 10 mL",
     short: "Solución para uso subcutáneo, frasco multidosis 10 mL.",
@@ -36,7 +36,7 @@ export const products = [
   },
   {
   id: "xentra-s3-liofilizado",
-  lab: "Xentra Pharma",
+  lab: "Xentra Labs",
   brandLogo: "/brand/xentra-logo.png",
   name: "Xentra S3 — Liofilizado 10 mL",
   short: "Polvo liofilizado estéril con Semaglutida y Niacinamida (B3) para reconstitución subcutánea.",
@@ -54,7 +54,7 @@ export const products = [
 },
   {
     id: "xentra-t3-pen",
-    lab: "Xentra Pharma",
+    lab: "Xentra Labs",
     brandLogo: "/brand/xentra-logo.png",
     name: "Xentra T3 — Pluma multidosis",
     short: "Presentaciones escalables para dosificación semanal.",
@@ -75,7 +75,7 @@ export const products = [
   },
   {
     id: "xentra-t3-vial",
-    lab: "Xentra Pharma",
+    lab: "Xentra Labs",
     brandLogo: "/brand/xentra-logo.png",
     name: "Xentra T3 — Vial 10 mL",
     short: "Solución inyectable en frasco multidosis 10 mL.",
@@ -88,7 +88,7 @@ export const products = [
   },
   {
   id: "xentra-t3-liofilizado",
-  lab: "Xentra Pharma",
+  lab: "Xentra Labs",
   brandLogo: "/brand/xentra-logo.png",
   name: "Xentra T3 — Liofilizado 10 mL",
   short: "Polvo liofilizado estéril con Tirzepatida y Niacinamida (B3) para reconstitución subcutánea.",
@@ -106,7 +106,7 @@ export const products = [
 },
   {
     id: "slimyra",
-    lab: "Xentra Pharma",
+    lab: "Xentra Labs",
     brandLogo: "/brand/xentra-logo.png",
     name: "Slimyra",
     short: "Promueve la pérdida de grasa estimulando la lipólisis y aumentando el metabolismo.",
@@ -115,7 +115,7 @@ export const products = [
   },
   {
     id: "motzvida",
-    lab: "Xentra Pharma",
+    lab: "Xentra Labs",
     brandLogo: "/brand/xentra-logo.png",
     name: "Motzvida",
     short: "Hormona peptídica que regula el metabolismo y mejora la sensibilidad a la insulina.",
@@ -124,7 +124,7 @@ export const products = [
   },
   {
     id: "tesavida",
-    lab: "Xentra Pharma",
+    lab: "Xentra Labs",
     brandLogo: "/brand/xentra-logo.png",
     name: "Tesavida",
     short: "Análogo de la hormona liberadora de GH para reducir grasa abdominal.",
@@ -135,7 +135,7 @@ export const products = [
   // REGENERACIÓN Y REPARACIÓN
   {
     id: "vestria",
-    lab: "Xentra Pharma",
+    lab: "Xentra Labs",
     brandLogo: "/brand/xentra-logo.png",
     name: "Vestria",
     short: "Acelera la curación de tejidos, reduce la inflamación y proporciona organoprotección.",
@@ -144,7 +144,7 @@ export const products = [
   },
   {
     id: "vestria-defendra",
-    lab: "Xentra Pharma",
+    lab: "Xentra Labs",
     brandLogo: "/brand/xentra-logo.png",
     name: "Vestria + Defendra",
     short: "Combinación sinérgica para reparación avanzada de tejidos.",
@@ -153,7 +153,7 @@ export const products = [
   },
   {
     id: "defendra",
-    lab: "Xentra Pharma",
+    lab: "Xentra Labs",
     brandLogo: "/brand/xentra-logo.png",
     name: "Defendra",
     short: "Péptido involucrado en la reparación de tejidos y la cicatrización de heridas.",
@@ -162,7 +162,7 @@ export const products = [
   },
   {
     id: "hexava",
-    lab: "Xentra Pharma",
+    lab: "Xentra Labs",
     brandLogo: "/brand/xentra-logo.png",
     name: "Hexava",
     short: "Aumenta fuerza, crecimiento de fibras musculares y rejuvenece articulaciones.",
@@ -173,7 +173,7 @@ export const products = [
   // ANTIENVEJECIMIENTO / VITALIDAD CELULAR
   {
     id: "edadnad",
-    lab: "Xentra Pharma",
+    lab: "Xentra Labs",
     brandLogo: "/brand/xentra-logo.png",
     name: "EdadNAD",
     short: "Apoya el envejecimiento saludable, función cognitiva y sistema inmunológico.",
@@ -182,7 +182,7 @@ export const products = [
   },
   {
     id: "cuvenix",
-    lab: "Xentra Pharma",
+    lab: "Xentra Labs",
     brandLogo: "/brand/xentra-logo.png",
     name: "Cuvenix",
     short: "Mejora la salud de la piel estimulando colágeno y elastina.",
@@ -191,7 +191,7 @@ export const products = [
   },
   {
     id: "endurorex",
-    lab: "Xentra Pharma",
+    lab: "Xentra Labs",
     brandLogo: "/brand/xentra-logo.png",
     name: "Endurorex",
     short: "Secretagogo de la hormona del crecimiento (GH) para fuerza y rejuvenecimiento.",
@@ -200,7 +200,7 @@ export const products = [
   },
   {
     id: "ipavaxen",
-    lab: "Xentra Pharma",
+    lab: "Xentra Labs",
     brandLogo: "/brand/xentra-logo.png",
     name: "Ipavaxen",
     short: "Secretagogo selectivo de GH para crecimiento muscular y antienvejecimiento.",
@@ -209,7 +209,7 @@ export const products = [
   },
   {
     id: "endurorex-ipavaxen",
-    lab: "Xentra Pharma",
+    lab: "Xentra Labs",
     brandLogo: "/brand/xentra-logo.png",
     name: "Endurorex + Ipavaxen",
     short: "Combinación enfocada en crecimiento muscular y rejuvenecimiento.",
@@ -218,7 +218,7 @@ export const products = [
   },
   {
     id: "sermovida",
-    lab: "Xentra Pharma",
+    lab: "Xentra Labs",
     brandLogo: "/brand/xentra-logo.png",
     name: "Sermovida",
     short: "Estimula la producción natural de GH mejorando energía y vitalidad.",
@@ -229,7 +229,7 @@ export const products = [
   // ENERGÍA Y BIENESTAR
   {
     id: "vidaboost",
-    lab: "Xentra Pharma",
+    lab: "Xentra Labs",
     brandLogo: "/brand/xentra-logo.png",
     name: "VidaBoost",
     short: "Inyección lipotrópica con vitaminas y aminoácidos para energía y metabolismo.",
@@ -238,7 +238,7 @@ export const products = [
   },
   {
     id: "restora-x",
-    lab: "Xentra Pharma",
+    lab: "Xentra Labs",
     brandLogo: "/brand/xentra-logo.png",
     name: "Restora X",
     short: "Mejora la calidad del sueño, reduce el estrés y apoya la función cognitiva.",
@@ -247,7 +247,7 @@ export const products = [
   },
   {
     id: "glutiva",
-    lab: "Xentra Pharma",
+    lab: "Xentra Labs",
     brandLogo: "/brand/xentra-logo.png",
     name: "Glutiva",
     short: "Antioxidante maestro que neutraliza radicales libres y ayuda a desintoxicar el cuerpo.",
@@ -258,7 +258,7 @@ export const products = [
   // VITALIDAD SEXUAL Y HORMONAL
   {
     id: "pigmentra",
-    lab: "Xentra Pharma",
+    lab: "Xentra Labs",
     brandLogo: "/brand/xentra-logo.png",
     name: "Pigmentra",
     short: "Péptido para el bronceado y la estimulación sexual.",
@@ -267,7 +267,7 @@ export const products = [
   },
   {
     id: "amoriva",
-    lab: "Xentra Pharma",
+    lab: "Xentra Labs",
     brandLogo: "/brand/xentra-logo.png",
     name: "Amoriva",
     short: "Tratamiento del trastorno del deseo sexual hipoactivo en mujeres.",
@@ -278,7 +278,7 @@ export const products = [
   // SALUD AVANZADA / INVESTIGACIÓN
   {
     id: "ivercura",
-    lab: "Xentra Pharma",
+    lab: "Xentra Labs",
     brandLogo: "/brand/xentra-logo.png",
     name: "Ivercura",
     short: "Puede inhibir metástasis y provocar apoptosis de células cancerosas.",
