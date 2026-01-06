@@ -1,7 +1,7 @@
 // src/App.jsx
 import SplashIntro from "./components/SplashIntro.jsx";
 import WhatsAppFab from "./components/WhatsAppFab.jsx";
-
+import Maintenance from "./components/Maintenance.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Hero from "./components/Hero.jsx";
 import Quote from "./components/Quote.jsx";
@@ -10,6 +10,15 @@ import Productos from "./components/Productos.jsx";
 import Contacto from "./components/Contacto.jsx";
 
 export default function App() {
+  // --- ACTIVAR / DESACTIVAR ---
+  const MAINTENANCE_MODE = true; // ← cámbialo a false para restaurar el sitio
+  // ----------------------------
+
+  if (MAINTENANCE_MODE) {
+    return <Maintenance />;  // ← solo muestra la pantalla de mantenimiento
+  }
+
+  // Si NO está en mantenimiento, muestra la web normal
   return (
     <>
       {/* Cortinilla de inicio */}
