@@ -11,7 +11,7 @@ import Contacto from "./components/Contacto.jsx";
 
 export default function App() {
   // --- ACTIVAR / DESACTIVAR ---
-  const MAINTENANCE_MODE = true; // ← cámbialo a false para restaurar el sitio
+  const MAINTENANCE_MODE = false; // ← cámbialo a false para restaurar el sitio
   // ----------------------------
 
   if (MAINTENANCE_MODE) {
