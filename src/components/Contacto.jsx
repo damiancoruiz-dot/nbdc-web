@@ -131,6 +131,16 @@ export default function Contacto() {
       </div>
 
       {/* --- Mapa de Google Maps responsive dinámico --- */}
+      {false && (
+  <div
+    style={{
+      maxWidth: 800,
+      margin: "48px auto 0 auto",
+      borderRadius: 12,
+      overflow: "hidden",
+      boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+    }}
+  >
       <div
         style={{
           maxWidth: 800,
@@ -164,6 +174,7 @@ export default function Contacto() {
           </a>
         </div>
       </div>
+    </div>)}
     </section>
   );
 }
