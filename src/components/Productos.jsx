@@ -55,6 +55,27 @@ export default function Productos() {
                 {cat}
               </button>
             ))}
+            <a
+  href="/docs/NBDC_Presentaciones_y_Concentraciones.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="pill-btn"
+  style={{
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    background: "#087faf",
+    border: "1px solid #087faf",
+    color: "#fff",
+    fontWeight: 600,
+    textDecoration: "none",
+    maxWidth: "100%",
+    whiteSpace: "normal",
+    textAlign: "center",
+  }}
+>
+  Catálogo de medicamentos
+</a>
           </div>
 
           {/* GRID DE PRODUCTOS */}
