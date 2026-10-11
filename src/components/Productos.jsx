@@ -77,12 +77,16 @@ export default function Productos() {
   Catálogo de medicamentos
 </a>
           </div>
-                    {/* SECCIÓN DE COTIZACIÓN */}
+
+                   {/* SECCIÓN DE COTIZACIÓN */}
           <div
             style={{
               display: "flex",
-              justifyContent: "center",
-              padding: "40px 0 48px",
+              justifyContent: "flex-start",
+              padding: "28px 0",
+              margin: "0 0 32px",
+              borderTop: "1px solid #e5eaf0",
+              borderBottom: "1px solid #e5eaf0",
             }}
           >
             <a
@@ -91,11 +95,17 @@ export default function Productos() {
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="pill-btn"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
                 justifyContent: "center",
+                padding: "12px 20px",
+                borderRadius: 12,
+                background: "#0b82bd",
+                color: "#fff",
+                font: "inherit",
+                fontWeight: 700,
+                textAlign: "center",
                 textDecoration: "none",
               }}
             >
