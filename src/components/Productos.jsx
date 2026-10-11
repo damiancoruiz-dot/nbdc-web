@@ -1,3 +1,4 @@
+// src/pages/Productos.jsx
 import { useState } from "react";
 import { products } from "../data/products";
 import ProductCard from "../components/ProductCard";
@@ -27,7 +28,7 @@ export default function Productos() {
     setTimeout(() => {
       setActiveCat(cat);
       setFade(false);
-    }, 250);
+    }, 250); // duracion del fade
   };
 
   return (
@@ -37,7 +38,6 @@ export default function Productos() {
           <h2 className="h2" style={{ marginBottom: 8 }}>
             Encuentra el producto ideal para ti
           </h2>
-
           <p className="lead">
             Portafolio disponible a través de NBDC Trading Group como
             distribuidor autorizado.
@@ -55,29 +55,27 @@ export default function Productos() {
                 {cat}
               </button>
             ))}
-          </div>
-
-          {/* CATÁLOGO Y COTIZACIÓN */}
-          <div className="catalog-actions">
             <a
-              href="/docs/NBDC_Presentaciones_y_Concentraciones.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="catalog-action catalog-action-secondary"
-            >
-              Catálogo de medicamentos
-            </a>
-
-            <a
-              href={`https://wa.me/524428781486?text=${encodeURIComponent(
-                "Hola, me gustaría solicitar una cotización de los medicamentos del catálogo de NBDC."
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="catalog-action catalog-action-primary"
-            >
-              Solicitar cotización
-            </a>
+  href="/docs/NBDC_Presentaciones_y_Concentraciones.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="pill-btn"
+  style={{
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    background: "#087faf",
+    border: "1px solid #087faf",
+    color: "#fff",
+    fontWeight: 600,
+    textDecoration: "none",
+    maxWidth: "100%",
+    whiteSpace: "normal",
+    textAlign: "center",
+  }}
+>
+  Catálogo de medicamentos
+</a>
           </div>
 
           {/* GRID DE PRODUCTOS */}
@@ -101,6 +99,7 @@ export default function Productos() {
         </div>
       </section>
 
+      {/* 👇 SOLO UNA VEZ */}
       <LabInfo />
     </>
   );
