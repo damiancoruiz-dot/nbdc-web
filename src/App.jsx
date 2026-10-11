@@ -42,7 +42,7 @@ export default function App() {
           color: "#607086",
         }}
       >
-        © {new Date().getFullYear()} NBDC | Nationwide Bio Distribution Center — Envíos a todo México
+       © 2025 NBDC | Nationwide Bio Distribution Center — Envíos a todo México
       </footer>
 
       {/* Botón flotante WhatsApp */}
