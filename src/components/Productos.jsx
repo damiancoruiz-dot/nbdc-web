@@ -77,6 +77,31 @@ export default function Productos() {
   Catálogo de medicamentos
 </a>
           </div>
+                    {/* SECCIÓN DE COTIZACIÓN */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              padding: "40px 0 48px",
+            }}
+          >
+            <a
+              href={`https://wa.me/524428781486?text=${encodeURIComponent(
+                "Hola, me gustaría solicitar una cotización de los medicamentos del catálogo de NBDC."
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pill-btn"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                textDecoration: "none",
+              }}
+            >
+              Solicitar cotización
+            </a>
+          </div>
 
           {/* GRID DE PRODUCTOS */}
           <div
