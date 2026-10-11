@@ -82,7 +82,7 @@ export default function Productos() {
           <div
             style={{
               display: "flex",
-              justifyContent: "flex-start",
+              justifyContent: "center",
               padding: "28px 0",
               margin: "0 0 32px",
               borderTop: "1px solid #e5eaf0",
